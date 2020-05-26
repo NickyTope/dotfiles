@@ -1,0 +1,13 @@
+*
+!*/
+!bspwm/*
+bspwm/quotes/*
+!dunst/*
+!kitty/*
+!nvim/init.vim
+!nvim/UltiSnips/*
+!picom/*
+!polybar/*
+polybar/polybar-themes/
+!rofi/*
+!sxhkd/*

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+id=$(xdotool search --class scratchterm)
+
+if [ "$id" != "" ]
+then
+  bspc node "$id" --flag hidden -f -d $(bspc query -D -d) --follow
+else
+ kitty --class scratchterm --session ~/.config/bspwm/scratch.kitty &
+fi
