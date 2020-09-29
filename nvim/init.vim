@@ -1,22 +1,25 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " File nav
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
+
 Plug 'mbbill/undotree'
+Plug 'tpope/vim-eunuch'
 
 " Pretties
-Plug 'lifepillar/vim-solarized8'
+" Plug 'lifepillar/vim-solarized8'
+Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nathanaelkane/vim-indent-guides'
 
 " Editor convenience
-Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'junegunn/vim-peekaboo'
+Plug 'tpope/vim-commentary'
 
 " Text manilpulation
 Plug 'tpope/vim-repeat'
@@ -29,10 +32,11 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-surround'
-Plug 'scrooloose/nerdcommenter'
 
 " completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -46,10 +50,16 @@ Plug 'tpope/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'vim-scripts/groovy.vim'
+Plug 'chrisbra/csv.vim'
+Plug 'junegunn/goyo.vim'
+
+" tools
+Plug 'diepm/vim-rest-console'
+Plug 'vimwiki/vimwiki'
 
 " new plugins go here until confirmed useful...
 Plug 'justinmk/vim-sneak'
-Plug 'jremmen/vim-ripgrep'
+" Plug 'jremmen/vim-ripgrep'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -66,6 +76,7 @@ set expandtab
 set mouse=a
 set backupcopy=yes
 set number
+set relativenumber
 set cursorline
 set termguicolors
 set background=dark
@@ -73,57 +84,117 @@ set completeopt+=noinsert
 set guifont=Hasklig\ 10
 set noshowmode
 set conceallevel=0
-set relativenumber
 set ignorecase
 set hidden
 set undofile
 set undolevels=1000
 set shada="NONE"
-set clipboard=unnamed
-set title titlestring=%t\ %y\ %m
+set title
+set titlestring=%{expand(\"%:p:.\")}\ %y\ %m
+set titlelen=120
 set scrolloff=10
 set tags+=.git/tags
-colorscheme solarized8
+colorscheme nord
 
+" transparency
 hi Normal guibg=NONE ctermbg=NONE
 
+let mapleader = ' '
+" I keep pressing this and it freezes the terminal, remap to avoid...
+inoremap <F6> h
+
+" ~/.config/nvim/lua/setup.lua
+lua require'setup'
+
+" ./plugin/yanks.vim
+nmap <c-y> <Plug>(Yanks)
+
+" ./plugin/buffers.vim
+nmap <c-i> <Plug>(buffers)
+
+" vim-dirvish
+if !exists("dirvish_setup")
+  au FileType dirvish call ShowDirvishPath()
+  let dirvish_setup = 1
+  hi link DirvishTitle Search
+endif
+
+function! ShowDirvishPath()
+  let parts = split(expand("%:.:h"), "/")
+  let preparts = []
+  if len(parts) > 3
+    call add(preparts, "(")
+    for part in parts[0:-4]
+      call add(preparts, part[0])
+    endfor
+    call add(preparts, ") ")
+    let parts = parts[-3:]
+  endif
+  let path = join(preparts, "").join(parts, " > ")
+  if path == "."
+    let path = "(".expand("%:h:t").")"
+  endif
+  call append(0, "]   ".path."   [")
+  syn match DirvishTitle =^].*$=
+  setlocal conceallevel=2
+  map <buffer> ma :e %
+  map <buffer> mf :Mkdir %
+  map <buffer> mc Y:!cp " "
+  map <buffer> mm Y:!mv " "
+  map <buffer> md Y:!rm "
+  map <buffer> <c-v> :call dirvish#open("vsplit", 0)<cr>
+endfunction
+
+let g:dirvish_git_indicators = {
+\ 'Modified'  : '✹',
+\ 'Staged'    : '✚',
+\ 'Untracked' : '✭',
+\ 'Renamed'   : '➜',
+\ 'Unmerged'  : '═',
+\ 'Ignored'   : '☒',
+\ 'Unknown'   : '?'
+\ }
+
+nmap <C-o> :vsp<cr>-
+nnoremap <leader>o :e .<cr>
+" vimwiki uses - to decrease header level
+au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
+
+" prosession
 let g:prosession_dir = '~/.config/nvim/session/'
 
-let g:clap_insert_mode_only = v:true
+" clap
+" let g:clap_insert_mode_only = v:true
 " let g:clap_theme = 'material_design_dark'
-let g:clap_layout = { 'relative': 'editor' }
-let g:clap_provider_grep_executable = 'ag'
+" let g:clap_layout = { 'relative': 'editor' }
+" let g:clap_provider_grep_executable = 'rg'
+" nnoremap <C-p> :Clap files<CR>
+" nnoremap <C-i> :Clap buffers<CR>
+" nnoremap <C-i> :buffers<cr>:b 
+" nnoremap <C-y> :Clap yanks<CR>
+" nnoremap <C-h> :Clap jumps<CR>
 
+" closetag (auto close xml tags)
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
+" indent guides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
-" let g:indent_guides_guide_size = 1
-au VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=none
-au VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#193F49
+hi IndentGuidesOdd guibg=none
+hi IndentGuidesEven guibg=#4c566a
 
-let mapleader = ' '
-
+" ulti snips
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
-let g:startify_session_persistence = 1
-let g:startify_session_autoload = 1
+" commentary
+map <C-_> :Commentary<cr>
+map <C-/> :Commentary<cr>
 
-let g:NERDCommentEmptyLines = 1
-let g:NERDTrimTrailingWhitespace = 1
-let g:NERDToggleCheckAllLines = 1
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-
-let NERDTreeQuitOnOpen = 1
-" let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-let NERDTreeShowHidden = 1
-
+" lightline
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'nord',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste'  ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified'  ]  ]
@@ -131,11 +202,14 @@ let g:lightline = {
       \},
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status'
+      \   'cocstatus': 'coc#status',
+      \   'filename': 'FilenameForLightline'
       \},
       \'separator': { 'left': "", 'right': "" },
       \'subseparator': { 'left': "", 'right': "" }
       \}
+
+au User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 let g:lightline.active.right = [
       \ ['lineinfo'],
@@ -143,45 +217,82 @@ let g:lightline.active.right = [
       \ ['cocstatus'],
       \ ]
 
-let NERDTreeMapOpenVSplit='v'
-let NERDTreeMapOpenSplit='h'
-
-
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-h': 'split',
-  \ 'ctrl-v': 'vsplit' }
-let $FZF_DEFAULT_OPTS='--layout=reverse --border'
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-function! FloatingFZF()
-  let buf = nvim_create_buf(v:false, v:true)
-  let height = float2nr(&lines * 0.9)
-  let width = float2nr(&columns * 0.6)
-  let horizontal = float2nr((&columns - width) / 2)
-  let vertical = 1
-  let opts = {
-        \ 'relative': 'editor',
-        \ 'row': vertical,
-        \ 'col': horizontal,
-        \ 'width': width,
-        \ 'height': height
-        \ }
-  call nvim_open_win(buf, v:true, opts)
+function! FilenameForLightline()
+    " return expand("%:p:.")
+    return expand("%:t")
 endfunction
 
+" vim-rest-console
+let g:vrc_curl_opts = {
+  \ '--connect-timeout' : 5,
+  \ '-s': '',
+  \ '-i': '',
+  \ '--max-time': 20,
+  \ '--ipv4': '',
+  \ '-k': '',
+\}
+
+" goyo
+nnoremap <Leader>gy :Goyo<cr>
+function! s:goyo_enter()
+  set spell
+  set linebreak
+endfunction
+
+function! s:goyo_leave()
+  set nospell
+  set nolinebreak
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" my remaps {{
+nnoremap <A-b> <C-o>
+nnoremap <A-B> <C-i>
+
+nnoremap <Leader>j J
+nnoremap Q :q<cr>
+nnoremap <Leader>k K
+nnoremap <Leader>. '.
+inoremap jk <Esc>
+inoremap kj <Esc>
+nnoremap <silent> gt g<c-]>
+nmap <Leader><Esc> :noh<CR>
+
+" quickfix
+nnoremap <Leader>qf :Rg 
+nnoremap <Leader>qn :cn<CR>
+nnoremap <Leader>qb :cp<CR>
+nnoremap <Leader>qc :cclo<CR>
+nnoremap <Leader>qq :Clap quickfix<CR>
+
+nnoremap <silent><C-s> <Esc>:w<CR>
+inoremap <silent><C-s> <Esc>:w<CR>
+nnoremap <Leader>w :w <c-r>%
+
+nnoremap <A-o> o<Esc>
+nnoremap <A-O> O<Esc>
+
+nnoremap <Del> "_x
+nnoremap x "_x
+
+" don't add {} moves to jumplist
+nnoremap } :keepjumps normal! }<cr>
+nnoremap { :keepjumps normal! {<cr>
+
+nnoremap <leader><leader> :b#<cr>
+" }}
+
+" vim-move
 let g:move_key_modifier = 'S'
 
-nnoremap <leader>ct :!ctags -Rf .git/tags --tag-relative --extra=+f --exclude=.git --exclude=node_modules<cr><cr>
-
-nnoremap <Leader>. '.
 
 " COC ((
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 inoremap <silent><expr> <down> pumvisible() ? "\<C-n>" : "\<down>"
 inoremap <expr><up> pumvisible() ? "\<C-p>" : "\<up>"
@@ -196,25 +307,30 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 nmap <silent> <Leader>n <Plug>(coc-diagnostic-next)
 nnoremap <Leader>d :<C-u>CocList diagnostics<cr>
 nnoremap <Leader>p :<C-u>CocCommand prettier.formatFile<cr>
 nnoremap <Leader>cr :CocRestart<cr>
+nnoremap <Leader>cf :CocSearch 
 
-inoremap jk <Esc>
-inoremap kj <Esc>
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 "
 " Use <c-k> to show documentation in preview window.
@@ -236,10 +352,14 @@ nmap <leader>rn <Plug>(coc-rename)
 
 nnoremap <leader>ac  :CocAction<cr>
 " Fix autofix problem of current line
-nnoremap <leader>qf  :CocFix<cr>
+nmap <silent><leader>af <Plug>(coc-fix-current)
+
+nnoremap <Leader>f :CocSearch 
+nnoremap <Leader>F :CocSearch <C-R>=expand("<cword>")<CR><CR>
+vnoremap <Leader>F :CocSearch <C-R>=expand("@visual")<CR><CR>
+
 " end COC ))
 
-nnoremap <silent> gt g<c-]>
 " Fugitive
 nnoremap <silent> <Leader>gs :G<cr>
 nnoremap <silent> <Leader>gd :Gvdiffsplit<cr>
@@ -250,9 +370,10 @@ nnoremap <silent> <Leader>gp :echo "...pushing"<cr> :Gpush<cr> :echo<cr>
 nnoremap <silent> <Leader>gb :Gblame<cr>
 nnoremap <Leader>gh :Gbrowse<cr>
 
+" undo tree
 nnoremap <Leader>uh :UndotreeShow<cr>:UndotreeFocus<cr>
-autocmd BufWinLeave NERD_tree_* NERDTreeClose
 
+" window movement
 tnoremap <silent> <A-h> <C-\><C-n><C-w>h
 tnoremap <silent> <A-j> <C-\><C-n><C-w>j
 tnoremap <silent> <A-k> <C-\><C-n><C-w>k
@@ -261,9 +382,6 @@ nnoremap <silent> <A-h> <C-w>h
 nnoremap <silent> <A-j> <C-w>j
 nnoremap <silent> <A-k> <C-w>k
 nnoremap <silent> <A-l> <C-w>l
-
-nnoremap <C-_> :call NERDComment(0,"toggle")<cr>
-nnoremap <C-/> :call NERDComment(0,"toggle")<cr>
 
 " terminal
 nnoremap <leader>t :call OpenTerminal()<cr>
@@ -277,49 +395,7 @@ function! OpenTerminal()
   resize 10
 endfunction
 
-
 " Sytem clipboard
 vmap <C-c> "+y
 vmap cp "+y
 nmap <leader>v "+p
-
-nnoremap & #*
-nmap <esc><esc> :noh<CR>
-
-" remap prev and next
-nnoremap <A-b> <C-o>
-nnoremap <A-B> <C-i>
-
-map <C-o> :NERDTreeToggle<CR>
-map <leader>o :NERDTreeFind<CR>
-
-nnoremap <C-p> :Clap files<CR>
-nnoremap <C-i> :Clap buffers<CR>
-nnoremap <C-y> :Clap yanks<CR>
-nnoremap <C-h> :Clap jumps<CR>
-nnoremap <Leader>f :Clap grep<CR>
-nnoremap <Leader>F :Clap grep ++query=<cword><CR>
-vnoremap <Leader>F :Clap grep ++query=@visual<CR>
-
-nnoremap <Leader>j J
-
-" quickfix
-nnoremap <Leader>qf :Rg 
-nnoremap <Leader>qn :cn<CR>
-nnoremap <Leader>qb :cp<CR>
-nnoremap <Leader>qc :cclo<CR>
-nnoremap <Leader>qq :Clap quickfix<CR>
-
-nnoremap <silent><C-s> <Esc>:w<CR>
-inoremap <silent><C-s> <Esc>:w<CR>
-nnoremap <Leader>w :w<CR>
-
-nnoremap <silent> <2-LeftMouse> :let @/='\V\<'.escape(expand('<cword>'), '\').'\>'<cr>:set hls<cr>
-
-nnoremap <A-o> o<Esc>
-nnoremap <A-O> O<Esc>
-nnoremap <Del> "_x
-
-nnoremap <leader><leader> :b#<cr>
-
-

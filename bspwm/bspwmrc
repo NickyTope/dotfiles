@@ -1,5 +1,6 @@
 #! /bin/sh
 
+killall sxhkd
 sxhkd &
 
 ~/.config/bspwm/monitors.sh
@@ -13,7 +14,7 @@ bspc config gapless_monocle      true
 bspc config pointer_follows_monitor       true
 bspc config focus_follows_pointer         true
 bspc config click_to_focus                true
-bspc config focused_border_color "#EE413D"
+bspc config focused_border_color "#81A1C1"
 
 bspc rule -a Gimp desktop='SCRATCH' state=floating follow=on
 bspc rule -a Chrome desktop='WEB'
@@ -23,12 +24,14 @@ bspc rule -a Thunar state=floating
 bspc rule -a '*:gitk' state=floating
 bspc rule -a '*:dialog' state=floating
 bspc rule -a '*:volume' state=floating
-bspc rule -a scratchterm state=floating rectangle=1820x300+50+30
+bspc rule -a '*:pavucontrol' state=floating rectangle=600x800+0+0 center=on
+bspc rule -a "scratchterm" state=floating rectangle=1200x400+0+0 center=on
 
 ~/.config/polybar/launch.sh &
 ~/.config/bspwm/setwall.sh &
 xinput set-prop "Logitech Gaming Mouse G502" "libinput Natural Scrolling Enabled" 1 &
 xinput set-prop "pointer:Logitech MX Anywhere 2S" "libinput Natural Scrolling Enabled" 1 &
-picom -b
+xinput set-prop "pointer:Glorious Model D" "libinput Natural Scrolling Enabled" 1 &
+picom -b &
 clipster -d &
-xsetroot -cursor_name left_ptr
+echo "rc complete"

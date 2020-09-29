@@ -152,15 +152,19 @@ super + shift + w
 
 # Network menu
 super + n
-  ~/.config/polybar/networkmenu
+  notify-send "set this up if you keep using it???"
 
 # Bluetooth menu
 super + ctrl + b
-  ~/.config/polybar/btmenu.sh
+  ~/.config/polybar/scripts/btmenu.sh
 
 # Audio menu
 super + ctrl + a
-  ~/.config/polybar/pamenu.sh
+  ~/.config/polybar/scripts/pamenu.sh
+
+# screenlayout
+super + shift + m
+  ~/.config/polybar/scripts/screenlayout.sh
   
 # Lock
 ctrl + alt + l
@@ -176,12 +180,12 @@ super + alt + c
   colorpicker --short --one-shot --preview | xclip -selection clipboard
 
 # Quote
-super + q
-  ~/.config/bspwm/get_phrase.sh
+# super + q
+  # ~/.config/bspwm/get_phrase.sh
 
 # Ruler
-super + r
-  ~/apps/xscreenruler/xscreenruler -fg orange -bg black
+# super + r
+  # ~/apps/xscreenruler/xscreenruler -fg orange -bg black
 
 # Volume
 XF86AudioLowerVolume
@@ -195,4 +199,4 @@ XF86AudioMute
 
 # clipboard
 ctrl + alt + v
-  sleep 0 && roficlip -font "hasklig 10"
+  sleep 0 && roficlip -font "hasklig 10" -theme "nord"

@@ -23,14 +23,3 @@ shade8: #B0BEC5;
     foreground:                     #ffffff;
     urgent:                         #DA4453;
 }
-
-/* -- light -- */
-* {
-    border:               			@shade8;
-    border-alt:               		@shade7;
-    background:                     @shade6;
-    background-alt:                 @shade6;
-    selected:               		@shade5;
-    foreground:                     #ffffff;
-    urgent:                         #DA4453;
-}

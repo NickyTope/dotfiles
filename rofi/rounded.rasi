@@ -41,8 +41,8 @@ configuration {
 }
 
 #window {
-  width: 50%;
-  height: 60%;
+  width: 30%;
+  height: 30%;
   padding: 40px 40px;
   border: 0px;
   border-radius: 14px;

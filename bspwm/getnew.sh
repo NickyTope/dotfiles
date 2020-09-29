@@ -1,9 +1,14 @@
 #!/bin/bash
 
-subreddits=("ExposurePorn" "EarthPorn" "wallpapers" "WQHD_Wallpaper" "wallpaperdump" )
+# https://imgur.com/gallery/[id]
+galleries=("0oiM1" "SPmIR" "lkhbk88")
+gallery=${galleries[$RANDOM % ${#galleries[@]}]}
+echo $gallery
+IDS="$(curl "https://api.imgur.com/post/v1/posts/$gallery?client_id=883f0d26c1eb2b4&include=media,tags,account,adconfig,promoted" | jq '.media[].id' -r)"
 
-subreddit=${subreddits[$RANDOM % ${#subreddits[@]}]}
-IDS="$(wget -q "https://imgur.com/r/$subreddit" -O - | grep '"post"' | grep class | cut -d\" -f 2)" 
+
+# IDS="$(wget -q "https://imgur.com/a/YsWMXAQ" -O - | grep post-image-container | grep class | cut -d\" -f 2)"
+
 readarray -t IDARRAY <<<"$IDS"
 ID=${IDARRAY[$RANDOM % ${#IDARRAY[@]}]}
 echo "fetching ${ID} from ${subreddit}"
