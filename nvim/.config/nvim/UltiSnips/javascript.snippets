@@ -1,0 +1,60 @@
+snippet log "variable logger"
+console.log('${1:#:variable}', $1);
+endsnippet
+
+snippet lg "basic logger"
+console.log($1);
+endsnippet
+
+snippet logp "promise logger"
+.then(res => console.log('res', res) || res)
+.catch(err => console.log('err', err) || Promise.reject(err))
+endsnippet
+
+snippet ii "magic import" b
+import `!p
+def formatVariableName(path):
+  parts = path.split('/')
+  module = parts[0]
+  if len(parts) > 1:
+    return parts[-1]
+  else:
+    return re.sub(r'[_\-]', '', module.title())
+snip.rv = formatVariableName(t[1])
+` from '${1}';$0
+endsnippet
+
+snippet mi "material ui import"
+import ${1:#:component} from '@material-ui/core/$1';
+endsnippet
+
+snippet im "standard import"
+import { $1 } from '$2';
+endsnippet
+
+snippet uw "unwrap an object"
+const { ${1} } = ${2};
+endsnippet
+
+snippet fn "fat arrow" w
+() => {$1}
+endsnippet
+
+snippet fa "fat arrow" w
+=> {$1}
+endsnippet
+
+snippet fna "fat arrow with args" w
+($1) => {$2}
+endsnippet
+
+snippet us "useState"
+const [${1}, ${1/\w+/set\u$0/}] = useState(${2});
+endsnippet
+
+snippet ue "useEffect"
+useEffect(() => {
+	$1
+},[]);
+endsnippet
+

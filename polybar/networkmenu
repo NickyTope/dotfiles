@@ -1,4 +1,0 @@
-#!/bin/bash
-
-netctl list | cut -b 3- | rofi -dmenu -theme solarized -font "hasklig 10" | xargs sudo -A netctl switch-to && sudo dhcpcd -n
-

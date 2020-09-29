@@ -1,0 +1,401 @@
+call plug#begin('~/.local/share/nvim/plugged')
+
+" File nav
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+Plug 'justinmk/vim-dirvish'
+Plug 'kristijanhusak/vim-dirvish-git'
+
+Plug 'mbbill/undotree'
+Plug 'tpope/vim-eunuch'
+
+" Pretties
+" Plug 'lifepillar/vim-solarized8'
+Plug 'arcticicestudio/nord-vim'
+Plug 'itchyny/lightline.vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'nathanaelkane/vim-indent-guides'
+
+" Editor convenience
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+Plug 'junegunn/vim-peekaboo'
+Plug 'tpope/vim-commentary'
+
+" Text manilpulation
+Plug 'tpope/vim-repeat'
+Plug 'kana/vim-textobj-user'
+Plug 'etdev/vim-textobject-pack'
+Plug 'matze/vim-move'
+
+" Input trickery
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'SirVer/ultisnips'
+Plug 'tpope/vim-surround'
+
+" completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+
+" git
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+
+" Syntax
+Plug 'mitsuhiko/vim-jinja'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'tpope/vim-markdown'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'stephpy/vim-yaml'
+Plug 'vim-scripts/groovy.vim'
+Plug 'chrisbra/csv.vim'
+Plug 'junegunn/goyo.vim'
+
+" tools
+Plug 'diepm/vim-rest-console'
+Plug 'vimwiki/vimwiki'
+
+" new plugins go here until confirmed useful...
+Plug 'justinmk/vim-sneak'
+" Plug 'jremmen/vim-ripgrep'
+
+call plug#end()
+au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
+
+filetype plugin on
+
+set rtp+=~/.fzf
+set laststatus=2
+set splitbelow
+set splitright
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set mouse=a
+set backupcopy=yes
+set number
+set relativenumber
+set cursorline
+set termguicolors
+set background=dark
+set completeopt+=noinsert
+set guifont=Hasklig\ 10
+set noshowmode
+set conceallevel=0
+set ignorecase
+set hidden
+set undofile
+set undolevels=1000
+set shada="NONE"
+set title
+set titlestring=%{expand(\"%:p:.\")}\ %y\ %m
+set titlelen=120
+set scrolloff=10
+set tags+=.git/tags
+colorscheme nord
+
+" transparency
+hi Normal guibg=NONE ctermbg=NONE
+
+let mapleader = ' '
+" I keep pressing this and it freezes the terminal, remap to avoid...
+inoremap <F6> h
+
+" ~/.config/nvim/lua/setup.lua
+lua require'setup'
+
+" ./plugin/yanks.vim
+nmap <c-y> <Plug>(Yanks)
+
+" ./plugin/buffers.vim
+nmap <c-i> <Plug>(buffers)
+
+" vim-dirvish
+if !exists("dirvish_setup")
+  au FileType dirvish call ShowDirvishPath()
+  let dirvish_setup = 1
+  hi link DirvishTitle Search
+endif
+
+function! ShowDirvishPath()
+  let parts = split(expand("%:.:h"), "/")
+  let preparts = []
+  if len(parts) > 3
+    call add(preparts, "(")
+    for part in parts[0:-4]
+      call add(preparts, part[0])
+    endfor
+    call add(preparts, ") ")
+    let parts = parts[-3:]
+  endif
+  let path = join(preparts, "").join(parts, " > ")
+  if path == "."
+    let path = "(".expand("%:h:t").")"
+  endif
+  call append(0, "]   ".path."   [")
+  syn match DirvishTitle =^].*$=
+  setlocal conceallevel=2
+  map <buffer> ma :e %
+  map <buffer> mf :Mkdir %
+  map <buffer> mc Y:!cp " "
+  map <buffer> mm Y:!mv " "
+  map <buffer> md Y:!rm "
+  map <buffer> <c-v> :call dirvish#open("vsplit", 0)<cr>
+endfunction
+
+let g:dirvish_git_indicators = {
+\ 'Modified'  : '✹',
+\ 'Staged'    : '✚',
+\ 'Untracked' : '✭',
+\ 'Renamed'   : '➜',
+\ 'Unmerged'  : '═',
+\ 'Ignored'   : '☒',
+\ 'Unknown'   : '?'
+\ }
+
+nmap <C-o> :vsp<cr>-
+nnoremap <leader>o :e .<cr>
+" vimwiki uses - to decrease header level
+au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
+
+" prosession
+let g:prosession_dir = '~/.config/nvim/session/'
+
+" clap
+" let g:clap_insert_mode_only = v:true
+" let g:clap_theme = 'material_design_dark'
+" let g:clap_layout = { 'relative': 'editor' }
+" let g:clap_provider_grep_executable = 'rg'
+" nnoremap <C-p> :Clap files<CR>
+" nnoremap <C-i> :Clap buffers<CR>
+" nnoremap <C-i> :buffers<cr>:b 
+" nnoremap <C-y> :Clap yanks<CR>
+" nnoremap <C-h> :Clap jumps<CR>
+
+" closetag (auto close xml tags)
+let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
+
+" indent guides
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_enable_on_vim_startup = 1
+hi IndentGuidesOdd guibg=none
+hi IndentGuidesEven guibg=#4c566a
+
+" ulti snips
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+
+" commentary
+map <C-_> :Commentary<cr>
+map <C-/> :Commentary<cr>
+
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste'  ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified'  ]  ]
+      \
+      \},
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head',
+      \   'cocstatus': 'coc#status',
+      \   'filename': 'FilenameForLightline'
+      \},
+      \'separator': { 'left': "", 'right': "" },
+      \'subseparator': { 'left': "", 'right': "" }
+      \}
+
+au User CocStatusChange,CocDiagnosticChange call lightline#update()
+
+let g:lightline.active.right = [
+      \ ['lineinfo'],
+      \ ['percent'],
+      \ ['cocstatus'],
+      \ ]
+
+function! FilenameForLightline()
+    " return expand("%:p:.")
+    return expand("%:t")
+endfunction
+
+" vim-rest-console
+let g:vrc_curl_opts = {
+  \ '--connect-timeout' : 5,
+  \ '-s': '',
+  \ '-i': '',
+  \ '--max-time': 20,
+  \ '--ipv4': '',
+  \ '-k': '',
+\}
+
+" goyo
+nnoremap <Leader>gy :Goyo<cr>
+function! s:goyo_enter()
+  set spell
+  set linebreak
+endfunction
+
+function! s:goyo_leave()
+  set nospell
+  set nolinebreak
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" my remaps {{
+nnoremap <A-b> <C-o>
+nnoremap <A-B> <C-i>
+
+nnoremap <Leader>j J
+nnoremap Q :q<cr>
+nnoremap <Leader>k K
+nnoremap <Leader>. '.
+inoremap jk <Esc>
+inoremap kj <Esc>
+nnoremap <silent> gt g<c-]>
+nmap <Leader><Esc> :noh<CR>
+
+" quickfix
+nnoremap <Leader>qf :Rg 
+nnoremap <Leader>qn :cn<CR>
+nnoremap <Leader>qb :cp<CR>
+nnoremap <Leader>qc :cclo<CR>
+nnoremap <Leader>qq :Clap quickfix<CR>
+
+nnoremap <silent><C-s> <Esc>:w<CR>
+inoremap <silent><C-s> <Esc>:w<CR>
+nnoremap <Leader>w :w <c-r>%
+
+nnoremap <A-o> o<Esc>
+nnoremap <A-O> O<Esc>
+
+nnoremap <Del> "_x
+nnoremap x "_x
+
+" don't add {} moves to jumplist
+nnoremap } :keepjumps normal! }<cr>
+nnoremap { :keepjumps normal! {<cr>
+
+nnoremap <leader><leader> :b#<cr>
+" }}
+
+" vim-move
+let g:move_key_modifier = 'S'
+
+
+" COC ((
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+inoremap <silent><expr> <down> pumvisible() ? "\<C-n>" : "\<down>"
+inoremap <expr><up> pumvisible() ? "\<C-p>" : "\<up>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
+nmap <silent> <Leader>n <Plug>(coc-diagnostic-next)
+nnoremap <Leader>d :<C-u>CocList diagnostics<cr>
+nnoremap <Leader>p :<C-u>CocCommand prettier.formatFile<cr>
+nnoremap <Leader>cr :CocRestart<cr>
+nnoremap <Leader>cf :CocSearch 
+
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+"
+" Use <c-k> to show documentation in preview window.
+nnoremap <silent> <c-k> :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+nnoremap <leader>ac  :CocAction<cr>
+" Fix autofix problem of current line
+nmap <silent><leader>af <Plug>(coc-fix-current)
+
+nnoremap <Leader>f :CocSearch 
+nnoremap <Leader>F :CocSearch <C-R>=expand("<cword>")<CR><CR>
+vnoremap <Leader>F :CocSearch <C-R>=expand("@visual")<CR><CR>
+
+" end COC ))
+
+" Fugitive
+nnoremap <silent> <Leader>gs :G<cr>
+nnoremap <silent> <Leader>gd :Gvdiffsplit<cr>
+nnoremap <silent> <Leader>gl :Glog<cr>
+nnoremap <silent> <Leader>gf :echo "...fetching"<cr> :Gfetch<cr> :echo<cr>
+nnoremap <silent> <Leader>gr :echo "...rebasing"<cr> :Grebase<cr> :echo<cr>
+nnoremap <silent> <Leader>gp :echo "...pushing"<cr> :Gpush<cr> :echo<cr>
+nnoremap <silent> <Leader>gb :Gblame<cr>
+nnoremap <Leader>gh :Gbrowse<cr>
+
+" undo tree
+nnoremap <Leader>uh :UndotreeShow<cr>:UndotreeFocus<cr>
+
+" window movement
+tnoremap <silent> <A-h> <C-\><C-n><C-w>h
+tnoremap <silent> <A-j> <C-\><C-n><C-w>j
+tnoremap <silent> <A-k> <C-\><C-n><C-w>k
+tnoremap <silent> <A-l> <C-\><C-n><C-w>l
+nnoremap <silent> <A-h> <C-w>h
+nnoremap <silent> <A-j> <C-w>j
+nnoremap <silent> <A-k> <C-w>k
+nnoremap <silent> <A-l> <C-w>l
+
+" terminal
+nnoremap <leader>t :call OpenTerminal()<cr>
+" map escape to go to normal mode in terminal buffers,
+" don't do this in a tnoremap becasue it conflicts with fzf Esc to close
+au BufEnter * if &buftype == 'terminal' | :tmap <buffer> <Esc> <C-\><C-n> | endif
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+function! OpenTerminal()
+  split term://zsh
+  resize 10
+endfunction
+
+" Sytem clipboard
+vmap <C-c> "+y
+vmap cp "+y
+nmap <leader>v "+p
