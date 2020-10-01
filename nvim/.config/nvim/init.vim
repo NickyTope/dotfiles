@@ -56,10 +56,9 @@ Plug 'junegunn/goyo.vim'
 " tools
 Plug 'diepm/vim-rest-console'
 Plug 'vimwiki/vimwiki'
+Plug 'NickyTope/yanks.nvim'
 
 " new plugins go here until confirmed useful...
-Plug 'justinmk/vim-sneak'
-" Plug 'jremmen/vim-ripgrep'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -88,7 +87,6 @@ set ignorecase
 set hidden
 set undofile
 set undolevels=1000
-set shada="NONE"
 set title
 set titlestring=%{expand(\"%:p:.\")}\ %y\ %m
 set titlelen=120
@@ -114,12 +112,12 @@ nmap <c-i> <Plug>(buffers)
 
 " vim-dirvish
 if !exists("dirvish_setup")
-  au FileType dirvish call ShowDirvishPath()
+  au FileType dirvish call CustomDirvishSetup()
   let dirvish_setup = 1
   hi link DirvishTitle Search
 endif
 
-function! ShowDirvishPath()
+function! CustomDirvishSetup()
   let parts = split(expand("%:.:h"), "/")
   let preparts = []
   if len(parts) > 3
@@ -159,6 +157,9 @@ nmap <C-o> :vsp<cr>-
 nnoremap <leader>o :e .<cr>
 " vimwiki uses - to decrease header level
 au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
+
+" vimwiki
+let g:vimwiki_folding = 'list'
 
 " prosession
 let g:prosession_dir = '~/.config/nvim/session/'
