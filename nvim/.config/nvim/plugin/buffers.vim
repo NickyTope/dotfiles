@@ -103,11 +103,25 @@ function! buffers#close()
   endif
 endfunction
 
+" function! buffers#save()
+"   call writefile([ json_encode(g:__buffers_last_accessed) ], expand( s:cachefile ), "b")
+" endfunction
+
 noremap <silent> <Plug>(buffers) :call buffers#list()<cr>
+
+" let s:cachefile = '~/.cache/vimbuffers.json'
+" if filereadable(expand(s:cachefile))
+"   let cache = readfile(expand(s:cachefile))
+"   if !empty(cache)
+"     echo cache[0]
+"     let g:__buffers_last_accessed = json_decode(cache[0])
+"   endif
+" endif
 
 augroup Buffers
   autocmd!
-  autocmd BufWinEnter,WinEnter * let g:__buffers_last_accessed[bufnr('')] = reltimefloat(reltime())
+  autocmd BufEnter * let g:__buffers_last_accessed[bufnr('')] = reltimefloat(reltime())
+  " autocmd VimLeave call buffers#save()
 augroup END
 
 let g:loaded_bufferlist = 1
