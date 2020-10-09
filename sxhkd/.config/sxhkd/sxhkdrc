@@ -197,6 +197,14 @@ XF86AudioRaiseVolume
 XF86AudioMute
 	ponymix toggle
 
+# brightness
+# xbacklight from community/acpilight
+XF86MonBrightnessUp
+  sudo xbacklight -inc 10
+
+XF86MonBrightnessDown
+  sudo xbacklight -dec 10
+
 # clipboard
 ctrl + alt + v
   sleep 0 && roficlip -font "hasklig 10" -theme "nord"
