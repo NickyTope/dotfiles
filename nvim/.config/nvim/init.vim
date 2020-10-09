@@ -1,7 +1,6 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " File nav
-" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'justinmk/vim-dirvish'
 Plug 'kristijanhusak/vim-dirvish-git'
 
@@ -46,7 +45,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'tpope/vim-markdown'
+" Plug 'tpope/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'vim-scripts/groovy.vim'
@@ -59,13 +58,17 @@ Plug 'vimwiki/vimwiki'
 Plug 'NickyTope/yanks.nvim'
 
 " new plugins go here until confirmed useful...
+Plug 'godlygeek/tabular'
+" definitely slower than tpope and way faster than wiki, seems to sit in
+" between with functionality also...
+Plug 'plasticboy/vim-markdown'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
 
 filetype plugin on
 
-set rtp+=~/.fzf
+" set rtp+=~/.fzf
 set laststatus=2
 set splitbelow
 set splitright
@@ -159,7 +162,9 @@ nnoremap <leader>o :e .<cr>
 au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
 
 " vimwiki
+" only use vimwiki for .wiki files
 let g:vimwiki_folding = 'list'
+let g:vimwiki_ext2syntax = {'.wiki': 'media'}
 
 " prosession
 let g:prosession_dir = '~/.config/nvim/session/'
