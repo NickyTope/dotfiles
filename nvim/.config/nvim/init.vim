@@ -62,6 +62,7 @@ Plug 'godlygeek/tabular'
 " definitely slower than tpope and way faster than wiki, seems to sit in
 " between with functionality also...
 Plug 'plasticboy/vim-markdown'
+" Plug 'kien/ctrlp.vim'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -110,6 +111,9 @@ lua require'setup'
 " ./plugin/yanks.vim
 nmap <c-y> <Plug>(Yanks)
 
+" ./plugin/gitfiles.vim
+nmap <c-p> <Plug>(gitfiles)
+
 " ./plugin/buffers.vim
 nmap <c-i> <Plug>(buffers)
 
@@ -143,6 +147,7 @@ function! CustomDirvishSetup()
   map <buffer> mc Y:!cp " "
   map <buffer> mm Y:!mv " "
   map <buffer> md Y:!rm "
+  map <buffer> <c-p> <Plug>(gitfiles)
   map <buffer> <c-v> :call dirvish#open("vsplit", 0)<cr>
 endfunction
 
