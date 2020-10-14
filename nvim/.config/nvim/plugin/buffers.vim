@@ -14,8 +14,8 @@ function! buffers#sort(b1, b2)
   if a:b1['mod'] != a:b2['mod']
     return a:b2['mod'] - a:b1['mod']
   endif
-  let b1 = get(g:__buffers_last_accessed, a:b1['buf'], a:b1['buf'])
-  let b2 = get(g:__buffers_last_accessed, a:b2['buf'], a:b2['buf'])
+  let b1 = get(g:__buffers_last_accessed, a:b1['buf'], str2nr(a:b1['buf']))
+  let b2 = get(g:__buffers_last_accessed, a:b2['buf'], str2nr(a:b2['buf']))
   return b1 < b2 ? 1 : -1
 endfunction
 
