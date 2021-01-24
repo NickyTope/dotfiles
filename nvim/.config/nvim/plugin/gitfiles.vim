@@ -22,10 +22,6 @@ function! gitfiles#list()
 
   call execute("lcd ". s:rel)
   call execute("read !git ls-files")
-  " redir => s:files
-  " silent !git ls-files
-  " redir END
-  " echo s:files
   call execute("norm gg")
   call gitfiles#title()
   nmap <buffer> <silent> <Esc> :call gitfiles#close()<cr>

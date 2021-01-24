@@ -180,8 +180,8 @@ super + alt + c
   colorpicker --short --one-shot --preview | xclip -selection clipboard
 
 # Quote
-# super + q
-  # ~/.config/bspwm/get_phrase.sh
+super + q
+  ~/.config/bspwm/get_phrase.sh
 
 # Ruler
 # super + r

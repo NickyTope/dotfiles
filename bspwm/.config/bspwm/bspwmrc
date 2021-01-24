@@ -9,12 +9,13 @@ bspc config border_width         2
 bspc config window_gap          12
 
 bspc config split_ratio          0.52
-bspc config borderless_monocle   true
+bspc config borderless_monocle   false
 bspc config gapless_monocle      true
 bspc config pointer_follows_monitor       true
 bspc config focus_follows_pointer         true
 bspc config click_to_focus                true
-bspc config focused_border_color "#81A1C1"
+# bspc config focused_border_color "#81A1C1"
+bspc config focused_border_color "#f4f70a"
 
 bspc rule -a Gimp desktop='SCRATCH' state=floating follow=on
 bspc rule -a Chrome desktop='WEB'
@@ -26,6 +27,8 @@ bspc rule -a '*:dialog' state=floating
 bspc rule -a '*:volume' state=floating
 bspc rule -a '*:pavucontrol' state=floating rectangle=600x800+0+0 center=on
 bspc rule -a "scratchterm" state=floating rectangle=1200x400+0+0 center=on
+
+bspc config external_rules_command ./zoom_float.sh
 
 ~/.config/polybar/launch.sh &
 ~/.config/bspwm/setwall.sh &

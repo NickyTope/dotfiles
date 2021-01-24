@@ -19,6 +19,7 @@ Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-commentary'
+Plug 'machakann/vim-highlightedyank'
 
 " Text manilpulation
 Plug 'tpope/vim-repeat'
@@ -31,9 +32,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'alvan/vim-closetag'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-surround'
+Plug 'NickyTope/yanks.nvim'
 
 " completion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm i'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 
@@ -45,31 +47,29 @@ Plug 'tpope/vim-rhubarb'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'yuezk/vim-js'
 Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'tpope/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'vim-scripts/groovy.vim'
 Plug 'chrisbra/csv.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'plasticboy/vim-markdown'
+" required by vim-markdown
+Plug 'godlygeek/tabular'
 
 " tools
 Plug 'diepm/vim-rest-console'
 Plug 'vimwiki/vimwiki'
-Plug 'NickyTope/yanks.nvim'
 
 " new plugins go here until confirmed useful...
-Plug 'godlygeek/tabular'
-" definitely slower than tpope and way faster than wiki, seems to sit in
-" between with functionality also...
-Plug 'plasticboy/vim-markdown'
-" Plug 'kien/ctrlp.vim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
 
 filetype plugin on
 
-" set rtp+=~/.fzf
 set laststatus=2
 set splitbelow
 set splitright
@@ -87,6 +87,7 @@ set completeopt+=noinsert
 set guifont=Hasklig\ 10
 set noshowmode
 set conceallevel=0
+set smartcase
 set ignorecase
 set hidden
 set undofile
@@ -96,6 +97,10 @@ set titlestring=%{expand(\"%:p:.\")}\ %y\ %m
 set titlelen=120
 set scrolloff=10
 set tags+=.git/tags
+set grepprg=rg\ --vimgrep
+set grepformat=%f:%l:%c:%m
+set noswapfile
+
 colorscheme nord
 
 " transparency
@@ -105,6 +110,8 @@ let mapleader = ' '
 " I keep pressing this and it freezes the terminal, remap to avoid...
 inoremap <F6> h
 
+let g:coc_global_extensions = ['coc-json', 'coc-gitignore', 'coc-css', 'coc-eslint', 'coc-highlight', 'coc-prettier', 'coc-scssmodules', 'coc-stylelintplus', 'coc-tsserver', 'coc-ultisnips', 'coc-yaml']
+
 " ~/.config/nvim/lua/setup.lua
 lua require'setup'
 
@@ -112,10 +119,16 @@ lua require'setup'
 nmap <c-y> <Plug>(Yanks)
 
 " ./plugin/gitfiles.vim
-nmap <c-p> <Plug>(gitfiles)
+" nmap <c-p> <Plug>(gitfiles)
 
 " ./plugin/buffers.vim
 nmap <c-i> <Plug>(buffers)
+
+" highlighted yank
+let g:highlightedyank_highlight_duration = 500
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
 
 " vim-dirvish
 if !exists("dirvish_setup")
@@ -272,7 +285,6 @@ nnoremap <silent> gt g<c-]>
 nmap <Leader><Esc> :noh<CR>
 
 " quickfix
-nnoremap <Leader>qf :Rg 
 nnoremap <Leader>qn :cn<CR>
 nnoremap <Leader>qb :cp<CR>
 nnoremap <Leader>qc :cclo<CR>
@@ -318,7 +330,8 @@ inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <silent> <Leader>n <Plug>(coc-diagnostic-next)
 nnoremap <Leader>d :<C-u>CocList diagnostics<cr>
@@ -345,23 +358,23 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 "
 " Use <c-k> to show documentation in preview window.
-nnoremap <silent> <c-k> :call <SID>show_documentation()<CR>
+nnoremap <silent> <c-j> :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if &filetype == 'vim'
+"     execute 'h '.expand('<cword>')
+"   else
+"     call CocAction('doHover')
+"   endif
+" endfunction
 
 " Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
-nnoremap <leader>ac  :CocAction<cr>
+nnoremap <leader>ac  <Plug>(coc-codeaction)
 " Fix autofix problem of current line
 nmap <silent><leader>af <Plug>(coc-fix-current)
 
@@ -370,6 +383,12 @@ nnoremap <Leader>F :CocSearch <C-R>=expand("<cword>")<CR><CR>
 vnoremap <Leader>F :CocSearch <C-R>=expand("@visual")<CR><CR>
 
 " end COC ))
+
+" telescope
+" https://github.com/nvim-telescope/telescope.nvim#pickers
+nnoremap <c-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>t <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
 
 " Fugitive
 nnoremap <silent> <Leader>gs :G<cr>
@@ -395,7 +414,7 @@ nnoremap <silent> <A-k> <C-w>k
 nnoremap <silent> <A-l> <C-w>l
 
 " terminal
-nnoremap <leader>t :call OpenTerminal()<cr>
+nnoremap <leader>T :call OpenTerminal()<cr>
 " map escape to go to normal mode in terminal buffers,
 " don't do this in a tnoremap becasue it conflicts with fzf Esc to close
 au BufEnter * if &buftype == 'terminal' | :tmap <buffer> <Esc> <C-\><C-n> | endif

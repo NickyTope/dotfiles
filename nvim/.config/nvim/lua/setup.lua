@@ -10,24 +10,57 @@ local my_attach = function(client)
   mapper('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 end
 
-require'nvim_lsp'.sumneko_lua.setup{
-  settings = {
-    Lua = {
-      runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
-      diagnostics = { enable = true, globals = { "vim" } },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-        }
-      }
-    }
-  },
-  on_attach=my_attach
+-- require'lspconfig'.tsserver.setup{
+--   on_attach = function(client)
+--     my_attach(client)
+--     client.resolved_capabilities.document_formatting = false
+--   end
+-- }
+
+-- require'lspconfig'.diagnosticls.setup {
+--   filetypes = {"javascript", "typescript"},
+--   init_options = {
+--     linters = {
+--       eslint = {
+--         command = "eslint",
+--         rootPatterns = {".git"},
+--         debounce = 100,
+--         args = {
+--           "--stdin",
+--           "--stdin-filename",
+--           "%filepath",
+--           "--format",
+--           "json"
+--         },
+--         sourceName = "eslint",
+--         parseJson = {
+--           errorsRoot = "[0].messages",
+--           line = "line",
+--           column = "column",
+--           endLine = "endLine",
+--           endColumn = "endColumn",
+--           message = "${message} [${ruleId}]",
+--           security = "severity"
+--         },
+--         securities = {
+--           [2] = "error",
+--           [1] = "warning"
+--         }
+--       },
+--       filetypes = {
+--         javascript = "eslint",
+--         javascriptreact = "eslint"
+--       }
+--     }
+--   }
+-- }
+
+local sumneko_install = "/home/nt/apps/lua-language-server/"
+
+require'lspconfig'.sumneko_lua.setup{
+  on_attach=my_attach,
+  cmd={sumneko_install.."bin/Linux/lua-language-server", "-E", sumneko_install.."main.lua"}
 }
-
--- TS SERVER
--- require'nvim_lsp'.tsserver.setup{on_attach=my_attach}
-
--- PYLS
-require'nvim_lsp'.pyls.setup{on_attach=my_attach}
-require'nvim_lsp'.vimls.setup{}
+--
+require'lspconfig'.pyls.setup{on_attach=my_attach}
+require'lspconfig'.vimls.setup{on_attach=my_attach}
