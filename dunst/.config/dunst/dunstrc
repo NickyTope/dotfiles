@@ -24,7 +24,7 @@
     sort = yes
 
     idle_threshold = 120
-    font = Droid Sans 12
+    font = Nimbus Sans 16
     line_height = 0
     markup = full
 

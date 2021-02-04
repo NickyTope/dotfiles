@@ -55,12 +55,12 @@ end
 --   }
 -- }
 
-local sumneko_install = "/home/nt/apps/lua-language-server/"
+local sumneko_install = "/home/nicky/apps/lua-language-server/"
 
 require'lspconfig'.sumneko_lua.setup{
   on_attach=my_attach,
   cmd={sumneko_install.."bin/Linux/lua-language-server", "-E", sumneko_install.."main.lua"}
 }
 --
-require'lspconfig'.pyls.setup{on_attach=my_attach}
+-- require'lspconfig'.pyls.setup{on_attach=my_attach}
 require'lspconfig'.vimls.setup{on_attach=my_attach}

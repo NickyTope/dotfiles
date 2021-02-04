@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cd /home/nt/.screenlayout
+cd /home/nicky/.screenlayout
 SCRIPT=`ls | rofi -dmenu`
 bash $SCRIPT

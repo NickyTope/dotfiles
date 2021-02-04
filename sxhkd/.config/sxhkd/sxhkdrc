@@ -164,16 +164,15 @@ super + ctrl + a
 
 # screenlayout
 super + shift + m
-  ~/.config/polybar/scripts/screenlayout.sh
+  ~/.config/bspwm/monitor_detect.sh
   
 # Lock
 ctrl + alt + l
-  maim /tmp/screen.png && corrupter -mag 5 -boffset 12 /tmp/screen.png /tmp/screen.png && i3lock -i /tmp/screen.png
+  maim /tmp/screen.png && corrupter -mag 5 -boffset 12 /tmp/screen.png /tmp/screen.png && i3lock -i /tmp/screen.png && ~/.config/bspwm/pause-dunst.sh
 
 # Screenshots
 super + {alt,shift,ctrl} + p
   maim {~/Pictures/screens/Screenshot_$(date +%s).png, -s | xclip -selection clipboard -t image/png, -s ~/Pictures/screens/Screenshot_$(date +%s).png}
-
 
 # Color Picker
 super + alt + c
@@ -182,10 +181,6 @@ super + alt + c
 # Quote
 super + q
   ~/.config/bspwm/get_phrase.sh
-
-# Ruler
-# super + r
-  # ~/apps/xscreenruler/xscreenruler -fg orange -bg black
 
 # Volume
 XF86AudioLowerVolume

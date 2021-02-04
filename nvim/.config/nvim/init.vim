@@ -13,6 +13,7 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nathanaelkane/vim-indent-guides'
+Plug 'gruvbox-community/gruvbox'
 
 " Editor convenience
 Plug 'tpope/vim-obsession'
@@ -101,7 +102,7 @@ set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m
 set noswapfile
 
-colorscheme nord
+colorscheme gruvbox
 
 " transparency
 hi Normal guibg=NONE ctermbg=NONE
@@ -218,7 +219,7 @@ map <C-/> :Commentary<cr>
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste'  ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified'  ]  ]
@@ -386,7 +387,7 @@ vnoremap <Leader>F :CocSearch <C-R>=expand("@visual")<CR><CR>
 
 " telescope
 " https://github.com/nvim-telescope/telescope.nvim#pickers
-nnoremap <c-p> <cmd>Telescope find_files<cr>
+nnoremap <c-p> <cmd>Telescope git_files<cr>
 nnoremap <leader>t <cmd>Telescope live_grep<cr>
 nnoremap <leader>b <cmd>Telescope buffers<cr>
 
