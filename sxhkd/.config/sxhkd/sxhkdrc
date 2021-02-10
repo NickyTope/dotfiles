@@ -13,9 +13,6 @@ super + {@space,d}
 super + e
   rofi -show emoji -modi emoji
 
-super + E
-  jome | xclip -selection clipboard
-
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd

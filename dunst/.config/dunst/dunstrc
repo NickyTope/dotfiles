@@ -9,16 +9,7 @@
     separator_height = 2
     padding = 5
     horizontal_padding = 8
-    frame_width = 3
-    frame_color = "#8FBCBB"
-
-    # Define a color for the separator.
-    # possible values are:
-    #  * auto: dunst tries to find a color fitting to the background;
-    #  * foreground: use the same color as the foreground;
-    #  * frame: use the same color as the frame;
-    #  * anything else will be interpreted as a X color.
-    separator_color = frame
+    separator_color = "#585858"
 
     # Sort messages by urgency.
     sort = yes
@@ -65,6 +56,10 @@
 [experimental]
     per_monitor_dpi = false
 
+[frame]
+    width = 1
+    color = "#83a598"
+
 [shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
@@ -74,20 +69,20 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#3B4252"
-    foreground = "#ECEFF4"
+    background = "#282828"
+    foreground = "#ebdbb2"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#3B4252"
-    foreground = "#ECEFF4"
+    background = "#282828"
+    foreground = "#ebdbb2"
     timeout = 5
 
 [urgency_critical]
-    background = "#3B4252"
-    foreground = "#ECEFF4"
+    background = "#282828"
+    foreground = "#ebdbb2"
     frame_color = "#D08770"
     timeout = 0
 
