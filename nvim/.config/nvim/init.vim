@@ -206,7 +206,7 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
 hi IndentGuidesOdd guibg=none
-hi IndentGuidesEven guibg=#333344
+hi IndentGuidesEven guibg=#655b53
 
 " ulti snips
 let g:UltiSnipsExpandTrigger="<c-k>"
