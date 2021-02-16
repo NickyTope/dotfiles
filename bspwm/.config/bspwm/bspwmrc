@@ -3,7 +3,7 @@
 killall sxhkd
 sxhkd &
 
-~/.config/bspwm/monitors.sh
+~/.config/bspwm/desktops.sh
 
 bspc config border_width         2
 bspc config window_gap          12
@@ -19,11 +19,12 @@ bspc config focused_border_color "#E63946"
 
 bspc config external_rules_command ~/.config/bspwm/external_rules.sh
 
-# bspc rule -a Gimp desktop='SCRATCH' state=floating follow=on
-# bspc rule -a Chrome desktop='WEB'
-# bspc rule -a Slack desktop='CHAT'
-# bspc rule -a '*:zoom' desktop='CHAT'
+# bspc rule -a Gimp desktop='scratch' state=floating follow=on
+bspc rule -a Chrome desktop='web'
+bspc rule -a Slack desktop='chat'
+bspc rule -a '*:zoom' desktop='chat'
 bspc rule -a Thunar state=floating
+bspc rule -a 'Remmina Remote Desktop Client' state=floating
 bspc rule -a '*:gitk' state=floating
 bspc rule -a '*:dialog' state=floating
 bspc rule -a '*:volume' state=floating
