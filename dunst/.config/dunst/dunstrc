@@ -1,7 +1,7 @@
 [global]
     monitor = 0
     follow = keyboard
-    geometry = "450x10-0+0"
+    geometry = "500x10-0+0"
     indicate_hidden = yes
     shrink = no
     transparency = 20
@@ -15,7 +15,7 @@
     sort = yes
 
     idle_threshold = 120
-    font = Nimbus Sans 16
+    font = Hurmit Nerd Font 12
     line_height = 0
     markup = full
 
@@ -38,13 +38,13 @@
     stack_duplicates = true
     hide_duplicate_count = true
     show_indicators = yes
-    icon_position = left
-    max_icon_size = 40
-    icon_path = /usr/share/icons/Adwaita/256x256/status/:/usr/share/icons/gnome/16x16/status/
+    icon_position = right
+    max_icon_size = 24
+    icon_path = /usr/share/icons/breeze/status/24/:/usr/share/icons/breeze-extra-gnome/status/16/:/usr/share/icons/Adwaita/24x24/status/:/usr/share/icons/Adwaita/16x16/status/
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/rofi -p dunst:
-    browser = /usr/bin/google-chrome-stable -new-tab
+    browser = /usr/bin/firefox-developer-edition
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
