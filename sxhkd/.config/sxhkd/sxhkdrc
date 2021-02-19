@@ -165,7 +165,8 @@ super + shift + m
   
 # Lock
 ctrl + alt + l
-  maim /tmp/screen.png && corrupter -mag 5 -boffset 12 /tmp/screen.png /tmp/screen.png && i3lock -i /tmp/screen.png && ~/.config/bspwm/pause-dunst.sh
+  i3lock-fancy-multimonitor -p -n
+  # maim /tmp/screen.png && corrupter -mag 5 -boffset 12 /tmp/screen.png /tmp/screen.png && i3lock -i /tmp/screen.png && ~/.config/bspwm/pause-dunst.sh
 
 # Screenshots
 super + {alt,shift,ctrl} + p
