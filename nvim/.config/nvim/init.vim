@@ -289,7 +289,7 @@ nmap <Leader><Esc> :noh<CR>
 nnoremap <Leader>qn :cn<CR>
 nnoremap <Leader>qb :cp<CR>
 nnoremap <Leader>qc :cclo<CR>
-nnoremap <Leader>qq :Clap quickfix<CR>
+nnoremap <Leader>qq :copen<CR>
 
 nnoremap <silent><C-s> <Esc>:w<CR>
 inoremap <silent><C-s> <Esc>:w<CR>
@@ -393,12 +393,12 @@ nnoremap <leader>b <cmd>Telescope buffers<cr>
 
 " Fugitive
 nnoremap <silent> <Leader>gs :G<cr>
-nnoremap <silent> <Leader>gd :Gvdiffsplit<cr>
+nnoremap <silent> <Leader>gd :Git log origin/master..dev<cr>
 nnoremap <silent> <Leader>gl :Glog<cr>
-nnoremap <silent> <Leader>gf :echo "...fetching"<cr> :Gfetch<cr> :echo<cr>
-nnoremap <silent> <Leader>gr :echo "...rebasing"<cr> :Grebase<cr> :echo<cr>
-nnoremap <silent> <Leader>gp :echo "...pushing"<cr> :Gpush<cr> :echo<cr>
-nnoremap <silent> <Leader>gb :Gblame<cr>
+nnoremap <silent> <Leader>gf :echo "...fetching"<cr> :Git fetch<cr>
+nnoremap <silent> <Leader>gr :echo "...rebasing"<cr> :Git rebase<cr>
+nnoremap <silent> <Leader>gp :echo "...pushing"<cr> :Git push<cr>
+nnoremap <silent> <Leader>gb :Git blame<cr>
 nnoremap <Leader>gh :Gbrowse<cr>
 
 " undo tree

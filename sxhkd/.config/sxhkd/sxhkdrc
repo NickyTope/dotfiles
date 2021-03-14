@@ -1,6 +1,4 @@
-#
 # wm independent hotkeys
-#
 
 # terminal emulator
 super + Return
@@ -16,10 +14,6 @@ super + e
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
-
-#
-# bspwm hotkeys
-#
 
 # quit/restart bspwm
 super + alt + {q,r}
@@ -45,9 +39,7 @@ super + shift + y
 super + g
 	bspc node -s biggest
 
-#
 # state/flags
-#
 
 # set the window state
 super + {t,shift + t,shift + f,f}
@@ -57,9 +49,7 @@ super + {t,shift + t,shift + f,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-#
 # focus/swap
-#
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
@@ -82,34 +72,32 @@ super + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+#super + {o,i}
+#	bspc wm -h off; \
+#	bspc node {older,newer} -f; \
+#	bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1,2,3,4,5,6,7,8}
 	bspc {desktop -f,node -d} '{term,code,web,code2,chat,scratch,win}'
 
 # add desktop to current monitor
-super + a
-  bspc monitor -a new
+#super + a
+#  bspc monitor -a new
 
 # remove active desktop
-super + BackSpace
-  bspc desktop -r
+#super + BackSpace
+#  bspc desktop -r
 
 # rename active desktop
-super + shift + a
-  sh ~/.config/bspwm/rename_desktop.sh
+#super + shift + a
+#  sh ~/.config/bspwm/rename_desktop.sh
 
 # scratchterm
 super + u
   ~/.config/bspwm/scratchterm
 
-#
 # preselect
-#
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -127,9 +115,7 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#
 # move/resize
-#
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
@@ -177,8 +163,12 @@ super + alt + c
   colorpicker --short --one-shot --preview | xclip -selection clipboard
 
 # Quote
-super + q
-  ~/.config/bspwm/get_phrase.sh
+#super + q
+#  ~/.config/bspwm/get_phrase.sh
+
+# Launcher
+super + o ; {f,s,z,t}
+  {firefox-developer-edition,slack,zoom,teams}
 
 # Volume
 XF86AudioLowerVolume
