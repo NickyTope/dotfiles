@@ -13,7 +13,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
+Plug 'morhetz/gruvbox'
 
 " Editor convenience
 Plug 'tpope/vim-obsession'
@@ -85,7 +86,6 @@ set cursorline
 set termguicolors
 set background=dark
 set completeopt+=noinsert
-set guifont=Hasklig\ 10
 set noshowmode
 set conceallevel=0
 set smartcase
