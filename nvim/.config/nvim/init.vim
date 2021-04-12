@@ -37,7 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'NickyTope/yanks.nvim'
 
 " completion
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm i'}
+" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm i'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 
@@ -66,6 +66,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'mhartington/formatter.nvim'
+Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -110,8 +112,6 @@ hi Normal guibg=NONE ctermbg=NONE
 let mapleader = ' '
 " I keep pressing this and it freezes the terminal, remap to avoid...
 inoremap <F6> h
-
-let g:coc_global_extensions = ['coc-json', 'coc-gitignore', 'coc-css', 'coc-eslint', 'coc-highlight', 'coc-prettier', 'coc-scssmodules', 'coc-stylelintplus', 'coc-tsserver', 'coc-ultisnips', 'coc-yaml']
 
 " ~/.config/nvim/lua/setup.lua
 lua require'setup'
@@ -188,17 +188,6 @@ let g:vimwiki_ext2syntax = {'.wiki': 'media'}
 " prosession
 let g:prosession_dir = '~/.config/nvim/session/'
 
-" clap
-" let g:clap_insert_mode_only = v:true
-" let g:clap_theme = 'material_design_dark'
-" let g:clap_layout = { 'relative': 'editor' }
-" let g:clap_provider_grep_executable = 'rg'
-" nnoremap <C-p> :Clap files<CR>
-" nnoremap <C-i> :Clap buffers<CR>
-" nnoremap <C-i> :buffers<cr>:b 
-" nnoremap <C-y> :Clap yanks<CR>
-" nnoremap <C-h> :Clap jumps<CR>
-
 " closetag (auto close xml tags)
 let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 
@@ -227,20 +216,20 @@ let g:lightline = {
       \},
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status',
       \   'filename': 'FilenameForLightline'
       \},
       \'separator': { 'left': "", 'right': "" },
       \'subseparator': { 'left': "", 'right': "" }
       \}
+" \   'cocstatus': 'coc#status',
+" au User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-au User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 let g:lightline.active.right = [
       \ ['lineinfo'],
       \ ['percent'],
-      \ ['cocstatus'],
       \ ]
+      " \ ['cocstatus'],
 
 function! FilenameForLightline()
     " return expand("%:p:.")
@@ -271,6 +260,16 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+nnoremap <Leader>e :!eslint % --fix --cache<cr>
+inoremap <silent><expr> <C-Space> compe#complete()
+" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <Tab>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
+nnoremap <Leader>p :echo "No Formatter"<cr>
 
 " my remaps {{
 nnoremap <A-b> <C-o>
@@ -311,79 +310,6 @@ nnoremap <leader><leader> :b#<cr>
 " vim-move
 let g:move_key_modifier = 'S'
 
-
-" COC ((
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-inoremap <silent><expr> <down> pumvisible() ? "\<C-n>" : "\<down>"
-inoremap <expr><up> pumvisible() ? "\<C-p>" : "\<up>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-nmap <silent> <Leader>n <Plug>(coc-diagnostic-next)
-nnoremap <Leader>d :<C-u>CocList diagnostics<cr>
-nnoremap <Leader>p :<C-u>CocCommand prettier.formatFile<cr>
-nnoremap <Leader>cr :CocRestart<cr>
-nnoremap <Leader>cf :CocSearch 
-
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-"
-" Use <c-k> to show documentation in preview window.
-nnoremap <silent> <c-j> :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if &filetype == 'vim'
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-
-" Highlight symbol under cursor on CursorHold
-" autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-nnoremap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <silent><leader>af <Plug>(coc-fix-current)
-
-nnoremap <Leader>f :CocSearch 
-nnoremap <Leader>F :CocSearch <C-R>=expand("<cword>")<CR><CR>
-vnoremap <Leader>F :CocSearch <C-R>=expand("@visual")<CR><CR>
-
-" end COC ))
 
 " telescope
 " https://github.com/nvim-telescope/telescope.nvim#pickers
