@@ -10,7 +10,7 @@ Plug 'tpope/vim-eunuch'
 " Pretties
 " Plug 'lifepillar/vim-solarized8'
 Plug 'arcticicestudio/nord-vim'
-Plug 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'gruvbox-community/gruvbox'
@@ -69,8 +69,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/lsp-status.nvim'
-
-" //TODO: https://github.com/hoob3rt/lualine.nvim
+Plug 'hoob3rt/lualine.nvim'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -115,6 +114,20 @@ hi Normal guibg=NONE ctermbg=NONE
 let mapleader = ' '
 " I keep pressing this and it freezes the terminal, remap to avoid...
 inoremap <F6> h
+
+
+function! FilenameForLightline()
+    " return expand("%:p:.")
+    return expand("%:t")
+endfunction
+
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
+endfunction
 
 " ~/.config/nvim/lua/setup.lua
 lua require'setup'
@@ -208,45 +221,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 " commentary
 map <C-_> :Commentary<cr>
 map <C-/> :Commentary<cr>
-
-" lightline
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified'  ]  ]
-      \
-      \},
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head',
-      \   'filename': 'FilenameForLightline',
-      \   'diagnostic': 'LspStatus'
-      \},
-      \'separator': { 'left': "", 'right': "" },
-      \'subseparator': { 'left': "", 'right': "" }
-      \}
-" au User CocStatusChange,CocDiagnosticChange call lightline#update()
-
-
-let g:lightline.active.right = [
-      \ ['lineinfo'],
-      \ ['percent', 'diagnostic'],
-      \ ]
-      " \ ['cocstatus'],
-
-function! FilenameForLightline()
-    " return expand("%:p:.")
-    return expand("%:t")
-endfunction
-
-function! LspStatus() abort
-  if luaeval('#vim.lsp.buf_get_clients() > 0')
-    return luaeval("require('lsp-status').status()")
-  endif
-
-  return ''
-endfunction
-
 
 " vim-rest-console
 let g:vrc_curl_opts = {
