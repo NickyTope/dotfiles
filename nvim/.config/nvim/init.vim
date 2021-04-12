@@ -68,6 +68,9 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-lua/lsp-status.nvim'
+
+" //TODO: https://github.com/hoob3rt/lualine.nvim
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -210,24 +213,24 @@ map <C-/> :Commentary<cr>
 let g:lightline = {
       \ 'colorscheme': 'gruvbox',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste'  ],
+      \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified'  ]  ]
       \
       \},
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'filename': 'FilenameForLightline'
+      \   'filename': 'FilenameForLightline',
+      \   'diagnostic': 'LspStatus'
       \},
       \'separator': { 'left': "", 'right': "" },
       \'subseparator': { 'left': "", 'right': "" }
       \}
-" \   'cocstatus': 'coc#status',
 " au User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 
 let g:lightline.active.right = [
       \ ['lineinfo'],
-      \ ['percent'],
+      \ ['percent', 'diagnostic'],
       \ ]
       " \ ['cocstatus'],
 
@@ -235,6 +238,15 @@ function! FilenameForLightline()
     " return expand("%:p:.")
     return expand("%:t")
 endfunction
+
+function! LspStatus() abort
+  if luaeval('#vim.lsp.buf_get_clients() > 0')
+    return luaeval("require('lsp-status').status()")
+  endif
+
+  return ''
+endfunction
+
 
 " vim-rest-console
 let g:vrc_curl_opts = {
@@ -269,6 +281,7 @@ inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
+nnoremap <Leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <Leader>p :echo "No Formatter"<cr>
 
 " my remaps {{

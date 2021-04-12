@@ -5,8 +5,12 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+local lsp_status = require('lsp-status')
+lsp_status.register_progress()
+
 local my_attach = function(client)
   require'completion'.on_attach(client)
+  lsp_status.on_attach(client)
   mapper('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
   mapper('n', '<leader>k', '<cmd>lua vim.lsp.buf.hover()<CR>')
   mapper('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
@@ -20,6 +24,14 @@ require'lspconfig'.tsserver.setup{
     my_attach(client)
     client.resolved_capabilities.document_formatting = false
   end,
+}
+
+require'lspconfig'.stylelint_lsp.setup{
+  on_attach = my_attach,
+}
+
+require'lspconfig'.cssls.setup{
+  on_attach = my_attach,
 }
 
 require'lspconfig'.diagnosticls.setup {
@@ -65,39 +77,40 @@ require'lspconfig'.diagnosticls.setup {
   }
 }
 
+local prettierFmt = function()
+  return {
+    exe = "prettier",
+    args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
+    stdin = true
+  }
+end
+
+local eslintFmt = function()
+  return {
+      exe = "eslint_d",
+      args = { '--stdin', '--stdin-filename', vim.api.nvim_buf_get_name(0), '--fix-to-stdout' },
+      stdin = true
+    }
+end
+
+
+local stylelintFmt = function()
+  return {
+      exe = "stylelint",
+      args = { '--stdin', '--stdin-filename', vim.api.nvim_buf_get_name(0), '--fix' },
+      stdin = true
+    }
+end
+
+
 require('formatter').setup({
   logging = false,
   filetype = {
-    javascript = {
-        -- prettier
-       function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
-            stdin = true
-          }
-        end
-    },
-    javascriptreact = {
-        -- prettier
-       function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
-            stdin = true
-          }
-        end
-    },
-    json = {
-        -- prettier
-       function()
-          return {
-            exe = "prettier",
-            args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), '--single-quote'},
-            stdin = true
-          }
-        end
-    },
+    javascript = {prettierFmt, eslintFmt},
+    javascriptreact = {prettierFmt},
+    json = {prettierFmt},
+    scss = {stylelintFmt},
+    css = {stylelintFmt},
     lua = {
         -- luafmt
         function()
