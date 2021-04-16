@@ -70,6 +70,7 @@ Plug 'mhartington/formatter.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/lsp-status.nvim'
 Plug 'hoob3rt/lualine.nvim'
+Plug 'nvim-treesitter/nvim-treesitter'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -89,7 +90,7 @@ set relativenumber
 set cursorline
 set termguicolors
 set background=dark
-set completeopt+=noinsert
+set completeopt=menuone,noselect
 set noshowmode
 set conceallevel=0
 set smartcase
@@ -105,6 +106,7 @@ set tags+=.git/tags
 set grepprg=rg\ --vimgrep
 set grepformat=%f:%l:%c:%m
 set noswapfile
+set signcolumn=yes
 
 colorscheme gruvbox
 
@@ -139,7 +141,7 @@ nmap <c-y> <Plug>(Yanks)
 " nmap <c-p> <Plug>(gitfiles)
 
 " ./plugin/buffers.vim
-nmap <c-i> <Plug>(buffers)
+" nmap <c-i> <Plug>(buffers)
 
 " highlighted yank
 let g:highlightedyank_highlight_duration = 500
@@ -177,7 +179,6 @@ function! CustomDirvishSetup()
   map <buffer> mc Y:!cp " "
   map <buffer> mm Y:!mv " "
   map <buffer> md Y:!rm "
-  map <buffer> <c-p> <Plug>(gitfiles)
   map <buffer> <c-v> :call dirvish#open("vsplit", 0)<cr>
 endfunction
 
@@ -191,10 +192,12 @@ let g:dirvish_git_indicators = {
 \ 'Unknown'   : '?'
 \ }
 
-nmap <C-o> :vsp<cr>-
-nnoremap <leader>o :e .<cr>
 " vimwiki uses - to decrease header level
 au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
+
+" nmap <C-o> :vsp<cr>-
+nnoremap <leader>o :e .<cr>
+nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr>
 
 " vimwiki
 " only use vimwiki for .wiki files
@@ -249,20 +252,21 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 nnoremap <Leader>e :!eslint % --fix --cache<cr>
 inoremap <silent><expr> <C-Space> compe#complete()
-" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <Tab>      compe#confirm('<CR>')
+inoremap <silent><expr> <Tab> pumvisible() ? compe#confirm('<CR>') : "<Tab>"
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 nnoremap <Leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <Leader>p :echo "No Formatter"<cr>
+nnoremap <leader>F <cmd>grep <c-r>=expand("<cword>")<cr> *<cr>
 
 " my remaps {{
-nnoremap <A-b> <C-o>
-nnoremap <A-B> <C-i>
+" nnoremap <A-b> <C-o>
+" nnoremap <A-B> <C-i>
 
-nnoremap <Leader>j J
+nnoremap <<cr> ./**/*Leader>j J
 nnoremap Q :q<cr>
 nnoremap <Leader>k K
 nnoremap <Leader>. '.
@@ -275,7 +279,7 @@ nmap <Leader><Esc> :noh<CR>
 nnoremap <Leader>qn :cn<CR>
 nnoremap <Leader>qb :cp<CR>
 nnoremap <Leader>qc :cclo<CR>
-nnoremap <Leader>qq :copen<CR>
+nnoremap <Leader>qo :copen<CR>
 
 nnoremap <silent><C-s> <Esc>:w<CR>
 inoremap <silent><C-s> <Esc>:w<CR>
@@ -301,18 +305,22 @@ let g:move_key_modifier = 'S'
 " telescope
 " https://github.com/nvim-telescope/telescope.nvim#pickers
 nnoremap <c-p> <cmd>Telescope git_files<cr>
-nnoremap <leader>t <cmd>Telescope live_grep<cr>
-nnoremap <leader>b <cmd>Telescope buffers<cr>
+nnoremap <leader>f <cmd>Telescope live_grep<cr>
+nnoremap <leader>t <cmd>Telescope treesitter<cr>
+nnoremap <leader>b <cmd>lua require'telescope.builtin'.buffers{show_all_buffers=false}<cr>
+nnoremap <leader>i <cmd>lua require'telescope.builtin'.buffers{show_all_buffers=true}<cr>
+nnoremap <leader>qq <cmd>Telescope quickfix<cr>
+nnoremap <Leader>d <cmd>Telescope lsp_document_diagnostics<cr>
 
 " Fugitive
 nnoremap <silent> <Leader>gs :G<cr>
 nnoremap <silent> <Leader>gd :Git log origin/master..dev<cr>
 nnoremap <silent> <Leader>gl :Glog<cr>
-nnoremap <silent> <Leader>gf :echo "...fetching"<cr> :Git fetch<cr>
-nnoremap <silent> <Leader>gr :echo "...rebasing"<cr> :Git rebase<cr>
-nnoremap <silent> <Leader>gp :echo "...pushing"<cr> :Git push<cr>
+nnoremap <silent> <Leader>gf :Git fetch<cr>
+nnoremap <silent> <Leader>gr :Git rebase<cr>
+nnoremap <silent> <Leader>gp :Git push<cr>
 nnoremap <silent> <Leader>gb :Git blame<cr>
-nnoremap <Leader>gh :Gbrowse<cr>
+nnoremap <Leader>gh :GBrowse<cr>
 
 " undo tree
 nnoremap <Leader>uh :UndotreeShow<cr>:UndotreeFocus<cr>
