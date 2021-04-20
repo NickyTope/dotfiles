@@ -6,6 +6,14 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lsp_status = require("lsp-status")
+lsp_status.config(
+  {
+    indicator_errors = "",
+    indicator_warnings = "",
+    indicator_info = "",
+    indicator_hint = ""
+  }
+)
 lsp_status.register_progress()
 local function stat()
   return lsp_status.status()
@@ -55,7 +63,7 @@ local my_attach = function(client)
   mapper("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>")
   mapper("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
   mapper("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-  mapper("n", "<leader>p", "<cmd>:Format<CR>")
+  -- mapper("n", "<leader>p", "<cmd>:Format<CR>")
   vim.api.nvim_exec(
     [[
     augroup FormatAutogroup
@@ -176,8 +184,8 @@ require("formatter").setup(
   {
     logging = false,
     filetype = {
-      javascript = {prettierFmt, eslintFmt},
-      javascriptreact = {prettierFmt},
+      javascript = {eslintFmt},
+      javascriptreact = {eslintFmt},
       json = {prettierFmt},
       scss = {stylelintFmt},
       css = {stylelintFmt},

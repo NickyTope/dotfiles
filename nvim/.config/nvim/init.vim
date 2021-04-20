@@ -259,14 +259,14 @@ inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 nnoremap <Leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
-nnoremap <Leader>p :echo "No Formatter"<cr>
-nnoremap <leader>F <cmd>grep <c-r>=expand("<cword>")<cr> *<cr>
+nnoremap <Leader>p <cmd>Format<cr>
+" nnoremap <leader>F <cmd>grep <c-r>=expand("<cword>")<cr> *<cr>
 
 " my remaps {{
 " nnoremap <A-b> <C-o>
 " nnoremap <A-B> <C-i>
 
-nnoremap <<cr> ./**/*Leader>j J
+nnoremap <Leader>j J
 nnoremap Q :q<cr>
 nnoremap <Leader>k K
 nnoremap <Leader>. '.
@@ -306,6 +306,7 @@ let g:move_key_modifier = 'S'
 " https://github.com/nvim-telescope/telescope.nvim#pickers
 nnoremap <c-p> <cmd>Telescope git_files<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
+nnoremap <leader>F <cmd>Telescope grep_string<cr>
 nnoremap <leader>t <cmd>Telescope treesitter<cr>
 nnoremap <leader>b <cmd>lua require'telescope.builtin'.buffers{show_all_buffers=false}<cr>
 nnoremap <leader>i <cmd>lua require'telescope.builtin'.buffers{show_all_buffers=true}<cr>
