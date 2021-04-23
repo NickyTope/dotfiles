@@ -8,10 +8,11 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 local lsp_status = require("lsp-status")
 lsp_status.config(
   {
-    indicator_errors = "",
-    indicator_warnings = "",
-    indicator_info = "",
-    indicator_hint = ""
+    indicator_errors = "🚫",
+    indicator_warnings = "⚠️",
+    indicator_info = "ℹ️",
+    indicator_hint = "📣",
+    indicator_ok = "🚀"
   }
 )
 lsp_status.register_progress()
@@ -77,6 +78,15 @@ end
 
 require "lspconfig".tsserver.setup {
   capabilities = capabilities,
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+    "json"
+  },
   on_attach = function(client)
     my_attach(client)
     client.resolved_capabilities.document_formatting = false
@@ -84,13 +94,14 @@ require "lspconfig".tsserver.setup {
 }
 
 require "lspconfig".diagnosticls.setup {
-  filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "css"},
+  filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "json"},
   init_options = {
     filetypes = {
       javascript = "eslint",
       typescript = "eslint",
       javascriptreact = "eslint",
-      typescriptreact = "eslint"
+      typescriptreact = "eslint",
+      json = "eslint"
     },
     linters = {
       eslint = {
