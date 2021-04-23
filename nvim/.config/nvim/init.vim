@@ -71,6 +71,7 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/lsp-status.nvim'
 Plug 'hoob3rt/lualine.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -180,6 +181,7 @@ function! CustomDirvishSetup()
   map <buffer> mm Y:!mv " "
   map <buffer> md Y:!rm "
   map <buffer> <c-v> :call dirvish#open("vsplit", 0)<cr>
+  map <buffer> <c-p> <cmd>lua require'telescope.builtin'.find_files{search_dirs={vim.fn.expand('%')}}<cr>
 endfunction
 
 let g:dirvish_git_indicators = {
@@ -304,7 +306,8 @@ let g:move_key_modifier = 'S'
 
 " telescope
 " https://github.com/nvim-telescope/telescope.nvim#pickers
-nnoremap <c-p> <cmd>Telescope git_files<cr>
+" nnoremap <c-p> <cmd>Telescope git_files<cr>
+nnoremap <c-p> <cmd>lua require'telescope.builtin'.git_files{cwd=vim.fn.expand('%:h')}<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader>F <cmd>Telescope grep_string<cr>
 nnoremap <leader>t <cmd>Telescope treesitter<cr>
