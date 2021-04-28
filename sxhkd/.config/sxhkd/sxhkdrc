@@ -2,7 +2,7 @@
 
 # terminal emulator
 super + Return
-	kitty
+	alacritty
 
 # program launcher
 super + {@space,d}
@@ -190,4 +190,4 @@ XF86MonBrightnessDown
 
 # clipboard
 ctrl + alt + v
-  sleep 0 && roficlip -font "hasklig 10" -theme "nord"
+  sleep 0 && roficlip -font "hasklig 10"
