@@ -70,8 +70,10 @@ Plug 'mhartington/formatter.nvim'
 Plug 'hrsh7th/nvim-compe'
 Plug 'nvim-lua/lsp-status.nvim'
 Plug 'hoob3rt/lualine.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'sheerun/vim-polyglot'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'glepnir/lspsaga.nvim'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -260,7 +262,15 @@ inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
-nnoremap <Leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
+" nnoremap <Leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
+nnoremap <Leader>N :Lspsaga diagnostic_jump_prev<CR>
+nnoremap <Leader>n :Lspsaga diagnostic_jump_next<CR>
+nnoremap <Leader>ca :Lspsaga code_action<CR>
+nnoremap <Leader>rn :Lspsaga rename<CR>
+nnoremap <Leader>k :Lspsaga hover_doc<CR>
+nnoremap <Leader>K :Lspsaga signature_help<CR>
+nnoremap <Leader>gd :Lspsaga lsp_finder<CR>
+
 nnoremap <Leader>p <cmd>Format<cr>
 " nnoremap <leader>F <cmd>grep <c-r>=expand("<cword>")<cr> *<cr>
 
@@ -318,7 +328,7 @@ nnoremap <Leader>d <cmd>Telescope lsp_document_diagnostics<cr>
 
 " Fugitive
 nnoremap <silent> <Leader>gs :G<cr>
-nnoremap <silent> <Leader>gd :Git log origin/master..dev<cr>
+" nnoremap <silent> <Leader>gd :Git log origin/master..dev<cr>
 nnoremap <silent> <Leader>gl :Glog<cr>
 nnoremap <silent> <Leader>gf :Git fetch<cr>
 nnoremap <silent> <Leader>gr :Git rebase<cr>

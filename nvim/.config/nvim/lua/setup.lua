@@ -5,14 +5,48 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+local icons = {
+  error = "🚫",
+  warning = "🔥",
+  info = "🪧",
+  hint = "📣",
+  ok = "🚀"
+}
+
+-- https://github.com/glepnir/lspsaga.nvim
+require "lspsaga".init_lsp_saga {
+  border_style = "round",
+  max_preview_lines = 15,
+  error_sign = icons.error,
+  warn_sign = icons.warning,
+  hint_sign = icons.hint,
+  infor_sign = icons.info,
+  finder_action_keys = {
+    open = "o",
+    vsplit = "v",
+    split = "s",
+    quit = "<Esc>",
+    scroll_down = "<C-d>",
+    scroll_up = "<C-u>"
+  },
+  code_action_keys = {
+    quit = "<Esc>",
+    exec = "<CR>"
+  },
+  rename_action_keys = {
+    quit = "<Esc>",
+    exec = "<CR>"
+  }
+}
+
 local lsp_status = require("lsp-status")
 lsp_status.config(
   {
-    indicator_errors = "🚫",
-    indicator_warnings = "⚠️",
-    indicator_info = "ℹ️",
-    indicator_hint = "📣",
-    indicator_ok = "🚀"
+    indicator_errors = icons.error,
+    indicator_warnings = icons.warning,
+    indicator_info = icons.info,
+    indicator_hint = icons.hint,
+    indicator_ok = icons.ok
   }
 )
 lsp_status.register_progress()
@@ -61,15 +95,15 @@ local my_attach = function(client)
   require "completion".on_attach(client)
   lsp_status.on_attach(client)
   mapper("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-  mapper("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>")
-  mapper("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-  mapper("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+  -- mapper("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>")
+  -- mapper("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+  -- mapper("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   -- mapper("n", "<leader>p", "<cmd>:Format<CR>")
   vim.api.nvim_exec(
     [[
     augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.js,*.rs,*.lua FormatWrite
+    autocmd BufWritePost *.js,*.rs,*.lua,*.jsx,*.css,*.scss FormatWrite
     augroup END
   ]],
     true
@@ -84,57 +118,40 @@ require "lspconfig".tsserver.setup {
     "javascript.jsx",
     "typescript",
     "typescriptreact",
-    "typescript.tsx",
-    "json"
+    "typescript.tsx"
   },
-  on_attach = function(client)
+  on_attach = function(client, bufnr)
     my_attach(client)
     client.resolved_capabilities.document_formatting = false
-  end
-}
+    local ts_utils = require("nvim-lsp-ts-utils")
 
-require "lspconfig".diagnosticls.setup {
-  filetypes = {"javascript", "javascriptreact", "typescript", "typescriptreact", "json"},
-  init_options = {
-    filetypes = {
-      javascript = "eslint",
-      typescript = "eslint",
-      javascriptreact = "eslint",
-      typescriptreact = "eslint",
-      json = "eslint"
-    },
-    linters = {
-      eslint = {
-        sourceName = "eslint",
-        command = "eslint_d",
-        rootPatterns = {
-          "package.json"
-        },
-        debounce = 100,
-        args = {
-          "--cache",
-          "--stdin",
-          "--stdin-filename",
-          "%filepath",
-          "--format",
-          "json"
-        },
-        parseJson = {
-          errorsRoot = "[0].messages",
-          line = "line",
-          column = "column",
-          endLine = "endLine",
-          endColumn = "endColumn",
-          message = "${message} [${ruleId}]",
-          security = "severity"
-        },
-        securities = {
-          [2] = "error",
-          [1] = "warning"
-        }
-      }
+    -- defaults
+    ts_utils.setup {
+      disable_commands = false,
+      enable_import_on_completion = true,
+      import_on_completion_timeout = 5000,
+      -- eslint
+      eslint_bin = "eslint",
+      eslint_args = {"-f", "json", "--cache", "--stdin", "--stdin-filename", "$FILENAME"},
+      eslint_enable_disable_comments = true,
+      -- experimental settings!
+      -- eslint diagnostics
+      eslint_enable_diagnostics = true,
+      eslint_diagnostics_debounce = 250,
+      -- formatting
+      enable_formatting = false,
+      formatter = "prettier",
+      formatter_args = {"--stdin-filepath", "$FILENAME"},
+      format_on_save = false,
+      no_save_after_format = false
     }
-  }
+
+    -- no default maps, so you may want to define some here
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
+    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rf", ":TSLspRenameFile<CR>", {silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gi", ":TSLspImportAll<CR>", {silent = true})
+  end
 }
 
 local sumneko_install = "/home/nicky/apps/lua-language-server/"
