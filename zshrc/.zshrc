@@ -104,7 +104,7 @@ alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
 alias ssh="kitty +kitten ssh"
-alias npmglobalinstall="npm i -g @babel/cli @babel/core @babel/node concurrently diagnostic-languageserver dockerfile-language-server-nodejs eslint eslint_d lua-fmt neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver"
+alias npmglobalinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d lua-fmt neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server"
 
 export APP_URI=https://dev-client.isw.net.au
 export API_GATEWAY=https://dev-server.isw.net.au
