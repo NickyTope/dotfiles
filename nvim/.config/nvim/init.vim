@@ -53,7 +53,6 @@ Plug 'iamcco/markdown-preview.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'vim-scripts/groovy.vim'
 Plug 'chrisbra/csv.vim'
-Plug 'junegunn/goyo.vim'
 Plug 'plasticboy/vim-markdown'
 " required by vim-markdown
 Plug 'godlygeek/tabular'
@@ -240,21 +239,6 @@ let g:vrc_curl_opts = {
   \ '--ipv4': '',
   \ '-k': '',
 \}
-
-" goyo
-nnoremap <Leader>gy :Goyo<cr>
-function! s:goyo_enter()
-  set spell
-  set linebreak
-endfunction
-
-function! s:goyo_leave()
-  set nospell
-  set nolinebreak
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " nnoremap <Leader>e :!eslint % --fix --cache<cr>
 inoremap <silent><expr> <C-Space> compe#complete()
