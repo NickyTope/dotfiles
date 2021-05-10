@@ -8,6 +8,7 @@ super + Return
 super + {@space,d}
   sleep 0 && rofi -show drun
 
+# emoji picker
 super + e
   rofi -show emoji -modi emoji
 
@@ -39,8 +40,6 @@ super + shift + y
 super + g
 	bspc node -s biggest
 
-# state/flags
-
 # set the window state
 super + {t,shift + t,shift + f,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
@@ -48,8 +47,6 @@ super + {t,shift + t,shift + f,f}
 # set the node flags
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
-
-# focus/swap
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
@@ -72,32 +69,18 @@ super + {grave,Tab}
 	bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
-#super + {o,i}
-#	bspc wm -h off; \
-#	bspc node {older,newer} -f; \
-#	bspc wm -h on
+super + {o,i}
+	bspc wm -h off; \
+	bspc node {older,newer} -f; \
+	bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1,2,3,4,5,6,7,8}
 	bspc {desktop -f,node -d} '{term,code,web,code2,chat,scratch,win}'
 
-# add desktop to current monitor
-#super + a
-#  bspc monitor -a new
-
-# remove active desktop
-#super + BackSpace
-#  bspc desktop -r
-
-# rename active desktop
-#super + shift + a
-#  sh ~/.config/bspwm/rename_desktop.sh
-
 # scratchterm
 super + u
   ~/.config/bspwm/scratchterm
-
-# preselect
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -115,8 +98,6 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-# move/resize
-
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
@@ -129,7 +110,7 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# Walls
+# Set wallpaper
 super + shift + w
   ~/.config/bspwm/setwall.sh
 
@@ -152,7 +133,6 @@ super + shift + m
 # Lock
 ctrl + alt + l
   i3lock-fancy-multimonitor -p -n
-  # maim /tmp/screen.png && corrupter -mag 5 -boffset 12 /tmp/screen.png /tmp/screen.png && i3lock -i /tmp/screen.png && ~/.config/bspwm/pause-dunst.sh
 
 # Screenshots
 super + {alt,shift,ctrl} + p
@@ -161,10 +141,6 @@ super + {alt,shift,ctrl} + p
 # Color Picker
 super + alt + c
   colorpicker --short --one-shot --preview | xclip -selection clipboard
-
-# Quote
-#super + q
-#  ~/.config/bspwm/get_phrase.sh
 
 # Launcher
 super + o ; {f,s,z,t}

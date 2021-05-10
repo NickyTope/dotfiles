@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # https://imgur.com/gallery/[id]
-galleries=("0oiM1" "SPmIR" "lkhbk88")
+# "0oiM1" "SPmIR" "lkhbk88" 
+galleries=("rBarn" "TzfPU" "Gshpb" "T2kpv")
 gallery=${galleries[$RANDOM % ${#galleries[@]}]}
 echo $gallery
 IDS="$(curl "https://api.imgur.com/post/v1/posts/$gallery?client_id=883f0d26c1eb2b4&include=media,tags,account,adconfig,promoted" | jq '.media[].id' -r)"

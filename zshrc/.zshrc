@@ -103,8 +103,8 @@ alias dsa="docker start proxy redis mongo minio"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
-alias ssh="kitty +kitten ssh"
 alias npmglobalinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d lua-fmt neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server"
+alias ssh="TERM=linux ssh"
 
 export APP_URI=https://dev-client.isw.net.au
 export API_GATEWAY=https://dev-server.isw.net.au
@@ -115,11 +115,10 @@ export CARGO_PATH=/home/nicky/.cargo/bin
 export ANDROID_SDK_ROOT=/opt/android-sdk
 export ANDROID_PATH=$ANDROID_SDK_ROOT/emulator
 export _JAVA_AWT_WM_NONREPARENTING=1
-# export NODE_DEPRECATED=/home/nicky/bin/node-12-18-0
 export PATH=$PATH:$GOPATH/bin:/home/nicky/bin:$ANDROID_PATH:$CARGO_PATH:/home/nicky/.local/bin
 export VISUAL=nvim
 export EDITOR=nvim
-export BAT_THEME=gruvbox
+export BAT_THEME=gruvbox-dark
 export TERM_ITALICS=true
 
 export LC_ALL=en_US.UTF-8
@@ -139,5 +138,4 @@ source /opt/google-cloud-sdk/path.zsh.inc
 
 autoload -Uz compinit
 compinit
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
+

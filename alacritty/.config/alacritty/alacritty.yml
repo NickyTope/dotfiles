@@ -1,11 +1,10 @@
 font:
   normal:
-    family: Hasklig
+    family: Hasklug Nerd Font Mono
   bold:
-    family: JetBrainsMono Nerd Font Mono
-    style: Extra Bold Italic
+    style: Black Italic
   italic:
-    style: Light Italic
+    style: Italic
   size: 9.0
 colors:
   primary:

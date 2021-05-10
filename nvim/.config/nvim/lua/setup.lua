@@ -46,7 +46,8 @@ lsp_status.config(
     indicator_warnings = icons.warning,
     indicator_info = icons.info,
     indicator_hint = icons.hint,
-    indicator_ok = icons.ok
+    indicator_ok = icons.ok,
+    status_symbol = ""
   }
 )
 lsp_status.register_progress()
@@ -82,12 +83,26 @@ require("telescope").setup {
 
 require "lualine".setup {
   sections = {
+    lualine_a = {
+      {
+        "mode",
+        format = function(mode_name)
+          return mode_name:sub(1, 1)
+        end
+      }
+    },
+    lualine_b = {"diff", "branch"},
     lualine_x = {"filetype"},
     lualine_y = {stat},
-    lualine_z = {"location", "progress"}
+    lualine_z = {"progress"}
+  },
+  inactive_sections = {
+    lualine_x = {"progress"}
   },
   options = {
-    theme = "gruvbox"
+    theme = "gruvbox_material",
+    section_separators = "",
+    component_separators = ""
   }
 }
 
@@ -131,7 +146,7 @@ require "lspconfig".tsserver.setup {
       enable_import_on_completion = true,
       import_on_completion_timeout = 5000,
       -- eslint
-      eslint_bin = "eslint",
+      eslint_bin = "eslint_d",
       eslint_args = {"-f", "json", "--cache", "--stdin", "--stdin-filename", "$FILENAME"},
       eslint_enable_disable_comments = true,
       -- experimental settings!

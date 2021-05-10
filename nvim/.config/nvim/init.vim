@@ -202,6 +202,7 @@ au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
 " nmap <C-o> :vsp<cr>-
 nnoremap <leader>o :e .<cr>
 nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr>
+nnoremap <leader>e :e<cr>
 
 " vimwiki
 " only use vimwiki for .wiki files
@@ -218,7 +219,8 @@ let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_enable_on_vim_startup = 1
 hi IndentGuidesOdd guibg=none
-hi IndentGuidesEven guibg=#655b53
+hi IndentGuidesEven guibg=#3C3836
+
 
 " ulti snips
 let g:UltiSnipsExpandTrigger="<c-k>"
@@ -254,7 +256,7 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-nnoremap <Leader>e :!eslint % --fix --cache<cr>
+" nnoremap <Leader>e :!eslint % --fix --cache<cr>
 inoremap <silent><expr> <C-Space> compe#complete()
 inoremap <silent><expr> <Tab> pumvisible() ? compe#confirm('<CR>') : "<Tab>"
 inoremap <silent><expr> <CR>      compe#confirm('<CR>')
