@@ -13,6 +13,15 @@ local icons = {
   ok = "🚀"
 }
 
+vim.defer_fn(
+  function()
+    vim.cmd([[
+  autocmd BufEnter * lua require'showfilename'.show(1000)
+  ]])
+  end,
+  500
+)
+
 -- https://github.com/glepnir/lspsaga.nvim
 require "lspsaga".init_lsp_saga {
   border_style = "round",
