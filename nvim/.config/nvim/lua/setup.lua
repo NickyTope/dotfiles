@@ -13,13 +13,14 @@ local icons = {
   ok = "🚀"
 }
 
+-- show current file in float
 vim.defer_fn(
   function()
     vim.cmd([[
-  autocmd BufEnter * lua require'showfilename'.show(1000)
+  autocmd BufEnter * lua require'showfilename'.show(2000)
   ]])
   end,
-  500
+  50
 )
 
 -- https://github.com/glepnir/lspsaga.nvim
@@ -116,7 +117,7 @@ require "lualine".setup {
 }
 
 local my_attach = function(client)
-  require "completion".on_attach(client)
+  -- require "completion".on_attach(client)
   lsp_status.on_attach(client)
   mapper("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
   -- mapper("n", "<leader>k", "<cmd>lua vim.lsp.buf.hover()<CR>")

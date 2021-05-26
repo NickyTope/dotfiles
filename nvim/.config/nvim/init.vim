@@ -40,6 +40,12 @@ Plug 'NickyTope/yanks.nvim'
 " Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm i'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+Plug 'mhartington/formatter.nvim'
+Plug 'nvim-lua/lsp-status.nvim'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'hoob3rt/lualine.nvim'
 
 " git
 Plug 'tpope/vim-fugitive'
@@ -56,23 +62,17 @@ Plug 'chrisbra/csv.vim'
 Plug 'plasticboy/vim-markdown'
 " required by vim-markdown
 Plug 'godlygeek/tabular'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " tools
 Plug 'diepm/vim-rest-console'
 Plug 'vimwiki/vimwiki'
-
-" new plugins go here until confirmed useful...
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'mhartington/formatter.nvim'
-Plug 'hrsh7th/nvim-compe'
-Plug 'nvim-lua/lsp-status.nvim'
-Plug 'hoob3rt/lualine.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'sheerun/vim-polyglot'
-Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-Plug 'glepnir/lspsaga.nvim'
+
+" new plugins go here until confirmed useful...
+" Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -144,6 +144,8 @@ nmap <c-y> <Plug>(Yanks)
 
 " ./plugin/buffers.vim
 " nmap <c-i> <Plug>(buffers)
+
+nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR>
 
 " highlighted yank
 let g:highlightedyank_highlight_duration = 500

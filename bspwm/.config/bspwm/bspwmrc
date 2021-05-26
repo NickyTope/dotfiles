@@ -3,6 +3,9 @@
 killall sxhkd
 sxhkd &
 
+# timesync seems to start only after being queried ???
+timedatectl timesync-status &
+
 ~/.config/bspwm/desktops.sh
 
 bspc config border_width         2

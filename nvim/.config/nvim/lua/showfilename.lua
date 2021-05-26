@@ -28,7 +28,7 @@ M.show = function(timeout)
     width = pathlen,
     focusable = false,
     height = 3,
-    row = math.ceil(height * 0.66),
+    row = math.ceil(height / 3),
     col = pad
   }
 
