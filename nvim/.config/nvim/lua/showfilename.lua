@@ -45,6 +45,7 @@ M.hide = function()
   if win then
     api.nvim_win_close(win, true)
     win = nil
+    vim.cmd("bd! " .. buf)
     buf = nil
   end
 end
