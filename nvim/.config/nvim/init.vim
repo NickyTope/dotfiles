@@ -76,6 +76,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 call plug#end()
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
+au BufNewFile,BufRead *html.mustache set ft=html
 
 filetype plugin on
 
