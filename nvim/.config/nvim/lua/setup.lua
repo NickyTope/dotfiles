@@ -239,6 +239,7 @@ require("formatter").setup(
     filetype = {
       javascript = {eslintFmt},
       javascriptreact = {eslintFmt},
+      markdown = {prettierFmt},
       json = {prettierFmt},
       scss = {stylelintFmt},
       css = {stylelintFmt},
@@ -261,7 +262,7 @@ require "compe".setup {
   enabled = true,
   autocomplete = true,
   debug = false,
-  min_length = 2,
+  min_length = 1,
   preselect = "enable",
   throttle_time = 80,
   source_timeout = 200,
@@ -275,7 +276,8 @@ require "compe".setup {
     buffer = true,
     calc = true,
     nvim_lsp = true,
-    nvim_lua = true
+    nvim_lua = true,
+    ultisnips = true
     -- vsnip = true;
   }
 }
