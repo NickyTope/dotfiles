@@ -135,6 +135,8 @@ local my_attach = function(client)
   )
 end
 
+require("null-ls").setup {}
+
 require "lspconfig".tsserver.setup {
   capabilities = capabilities,
   filetypes = {
@@ -146,30 +148,17 @@ require "lspconfig".tsserver.setup {
     "typescript.tsx"
   },
   on_attach = function(client, bufnr)
-    my_attach(client)
     client.resolved_capabilities.document_formatting = false
     local ts_utils = require("nvim-lsp-ts-utils")
 
-    -- defaults
     ts_utils.setup {
-      disable_commands = false,
-      enable_import_on_completion = true,
-      import_on_completion_timeout = 5000,
-      -- eslint
       eslint_bin = "eslint_d",
-      eslint_args = {"-f", "json", "--cache", "--stdin", "--stdin-filename", "$FILENAME"},
-      eslint_enable_disable_comments = true,
-      -- experimental settings!
-      -- eslint diagnostics
-      eslint_enable_diagnostics = true,
-      eslint_diagnostics_debounce = 250,
-      -- formatting
-      enable_formatting = false,
-      formatter = "prettier",
-      formatter_args = {"--stdin-filepath", "$FILENAME"},
-      format_on_save = false,
-      no_save_after_format = false
+      slint_args = {"-f", "json", "--cache", "--stdin", "--stdin-filename", "$FILENAME"},
+      eslint_enable_diagnostics = true
     }
+
+    ts_utils.setup_client(client)
+    my_attach(client)
 
     -- no default maps, so you may want to define some here
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
@@ -212,7 +201,7 @@ end
 local eslintFmt = function()
   return {
     exe = "eslint_d",
-    args = {"--stdin", "--stdin-filename", vim.api.nvim_buf_get_name(0), "--fix-to-stdout"},
+    args = {"--stdin", "--cache", "--stdin-filename", vim.api.nvim_buf_get_name(0), "--fix-to-stdout"},
     stdin = true
   }
 end

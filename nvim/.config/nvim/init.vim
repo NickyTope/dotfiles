@@ -70,6 +70,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " new plugins go here until confirmed useful...
 " Plug 'sheerun/vim-polyglot'
@@ -258,7 +259,8 @@ nnoremap <Leader>ca :Lspsaga code_action<CR>
 nnoremap <Leader>rn :Lspsaga rename<CR>
 nnoremap <Leader>k :Lspsaga hover_doc<CR>
 nnoremap <Leader>K :Lspsaga signature_help<CR>
-nnoremap <Leader>gd :Lspsaga lsp_finder<CR>
+nnoremap <Leader>lf :Lspsaga lsp_finder<CR>
+nnoremap <Leader>gd :Lspsaga preview_definition<CR>
 
 nnoremap <Leader>p <cmd>Format<cr>
 " nnoremap <leader>F <cmd>grep <c-r>=expand("<cword>")<cr> *<cr>
@@ -269,7 +271,7 @@ nnoremap <Leader>p <cmd>Format<cr>
 
 nnoremap <Leader>j J
 nnoremap Q :q<cr>
-nnoremap <Leader>k K
+" nnoremap <Leader>k K
 nnoremap <Leader>. '.
 inoremap jk <Esc>
 inoremap kj <Esc>
