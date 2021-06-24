@@ -13,14 +13,14 @@ M.show = function(timeout)
 
   buf = api.nvim_create_buf(false, true)
   local width = api.nvim_win_get_width(0)
-  local height = api.nvim_win_get_height(0)
+  -- local height = api.nvim_win_get_height(0)
 
   local path = vim.fn.expand("%:~:.")
   if path == "" then
     path = vim.fn.expand("%:p:h:t")
   end
   local pathlen = string.len(path) + 2
-  local pad = (width - pathlen) / 2
+  local pad = (width - pathlen)
 
   local opts = {
     style = "minimal",
@@ -28,7 +28,7 @@ M.show = function(timeout)
     width = pathlen,
     focusable = false,
     height = 3,
-    row = math.ceil(height / 3),
+    row = 0,
     col = pad
   }
 
