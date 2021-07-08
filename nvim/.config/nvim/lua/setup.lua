@@ -161,8 +161,8 @@ require "lspconfig".tsserver.setup {
     my_attach(client)
 
     -- no default maps, so you may want to define some here
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
-    -- vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", {silent = true})
+    vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", {silent = true})
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rf", ":TSLspRenameFile<CR>", {silent = true})
     vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gi", ":TSLspImportAll<CR>", {silent = true})
   end
@@ -185,8 +185,18 @@ require "lspconfig".sumneko_lua.setup {
 require "lspconfig".dockerls.setup {on_attach = my_attach}
 require "lspconfig".vimls.setup {on_attach = my_attach}
 require "lspconfig".stylelint_lsp.setup {on_attach = my_attach}
-require "lspconfig".cssls.setup {on_attach = my_attach}
-require "lspconfig".jsonls.setup {on_attach = my_attach}
+require "lspconfig".cssls.setup(
+  {
+    on_attach = my_attach,
+    cmd = {"css-languageserver", "--stdio"}
+  }
+)
+require "lspconfig".jsonls.setup(
+  {
+    on_attach = my_attach,
+    cmd = {"vscode-json-languageserver", "--stdio"}
+  }
+)
 require "lspconfig".yamlls.setup {on_attach = my_attach}
 -- require'lspconfig'.pyls.etup{on_attach=my_attach}
 

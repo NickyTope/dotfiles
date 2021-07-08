@@ -74,10 +74,13 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 
 " new plugins go here until confirmed useful...
 " Plug 'sheerun/vim-polyglot'
+Plug 'vim-scripts/nginx.vim'
 
 call plug#end()
+
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
 au BufNewFile,BufRead *html.mustache set ft=html
+au BufNewFile,BufRead *.conf set ft=nginx
 
 filetype plugin on
 
