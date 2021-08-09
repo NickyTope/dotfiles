@@ -104,8 +104,9 @@ alias dsa="docker start proxy redis mongo minio"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
-alias npmglobalinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d lua-fmt neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server"
+alias npmglobalinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d lua-fmt neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server"
 alias ssh="TERM=linux ssh"
+alias shares="~/apps/ticker.sh/ticker.sh A200.AX VISM.AX"
 
 export APP_URI=https://dev-client.isw.net.au
 export API_GATEWAY=https://dev-server.isw.net.au
@@ -117,6 +118,7 @@ export ANDROID_SDK_ROOT=/opt/android-sdk
 export ANDROID_PATH=$ANDROID_SDK_ROOT/emulator
 export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$PATH:$GOPATH/bin:/home/nicky/bin:$ANDROID_PATH:$CARGO_PATH:/home/nicky/.local/bin
+export PATH="$(yarn global bin):$PATH"
 export VISUAL=nvim
 export EDITOR=nvim
 export BAT_THEME=gruvbox-dark
@@ -140,4 +142,3 @@ autoload -Uz compinit
 compinit
 
 bindkey '\e.' insert-last-word
-
