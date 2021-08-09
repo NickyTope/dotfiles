@@ -54,7 +54,7 @@ Plug 'tpope/vim-rhubarb'
 " Syntax
 Plug 'mitsuhiko/vim-jinja'
 Plug 'yuezk/vim-js'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'stephpy/vim-yaml'
 Plug 'vim-scripts/groovy.vim'
@@ -75,6 +75,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 " new plugins go here until confirmed useful...
 " Plug 'sheerun/vim-polyglot'
 Plug 'vim-scripts/nginx.vim'
+Plug 'neoclide/vim-jsx-improve'
 
 call plug#end()
 
@@ -219,7 +220,12 @@ let g:vimwiki_ext2syntax = {'.wiki': 'media'}
 let g:prosession_dir = '~/.config/nvim/session/'
 
 " closetag (auto close xml tags)
-let g:closetag_filenames = '*.html,*.xhtml,*.xml,*.js,*.jsx,*.html.erb,*.md'
+let g:closetag_filenames = "*.html,*.jsx,*.tsx,*.vue,*.xhml,*.xml"
+let g:closetag_regions = {
+  \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+  \ 'javascript.jsx': 'jsxRegion',
+  \ }
+
 
 " indent guides
 let g:indent_guides_auto_colors = 0
@@ -249,8 +255,9 @@ let g:vrc_curl_opts = {
 
 " nnoremap <Leader>e :!eslint % --fix --cache<cr>
 inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <Tab> pumvisible() ? compe#confirm('<CR>') : "<Tab>"
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+" these are moved to setup.lua
+" inoremap <silent><expr> <Tab> pumvisible() ? compe#confirm('<CR>') : "<Tab>"
+" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
 inoremap <silent><expr> <C-e>     compe#close('<C-e>')
 inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
 inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
@@ -263,7 +270,9 @@ nnoremap <Leader>rn :Lspsaga rename<CR>
 nnoremap <Leader>k :Lspsaga hover_doc<CR>
 nnoremap <Leader>K :Lspsaga signature_help<CR>
 nnoremap <Leader>lf :Lspsaga lsp_finder<CR>
-nnoremap <Leader>gd :Lspsaga preview_definition<CR>
+" nnoremap <Leader>gd :Lspsaga preview_definition<CR>
+nnoremap <silent> <leader>t :Lspsaga open_floaterm<CR>
+tnoremap <silent> <Esc> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
 nnoremap <Leader>p <cmd>Format<cr>
 " nnoremap <leader>F <cmd>grep <c-r>=expand("<cword>")<cr> *<cr>
@@ -280,6 +289,7 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 nnoremap <silent> gt g<c-]>
 nmap <Leader><Esc> :noh<CR>
+nnoremap gp `[v`]
 
 " quickfix
 nnoremap <Leader>qn :cn<CR>
@@ -314,7 +324,7 @@ let g:move_key_modifier = 'S'
 nnoremap <c-p> <cmd>lua require'telescope.builtin'.git_files{cwd=vim.fn.expand('%:h')}<cr>
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader>F <cmd>Telescope grep_string<cr>
-nnoremap <leader>t <cmd>Telescope treesitter<cr>
+" nnoremap <leader>t <cmd>Telescope treesitter<cr>
 nnoremap <leader>b <cmd>lua require'telescope.builtin'.buffers{show_all_buffers=false}<cr>
 nnoremap <leader>i <cmd>lua require'telescope.builtin'.buffers{show_all_buffers=true}<cr>
 nnoremap <leader>qq <cmd>Telescope quickfix<cr>
@@ -322,7 +332,6 @@ nnoremap <Leader>d <cmd>Telescope lsp_document_diagnostics<cr>
 
 " Fugitive
 nnoremap <silent> <Leader>gs :G<cr>
-" nnoremap <silent> <Leader>gd :Git log origin/master..dev<cr>
 nnoremap <silent> <Leader>gl :Glog<cr>
 nnoremap <silent> <Leader>gf :Git fetch<cr>
 nnoremap <silent> <Leader>gr :Git rebase<cr>
@@ -342,18 +351,6 @@ nnoremap <silent> <A-h> <C-w>h
 nnoremap <silent> <A-j> <C-w>j
 nnoremap <silent> <A-k> <C-w>k
 nnoremap <silent> <A-l> <C-w>l
-
-" terminal
-nnoremap <leader>T :call OpenTerminal()<cr>
-" map escape to go to normal mode in terminal buffers,
-" don't do this in a tnoremap becasue it conflicts with fzf Esc to close
-au BufEnter * if &buftype == 'terminal' | :tmap <buffer> <Esc> <C-\><C-n> | endif
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-function! OpenTerminal()
-  split term://zsh
-  resize 10
-endfunction
 
 " Sytem clipboard
 vmap <C-c> "+y
