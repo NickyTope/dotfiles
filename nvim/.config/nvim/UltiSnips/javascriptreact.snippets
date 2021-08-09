@@ -17,20 +17,13 @@ export default class ${1:#:name} extends Component {
 endsnippet
 
 snippet fcomp "react function component"
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-${1:#:name}.propTypes = {
-	
-};
-
-function $1({ $2 }) {
+export default function $1() {
 	return (
 		<div>Hello $1</div>
 	);
 }
-
-export default $1;
 endsnippet
 
 snippet con "react constructor"
