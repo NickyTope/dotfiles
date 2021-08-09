@@ -11,6 +11,10 @@ M.show = function(timeout)
     M.timer:stop()
   end
 
+  if vim.fn.pumvisible() == 1 then
+    return
+  end
+
   buf = api.nvim_create_buf(false, true)
   local width = api.nvim_win_get_width(0)
   -- local height = api.nvim_win_get_height(0)
