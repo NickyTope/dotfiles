@@ -68,7 +68,11 @@ end
 require "nvim-treesitter.configs".setup {
   ensure_installed = "maintained",
   highlight = {
-    enable = true
+    enable = true,
+    additional_vim_regex_highlighting = true
+  },
+  indent = {
+    enable = false
   }
 }
 
@@ -139,21 +143,13 @@ require("null-ls").setup {}
 
 require "lspconfig".tsserver.setup {
   capabilities = capabilities,
-  filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx"
-  },
   on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
+    -- client.resolved_capabilities.document_formatting = false
     local ts_utils = require("nvim-lsp-ts-utils")
 
     ts_utils.setup {
       eslint_bin = "eslint_d",
-      slint_args = {"-f", "json", "--cache", "--stdin", "--stdin-filename", "$FILENAME"},
+      eslint_args = {"-f", "json", "--cache", "--stdin", "--stdin-filename", "$FILENAME"},
       eslint_enable_diagnostics = true
     }
 
@@ -188,6 +184,8 @@ require "lspconfig".stylelint_lsp.setup {on_attach = my_attach}
 require "lspconfig".cssls.setup(
   {
     on_attach = my_attach,
+    capabilities = capabilities,
+    debug = true,
     cmd = {"css-languageserver", "--stdio"}
   }
 )
@@ -198,7 +196,9 @@ require "lspconfig".jsonls.setup(
   }
 )
 require "lspconfig".yamlls.setup {on_attach = my_attach}
--- require'lspconfig'.pyls.etup{on_attach=my_attach}
+
+-- pip install 'python-lsp-server[all]'
+require "lspconfig".pylsp.setup {on_attach = my_attach}
 
 local prettierFmt = function()
   return {
@@ -232,6 +232,14 @@ local yamlFmt = function()
   }
 end
 
+local pythonFmt = function()
+  return {
+    exe = "autopep8",
+    args = {"--in-place", vim.api.nvim_buf_get_name(0)},
+    stdin = false
+  }
+end
+
 require("formatter").setup(
   {
     logging = false,
@@ -243,6 +251,7 @@ require("formatter").setup(
       scss = {stylelintFmt},
       css = {stylelintFmt},
       yaml = {yamlFmt},
+      python = {pythonFmt},
       lua = {
         -- luafmt
         function()
@@ -273,10 +282,13 @@ require "compe".setup {
   source = {
     path = true,
     buffer = true,
-    calc = true,
     nvim_lsp = true,
-    nvim_lua = true,
-    ultisnips = true
+    nvim_lua = true
+    -- calc = true,
+    -- ultisnips = true
     -- vsnip = true;
   }
 }
+
+vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", {expr = true})
+vim.api.nvim_set_keymap("i", "<Tab>", "compe#confirm({ 'keys': '<Tab>', 'select': v:true })", {expr = true})
