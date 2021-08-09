@@ -142,6 +142,10 @@ super + {alt,shift,ctrl} + p
 super + alt + c
   colorpicker --short --one-shot --preview | xclip -selection clipboard
 
+# Share prices
+super + alt + s
+  /home/nicky/apps/ticker.sh/notify-shares
+
 # Launcher
 super + o ; {f,s,z,t}
   {firefox-developer-edition,slack,zoom,teams}
