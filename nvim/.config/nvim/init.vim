@@ -1,125 +1,6 @@
-call plug#begin('~/.local/share/nvim/plugged')
-
-" File nav
-Plug 'justinmk/vim-dirvish'
-Plug 'kristijanhusak/vim-dirvish-git'
-
-Plug 'mbbill/undotree'
-Plug 'tpope/vim-eunuch'
-
-" Pretties
-" Plug 'lifepillar/vim-solarized8'
-Plug 'arcticicestudio/nord-vim'
-" Plug 'itchyny/lightline.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'gruvbox-community/gruvbox'
-Plug 'morhetz/gruvbox'
-
-" Editor convenience
-Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
-Plug 'junegunn/vim-peekaboo'
-Plug 'tpope/vim-commentary'
-Plug 'machakann/vim-highlightedyank'
-
-" Text manilpulation
-Plug 'tpope/vim-repeat'
-Plug 'kana/vim-textobj-user'
-Plug 'etdev/vim-textobject-pack'
-Plug 'matze/vim-move'
-
-" Input trickery
-Plug 'jiangmiao/auto-pairs'
-Plug 'alvan/vim-closetag'
-Plug 'SirVer/ultisnips'
-Plug 'tpope/vim-surround'
-Plug 'NickyTope/yanks.nvim'
-
-" completion
-" Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm i'}
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'hrsh7th/nvim-compe'
-Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-Plug 'mhartington/formatter.nvim'
-Plug 'nvim-lua/lsp-status.nvim'
-Plug 'glepnir/lspsaga.nvim'
-Plug 'hoob3rt/lualine.nvim'
-
-" git
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-
-" Syntax
-Plug 'mitsuhiko/vim-jinja'
-Plug 'yuezk/vim-js'
-" Plug 'maxmellon/vim-jsx-pretty'
-Plug 'iamcco/markdown-preview.vim'
-Plug 'stephpy/vim-yaml'
-Plug 'vim-scripts/groovy.vim'
-Plug 'chrisbra/csv.vim'
-Plug 'plasticboy/vim-markdown'
-" required by vim-markdown
-Plug 'godlygeek/tabular'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
-" tools
-Plug 'diepm/vim-rest-console'
-Plug 'vimwiki/vimwiki'
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
-
-" new plugins go here until confirmed useful...
-" Plug 'sheerun/vim-polyglot'
-Plug 'vim-scripts/nginx.vim'
-Plug 'neoclide/vim-jsx-improve'
-
-call plug#end()
-
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
 au BufNewFile,BufRead *html.mustache set ft=html
 au BufNewFile,BufRead *.conf set ft=nginx
-
-filetype plugin on
-
-set laststatus=2
-set splitbelow
-set splitright
-set tabstop=2
-set shiftwidth=2
-set expandtab
-set mouse=a
-set backupcopy=yes
-set number
-set relativenumber
-set cursorline
-set termguicolors
-set background=dark
-set completeopt=menuone,noselect
-set noshowmode
-set conceallevel=0
-set smartcase
-set ignorecase
-set hidden
-set undofile
-set undolevels=1000
-set title
-set titlestring=%{expand(\"%:p:.\")}\ %y\ %m
-set titlelen=120
-set scrolloff=10
-set tags+=.git/tags
-set grepprg=rg\ --vimgrep
-set grepformat=%f:%l:%c:%m
-set noswapfile
-set signcolumn=yes
-
-colorscheme gruvbox
-
-" transparency
-hi Normal guibg=NONE ctermbg=NONE
 
 let mapleader = ' '
 " I keep pressing this and it freezes the terminal, remap to avoid...
@@ -140,7 +21,7 @@ function! LspStatus() abort
 endfunction
 
 " ~/.config/nvim/lua/setup.lua
-lua require'setup'
+lua require "setup"
 
 " ./plugin/yanks.vim
 nmap <c-y> <Plug>(Yanks)
@@ -239,6 +120,9 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
 
+" vim-move
+let g:move_key_modifier = 'S'
+
 " commentary
 map <C-_> :Commentary<cr>
 map <C-/> :Commentary<cr>
@@ -314,8 +198,6 @@ nnoremap { :keepjumps normal! {<cr>
 nnoremap <leader><leader> :b#<cr>
 " }}
 
-" vim-move
-let g:move_key_modifier = 'S'
 
 
 " telescope
