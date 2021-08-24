@@ -67,9 +67,9 @@ function! CustomDirvishSetup()
   setlocal conceallevel=2
   map <buffer> ma :e %
   map <buffer> mf :Mkdir %
-  map <buffer> mc Y:!cp " "
-  map <buffer> mm Y:!mv " "
-  map <buffer> md Y:!rm "
+  map <buffer> mc yy:!cp " "
+  map <buffer> mm yy:!mv " "
+  map <buffer> md yy:!rm "
   map <buffer> <c-v> :call dirvish#open("vsplit", 0)<cr>
   map <buffer> <c-p> <cmd>lua require'telescope.builtin'.find_files{search_dirs={vim.fn.expand('%')}}<cr>
 endfunction
@@ -207,8 +207,8 @@ nnoremap <c-p> <cmd>lua require'telescope.builtin'.git_files{cwd=vim.fn.expand('
 nnoremap <leader>f <cmd>Telescope live_grep<cr>
 nnoremap <leader>F <cmd>Telescope grep_string<cr>
 " nnoremap <leader>t <cmd>Telescope treesitter<cr>
-nnoremap <leader>b <cmd>lua require'telescope.builtin'.buffers{show_all_buffers=false}<cr>
-nnoremap <leader>i <cmd>lua require'telescope.builtin'.buffers{show_all_buffers=true}<cr>
+nnoremap <leader>b <cmd>lua require'telescope.builtin'.buffers{}<cr>
+nnoremap <leader>i <cmd>lua require'telescope.builtin'.oldfiles{}<cr>
 nnoremap <leader>qq <cmd>Telescope quickfix<cr>
 nnoremap <Leader>d <cmd>Telescope lsp_document_diagnostics<cr>
 
