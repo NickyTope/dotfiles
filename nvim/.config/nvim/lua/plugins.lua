@@ -44,7 +44,7 @@ return require("packer").startup(
     -- use 'neoclide/coc.nvim', {'branch': 'master', 'do': 'npm i'}
     use "neovim/nvim-lspconfig"
     use "nvim-lua/completion-nvim"
-    use "hrsh7th/nvim-compe"
+    -- use "hrsh7th/nvim-compe"
     use "jose-elias-alvarez/nvim-lsp-ts-utils"
     use "mhartington/formatter.nvim"
     use "nvim-lua/lsp-status.nvim"
@@ -82,6 +82,16 @@ return require("packer").startup(
     use "vim-scripts/nginx.vim"
     use "neoclide/vim-jsx-improve"
     use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use {
+      "hrsh7th/nvim-cmp",
+      requires = {
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-vsnip"
+      }
+    }
 
     -- Simple plugins can be specified as strings
     -- use "9mm/vim-closer"

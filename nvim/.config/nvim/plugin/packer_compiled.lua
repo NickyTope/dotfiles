@@ -73,6 +73,26 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/auto-pairs"
   },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-lua"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua"
+  },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-path"
+  },
+  ["cmp-vsnip"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-vsnip"
+  },
   ["completion-nvim"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/completion-nvim"
@@ -125,9 +145,9 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/null-ls.nvim"
   },
-  ["nvim-compe"] = {
+  ["nvim-cmp"] = {
     loaded = true,
-    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nvim-compe"
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nvim-cmp"
   },
   ["nvim-lsp-ts-utils"] = {
     loaded = true,

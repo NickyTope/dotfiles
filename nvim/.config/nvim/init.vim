@@ -138,13 +138,13 @@ let g:vrc_curl_opts = {
 \}
 
 " nnoremap <Leader>e :!eslint % --fix --cache<cr>
-inoremap <silent><expr> <C-Space> compe#complete()
+" inoremap <silent><expr> <C-Space> cmp#complete()
 " these are moved to setup.lua
 " inoremap <silent><expr> <Tab> pumvisible() ? compe#confirm('<CR>') : "<Tab>"
 " inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+" inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+" inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+" inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 
 " nnoremap <Leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <Leader>N :Lspsaga diagnostic_jump_prev<CR>
