@@ -11,14 +11,18 @@ configuration {
 }
 
 * {
-  bg: #282828;
-  bg-alt: #3c3836;
+  background: #282828;
+  background-alt: #3c3836;
 
-  fg: #fbf1c7;
+  foreground: #fbf1c7;
 
   blue: #83a598;
 
-  background-color: @bg;
+  background-color: @background;
+  active-foreground: @blue;
+  normal-foreground: @foreground;
+  selected-foreground: @blue;
+  text-color: @foreground;
   
   border: 0;
   margin: 0;
@@ -28,17 +32,22 @@ configuration {
 
 element {
   padding: 12;
-  text-color: @fg;
 }
 
-element selected {
+element-text {
+  background-color: inherit;
+  text-color:       inherit;
+}
+
+element.selected {
   text-color: @blue;
 }
 
 entry {
-  background-color: @bg-alt;
+  background-color: @background-alt;
   padding: 12 0 12 3;
-  text-color: @fg;
+  text-color: @foreground;
+  normal-foreground: @foreground;
 }
 
 inputbar {
@@ -55,11 +64,11 @@ mainbox {
 }
 
 prompt {
-  background-color: @bg-alt;
+  background-color: @background-alt;
   enabled: true;
   font: "Hasklig 12";
   padding: 12 0 0 12;
-  text-color: @fg;
+  text-color: @foreground;
 }
 
 window {
