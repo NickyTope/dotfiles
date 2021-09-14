@@ -1,10 +1,10 @@
 font:
   normal:
-    family: Hasklug Nerd Font Mono
+    family: Cascadia Code
   bold:
-    style: Black Italic
+    style: Bold
   italic:
-    style: Italic
+    style: SemiLight Italic
   size: 9.0
 colors:
   primary:

@@ -6,12 +6,6 @@ let mapleader = ' '
 " I keep pressing this and it freezes the terminal, remap to avoid...
 inoremap <F6> h
 
-
-function! FilenameForLightline()
-    " return expand("%:p:.")
-    return expand("%:t")
-endfunction
-
 function! LspStatus() abort
   if luaeval('#vim.lsp.buf_get_clients() > 0')
     return luaeval("require('lsp-status').status()")
@@ -149,7 +143,7 @@ let g:vrc_curl_opts = {
 " nnoremap <Leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <Leader>N :Lspsaga diagnostic_jump_prev<CR>
 nnoremap <Leader>n :Lspsaga diagnostic_jump_next<CR>
-nnoremap <Leader>ca :Lspsaga code_action<CR>
+nnoremap <Leader>ca :Telescope lsp_code_actions<CR>
 nnoremap <Leader>rn :Lspsaga rename<CR>
 nnoremap <Leader>k :Lspsaga hover_doc<CR>
 nnoremap <Leader>K :Lspsaga signature_help<CR>

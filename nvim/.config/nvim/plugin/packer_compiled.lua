@@ -197,6 +197,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/vim-commentary"
   },
+  ["vim-css-color"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/vim-css-color"
+  },
   ["vim-devicons"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/vim-devicons"
@@ -280,6 +284,10 @@ _G.packer_plugins = {
   ["vim-textobject-pack"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/vim-textobject-pack"
+  },
+  ["vim-vsnip"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/vim-vsnip"
   },
   ["vim-yaml"] = {
     loaded = true,
