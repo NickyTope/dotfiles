@@ -117,10 +117,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/lsp-status.nvim"
   },
-  ["lspsaga.nvim"] = {
-    loaded = true,
-    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
-  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/lualine.nvim"
@@ -136,10 +132,6 @@ _G.packer_plugins = {
   ["nginx.vim"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nginx.vim"
-  },
-  ["nord-vim"] = {
-    loaded = true,
-    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nord-vim"
   },
   ["null-ls.nvim"] = {
     loaded = true,

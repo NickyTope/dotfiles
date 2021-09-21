@@ -131,23 +131,18 @@ let g:vrc_curl_opts = {
   \ '-k': '',
 \}
 
-" nnoremap <Leader>e :!eslint % --fix --cache<cr>
-" inoremap <silent><expr> <C-Space> cmp#complete()
-" these are moved to setup.lua
-" inoremap <silent><expr> <Tab> pumvisible() ? compe#confirm('<CR>') : "<Tab>"
-" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-" inoremap <silent><expr> <C-e>     compe#close('<C-e>')
-" inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
-" inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+nnoremap <Leader>n <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
+nnoremap <Leader>N <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
+nnoremap <Leader>ca <cmd>Telescope lsp_code_actions<CR>
+nnoremap <Leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 
-" nnoremap <Leader>n :lua vim.lsp.diagnostic.goto_next()<cr>
-nnoremap <Leader>N :Lspsaga diagnostic_jump_prev<CR>
-nnoremap <Leader>n :Lspsaga diagnostic_jump_next<CR>
-nnoremap <Leader>ca :Telescope lsp_code_actions<CR>
-nnoremap <Leader>rn :Lspsaga rename<CR>
-nnoremap <Leader>k :Lspsaga hover_doc<CR>
-nnoremap <Leader>K :Lspsaga signature_help<CR>
-nnoremap <Leader>lf :Lspsaga lsp_finder<CR>
+" nnoremap <Leader>N :Lspsaga diagnostic_jump_prev<CR>
+" nnoremap <Leader>n :Lspsaga diagnostic_jump_next<CR>
+" nnoremap <Leader>rn :Lspsaga rename<CR>
+" nnoremap <Leader>k :Lspsaga hover_doc<CR>
+" nnoremap <Leader>K :Lspsaga signature_help<CR>
+" nnoremap <Leader>lf :Lspsaga lsp_finder<CR>
+
 " nnoremap <Leader>gd :Lspsaga preview_definition<CR>
 nnoremap <silent> <leader>t :Lspsaga open_floaterm<CR>
 tnoremap <silent> <Esc> <C-\><C-n>:Lspsaga close_floaterm<CR>

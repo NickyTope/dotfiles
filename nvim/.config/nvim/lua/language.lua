@@ -10,7 +10,8 @@ local icons = {
   warning = "🔥",
   info = "🪧",
   hint = "📣",
-  ok = "🚀"
+  ok = "🚀",
+  action = "💡"
 }
 
 -- show current file in float
@@ -23,31 +24,37 @@ vim.defer_fn(
   50
 )
 
+-- disable until fixed https://github.com/glepnir/lspsaga.nvim/issues/241
 -- https://github.com/glepnir/lspsaga.nvim
-require "lspsaga".init_lsp_saga {
-  border_style = "round",
-  max_preview_lines = 15,
-  error_sign = icons.error,
-  warn_sign = icons.warning,
-  hint_sign = icons.hint,
-  infor_sign = icons.info,
-  finder_action_keys = {
-    open = "o",
-    vsplit = "v",
-    split = "s",
-    quit = "<Esc>",
-    scroll_down = "<C-d>",
-    scroll_up = "<C-u>"
-  },
-  code_action_keys = {
-    quit = "<Esc>",
-    exec = "<CR>"
-  },
-  rename_action_keys = {
-    quit = "<Esc>",
-    exec = "<CR>"
-  }
-}
+-- require "lspsaga".init_lsp_saga {
+--   border_style = "round",
+--   max_preview_lines = 15,
+--   error_sign = icons.error,
+--   warn_sign = icons.warning,
+--   hint_sign = icons.hint,
+--   infor_sign = icons.info,
+--   code_action_icon = icons.action,
+--   code_action_prompt = {
+--     enable = false,
+--     virtual_text = false
+--   },
+--   finder_action_keys = {
+--     open = "o",
+--     vsplit = "v",
+--     split = "s",
+--     quit = "<Esc>",
+--     scroll_down = "<C-d>",
+--     scroll_up = "<C-u>"
+--   },
+--   code_action_keys = {
+--     quit = "<Esc>",
+--     exec = "<CR>"
+--   },
+--   rename_action_keys = {
+--     quit = "<Esc>",
+--     exec = "<CR>"
+--   }
+-- }
 
 local lsp_status = require("lsp-status")
 lsp_status.config(
@@ -114,9 +121,7 @@ require "lualine".setup {
     lualine_x = {"progress"}
   },
   options = {
-    theme = "gruvbox_material",
-    section_separators = "",
-    component_separators = ""
+    theme = "material"
   }
 }
 
@@ -132,7 +137,7 @@ local my_attach = function(client)
     [[
     augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.js,*.rs,*.lua,*.jsx,*.css,*.scss FormatWrite
+    autocmd BufWritePost *.js,*.ts,*.rs,*.lua,*.jsx,*.css,*.scss FormatWrite
     augroup END
   ]],
     true
@@ -246,6 +251,7 @@ require("formatter").setup(
     filetype = {
       javascript = {eslintFmt},
       javascriptreact = {eslintFmt},
+      typescript = {eslintFmt},
       markdown = {prettierFmt},
       json = {prettierFmt},
       scss = {stylelintFmt},
