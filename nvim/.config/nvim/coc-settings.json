@@ -1,8 +1,0 @@
-{
-  "eslint.autoFixOnSave": true,
-  "suggest.autoTrigger": "trigger",
-  "css.validate": false,
-  "scss.validate": false,
-  "stylelintplus.autoFixOnSave": true,
-  "stylelintplus.trace.server": "verbose"
-}

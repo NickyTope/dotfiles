@@ -19,6 +19,7 @@ lua require "setup"
 
 " ./plugin/yanks.vim
 nmap <c-y> <Plug>(Yanks)
+nmap Y yy
 
 " ./plugin/gitfiles.vim
 " nmap <c-p> <Plug>(gitfiles)
@@ -144,8 +145,8 @@ nnoremap <Leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 " nnoremap <Leader>lf :Lspsaga lsp_finder<CR>
 
 " nnoremap <Leader>gd :Lspsaga preview_definition<CR>
-nnoremap <silent> <leader>t :Lspsaga open_floaterm<CR>
-tnoremap <silent> <Esc> <C-\><C-n>:Lspsaga close_floaterm<CR>
+" nnoremap <silent> <leader>t :Lspsaga open_floaterm<CR>
+" tnoremap <silent> <Esc> <C-\><C-n>:Lspsaga close_floaterm<CR>
 
 nnoremap <Leader>p <cmd>Format<cr>
 " nnoremap <leader>F <cmd>grep <c-r>=expand("<cword>")<cr> *<cr>

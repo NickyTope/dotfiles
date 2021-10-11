@@ -2,8 +2,8 @@ local mapper = function(mode, key, result)
   vim.api.nvim_buf_set_keymap(0, mode, key, result, {noremap = true, silent = true})
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local icons = {
   error = "🚫",
@@ -121,7 +121,7 @@ require "lualine".setup {
     lualine_x = {"progress"}
   },
   options = {
-    theme = "material"
+    theme = "gruvbox"
   }
 }
 
@@ -147,7 +147,7 @@ end
 require("null-ls").setup {}
 
 require "lspconfig".tsserver.setup {
-  capabilities = capabilities,
+  capabilities = require "cmp_nvim_lsp".update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   on_attach = function(client, bufnr)
     -- client.resolved_capabilities.document_formatting = false
     local ts_utils = require("nvim-lsp-ts-utils")
@@ -173,6 +173,7 @@ local sumneko_install = "/home/nicky/apps/lua-language-server/"
 
 require "lspconfig".sumneko_lua.setup {
   on_attach = my_attach,
+  capabilities = require "cmp_nvim_lsp".update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   cmd = {sumneko_install .. "bin/Linux/lua-language-server", "-E", sumneko_install .. "main.lua"},
   settings = {
     Lua = {
@@ -189,7 +190,7 @@ require "lspconfig".stylelint_lsp.setup {on_attach = my_attach}
 require "lspconfig".cssls.setup(
   {
     on_attach = my_attach,
-    capabilities = capabilities,
+    capabilities = require "cmp_nvim_lsp".update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     debug = true,
     cmd = {"css-languageserver", "--stdio"}
   }
@@ -275,7 +276,16 @@ require("formatter").setup(
 local cmp = require "cmp"
 cmp.setup {
   sources = {
-    {name = "buffer"},
+    {
+      name = "buffer",
+      get_bufnrs = function()
+        local bufs = {}
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          bufs[vim.api.nvim_win_get_buf(win)] = true
+        end
+        return vim.tbl_keys(bufs)
+      end
+    },
     {name = "nvim_lua"},
     {name = "path"},
     {name = "nvim_lsp"},
