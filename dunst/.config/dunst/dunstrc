@@ -1,21 +1,25 @@
 [global]
     monitor = 0
     follow = keyboard
-    geometry = "500x10-0+0"
     indicate_hidden = yes
-    shrink = no
+    shrink = yes
     transparency = 20
     notification_height = 0
-    separator_height = 2
+    separator_height = 1
     padding = 5
     horizontal_padding = 8
     separator_color = "#585858"
+
+    width = (0, 500)
+    offset = 10x10
+    frame_width = 1
+    corner_radius = 4
 
     # Sort messages by urgency.
     sort = yes
 
     idle_threshold = 120
-    font = Hurmit Nerd Font 12
+    font = URW Gothic 16
     line_height = 0
     markup = full
 
@@ -36,7 +40,7 @@
     word_wrap = yes
     ignore_newline = no
     stack_duplicates = true
-    hide_duplicate_count = true
+    hide_duplicate_count = no
     show_indicators = yes
     icon_position = right
     max_icon_size = 24
@@ -51,13 +55,13 @@
 
     title = Dunst
     class = Dunst
-    startup_notification = false
+    startup_notification = true
     force_xinerama = false
 [experimental]
     per_monitor_dpi = false
 
 [frame]
-    width = 1
+    width = 0
     color = "#83a598"
 
 [shortcuts]
