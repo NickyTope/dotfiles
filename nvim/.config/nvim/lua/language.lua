@@ -144,7 +144,19 @@ local my_attach = function(client)
   )
 end
 
-require("null-ls").setup {}
+-- require("null-ls").config { cmd = {"/usr/local/bin/nvim"} }
+-- require("lspconfig")["null-ls"].setup {}
+
+require("null-ls").config(
+  {
+    sources = {require("null-ls").builtins.formatting.stylua}
+  }
+)
+require("lspconfig")["null-ls"].setup(
+  {
+    on_attach = my_attach
+  }
+)
 
 require "lspconfig".tsserver.setup {
   capabilities = require "cmp_nvim_lsp".update_capabilities(vim.lsp.protocol.make_client_capabilities()),
@@ -276,8 +288,13 @@ require("formatter").setup(
 local cmp = require "cmp"
 cmp.setup {
   sources = {
+    {name = "nvim_lua"},
+    {name = "nvim_lsp"},
+    {name = "path", max_item_count = 3},
+    {name = "vsnip"},
     {
       name = "buffer",
+      keyword_length = 4,
       get_bufnrs = function()
         local bufs = {}
         for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -285,20 +302,21 @@ cmp.setup {
         end
         return vim.tbl_keys(bufs)
       end
-    },
-    {name = "nvim_lua"},
-    {name = "path"},
-    {name = "nvim_lsp"},
-    {name = "vsnip"}
+    }
   },
   snippet = {
     expand = function(args)
       vim.fn["vsnip#anonymous"](args.body)
     end
   },
+  experimental = {
+    native_menu = false,
+    ghost_text = true
+  },
   mapping = {
     ["<C-Space"] = cmp.mapping.complete(),
-    ["<Tab>"] = cmp.mapping.confirm(
+    -- tab ?
+    ["<Enter>"] = cmp.mapping.confirm(
       {
         behavior = cmp.ConfirmBehavior.Replace,
         select = true
@@ -306,30 +324,3 @@ cmp.setup {
     )
   }
 }
-
--- require "compe".setup {
---   enabled = true,
---   autocomplete = true,
---   debug = false,
---   min_length = 1,
---   preselect = "enable",
---   throttle_time = 80,
---   source_timeout = 200,
---   incomplete_delay = 400,
---   max_abbr_width = 100,
---   max_kind_width = 100,
---   max_menu_width = 100,
---   documentation = true,
---   source = {
---     path = true,
---     buffer = true,
---     nvim_lsp = true,
---     nvim_lua = true
---     -- calc = true,
---     -- ultisnips = true
---     -- vsnip = true;
---   }
--- }
-
--- vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm({ 'keys': '<CR>', 'select': v:true })", {expr = true})
--- vim.api.nvim_set_keymap("i", "<Tab>", "compe#confirm({ 'keys': '<Tab>', 'select': v:true })", {expr = true})
