@@ -91,6 +91,8 @@ nnoremap <leader>e :e<cr>
 " only use vimwiki for .wiki files
 let g:vimwiki_folding = 'list'
 let g:vimwiki_ext2syntax = {'.wiki': 'media'}
+let g:vimwiki_key_mappings = { 'table_mappings': 0, }
+
 
 " prosession
 let g:prosession_dir = '~/.config/nvim/session/'
@@ -136,6 +138,8 @@ nnoremap <Leader>n <cmd>lua vim.lsp.diagnostic.goto_next()<cr>
 nnoremap <Leader>N <cmd>lua vim.lsp.diagnostic.goto_prev()<cr>
 nnoremap <Leader>ca <cmd>Telescope lsp_code_actions<CR>
 nnoremap <Leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
+nnoremap <Leader>s <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap gr <cmd>Telescope lsp_references<CR>
 
 " nnoremap <Leader>N :Lspsaga diagnostic_jump_prev<CR>
 " nnoremap <Leader>n :Lspsaga diagnostic_jump_next<CR>

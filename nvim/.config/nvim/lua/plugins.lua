@@ -82,5 +82,6 @@ return require("packer").startup(
     use "jose-elias-alvarez/null-ls.nvim"
 
     -- new plugins go here until confirmed useful...
+    use "github/copilot.vim"
   end
 )
