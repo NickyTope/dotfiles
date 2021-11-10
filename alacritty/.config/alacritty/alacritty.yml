@@ -4,7 +4,7 @@ font:
   bold:
     style: Bold
   italic:
-    style: SemiLight Italic
+    style: SemiBold Italic
   size: 9.0
 colors:
   primary:

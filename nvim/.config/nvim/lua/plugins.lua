@@ -16,6 +16,7 @@ return require("packer").startup(
     use "ryanoasis/vim-devicons"
     use "nathanaelkane/vim-indent-guides"
     use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use {"olimorris/onedarkpro.nvim", requires = {"rktjmp/lush.nvim"}}
 
     -- Editor convenience
     use "tpope/vim-obsession"
@@ -83,5 +84,12 @@ return require("packer").startup(
 
     -- new plugins go here until confirmed useful...
     use "github/copilot.vim"
+    use "LionC/nest.nvim"
+    use {
+      "folke/which-key.nvim",
+      config = function()
+        require("which-key").setup {}
+      end
+    }
   end
 )

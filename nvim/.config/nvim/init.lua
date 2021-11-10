@@ -1,4 +1,6 @@
 require "settings"
 require "plugins"
 require "language"
+require "format"
 require "keymaps"
+require "autocommand"

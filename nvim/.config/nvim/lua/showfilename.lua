@@ -3,7 +3,7 @@ local buf, win
 
 local M = {}
 
-M.show = function(timeout)
+M.show = function()
   if win then
     M.hide()
   end
@@ -40,8 +40,8 @@ M.show = function(timeout)
 
   api.nvim_buf_set_lines(buf, 1, -1, false, {" " .. path})
 
-  if timeout then
-    M.timer = vim.defer_fn(M.hide, timeout)
+  if vim.bo.filetype ~= "dirvish" then
+    M.timer = vim.defer_fn(M.hide, 2000)
   end
 end
 
