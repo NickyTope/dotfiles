@@ -1,22 +1,27 @@
 -- show current file in float
-vim.defer_fn(
-  function()
-    vim.cmd [[
+vim.defer_fn(function()
+	vim.cmd([[
     autocmd BufEnter * lua require'showfilename'.show()
-    ]]
-  end,
-  50
-)
+    ]])
+end, 50)
 
-vim.cmd [[
+vim.cmd([[
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
 au BufNewFile,BufRead *html.mustache set ft=html
 au BufNewFile,BufRead *.conf set ft=nginx
 " vimwiki uses - to decrease header level
 au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
-]]
+]])
 
-vim.cmd [[
+vim.cmd([[
+autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+]])
+
+vim.cmd([[
+autocmd FileType scss setlocal commentstring=/*\ %s\ */
+]])
+
+vim.cmd([[
 if !exists("dirvish_setup")
   au FileType dirvish call CustomDirvishSetup()
   let dirvish_setup = 1
@@ -33,4 +38,4 @@ function! CustomDirvishSetup()
   map <buffer> <c-v> :call dirvish#open("vsplit", 0)<cr>
   map <buffer> <c-p> <cmd>lua require'telescope.builtin'.find_files{search_dirs={vim.fn.expand('%')}}<cr>
 endfunction
-]]
+]])

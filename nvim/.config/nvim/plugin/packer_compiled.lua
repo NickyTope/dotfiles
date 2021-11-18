@@ -114,11 +114,6 @@ _G.packer_plugins = {
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/csv.vim",
     url = "https://github.com/chrisbra/csv.vim"
   },
-  ["formatter.nvim"] = {
-    loaded = true,
-    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/formatter.nvim",
-    url = "https://github.com/mhartington/formatter.nvim"
-  },
   ["groovy.vim"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/groovy.vim",
@@ -169,6 +164,11 @@ _G.packer_plugins = {
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-lightbulb"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nvim-lightbulb",
+    url = "https://github.com/kosayoda/nvim-lightbulb"
+  },
   ["nvim-lsp-ts-utils"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nvim-lsp-ts-utils",
@@ -203,6 +203,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ["renamer.nvim"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/renamer.nvim",
+    url = "https://github.com/filipdutescu/renamer.nvim"
   },
   tabular = {
     loaded = true,
