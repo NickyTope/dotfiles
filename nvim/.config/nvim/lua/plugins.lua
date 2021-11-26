@@ -23,6 +23,12 @@ return require("packer").startup(function(use)
 	use("junegunn/vim-peekaboo")
 	use("tpope/vim-commentary")
 	use("machakann/vim-highlightedyank")
+	use({
+		"folke/which-key.nvim",
+		config = function()
+			require("which-key").setup({})
+		end,
+	})
 
 	-- Text manilpulation
 	use("tpope/vim-repeat")
@@ -37,14 +43,14 @@ return require("packer").startup(function(use)
 	use("tpope/vim-surround")
 	use("NickyTope/yanks.nvim")
 
-	-- completion
+	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("nvim-lua/completion-nvim")
 	use("jose-elias-alvarez/nvim-lsp-ts-utils")
-	-- use "mhartington/formatter.nvim"
 	use("nvim-lua/lsp-status.nvim")
-	-- use "glepnir/lspsaga.nvim"
+	-- use("filipdutescu/renamer.nvim")
 	use("hoob3rt/lualine.nvim")
+	use("jose-elias-alvarez/null-ls.nvim")
 	use("hrsh7th/vim-vsnip")
 	use({
 		"hrsh7th/nvim-cmp",
@@ -79,17 +85,8 @@ return require("packer").startup(function(use)
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
-	use("jose-elias-alvarez/null-ls.nvim")
 
 	-- new plugins go here until confirmed useful...
 	use("github/copilot.vim")
-	use("LionC/nest.nvim")
-	use("filipdutescu/renamer.nvim")
 	use("kosayoda/nvim-lightbulb")
-	use({
-		"folke/which-key.nvim",
-		config = function()
-			require("which-key").setup({})
-		end,
-	})
 end)

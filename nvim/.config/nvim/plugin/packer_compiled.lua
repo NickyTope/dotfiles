@@ -144,11 +144,6 @@ _G.packer_plugins = {
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/markdown-preview.vim",
     url = "https://github.com/iamcco/markdown-preview.vim"
   },
-  ["nest.nvim"] = {
-    loaded = true,
-    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nest.nvim",
-    url = "https://github.com/LionC/nest.nvim"
-  },
   ["nginx.vim"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nginx.vim",
@@ -203,11 +198,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
-  },
-  ["renamer.nvim"] = {
-    loaded = true,
-    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/renamer.nvim",
-    url = "https://github.com/filipdutescu/renamer.nvim"
   },
   tabular = {
     loaded = true,

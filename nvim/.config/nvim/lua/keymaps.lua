@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-local nest = require("nest")
 local wk = require("which-key")
 
 local cmd = function(txt)
@@ -7,10 +6,6 @@ local cmd = function(txt)
 end
 
 local telescope = require("telescope.builtin")
-
-vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])
-vim.cmd([[ nnoremap <c-p> <cmd>lua require'telescope.builtin'.git_files{cwd=vim.fn.expand('%:h')}<cr> ]])
-vim.cmd([[ nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR> ]])
 
 wk.register({
 	["<leader>"] = {
@@ -20,21 +15,17 @@ wk.register({
 		n = { vim.lsp.diagnostic.goto_next, "Next error" },
 		N = { vim.lsp.diagnostic.goto_prev, "Prev error" },
 		["rn"] = {
-			function()
-				require("renamer").rename()
-			end,
+			vim.lsp.buf.rename,
 			"Rename var",
 		},
-		p = { cmd("Format"), "Format file" },
+		p = { vim.lsp.buf.formatting, "Format file" },
 		-- ["ca"] = {vim.lsp.buf.code_action, "Code Action"},
 		-- ["cg"] = {vim.lsp.buf.code_lens, "Code Lens"},
 		l = {
 			name = "LSP",
 			r = { telescope.lsp_references, "References" },
 			n = {
-				function()
-					require("renamer").rename()
-				end,
+				vim.lsp.buf.rename,
 				"Rename var",
 			},
 			d = { vim.lsp.buf.definition, "Definition" },
@@ -71,43 +62,47 @@ wk.register({
 	},
 })
 
-nest.applyKeymaps({
-	-- random things
-	{ "Q", cmd("q") },
-	{ "<A-o", "o<Esc>" },
-	{ "<A-O", "O<Esc>" },
-	{ "<Del>", '"_x' },
-	{ "x", '"_x' },
-	{ "gp", "'[v']" },
-	{ "Y", "yy" },
-	{ "<c-p>", telescope.git_files },
-	{ "}", cmd("keepjumps normal! }") },
-	{ "{", cmd("keepjumps normal! {") },
-	{ "<c-s>", "<Esc>:w<CR>", mode = "ni", options = { silent = true } },
-	{ "<c-y>", "<Plug>(Yanks)" },
-	-- c-/ == c-_
-	{ "<c-_>", cmd("Commentary") },
-	-- window movement
-	{
-		mode = "tn",
-		{ "<a-h>", cmd("wincmd h") },
-		{ "<a-j>", cmd("wincmd j") },
-		{ "<a-k>", cmd("wincmd k") },
-		{ "<a-l>", cmd("wincmd l") },
-	},
-	{
-		mode = "i",
-		{
-			{ "jk", "<Esc>" },
-			{ "kj", "<Esc>" },
-			{ "<F6>", "h" },
-		},
-	},
-	{
-		mode = "v",
-		{
-			{ "<c-c>", '"+y' },
-			{ "cp", '"+y' },
-		},
-	},
-})
+local map = function(mode, key, result, opts)
+	vim.api.nvim_set_keymap(mode, key, result, opts)
+end
+
+local nmap = function(key, result, opts)
+	map("n", key, result, opts)
+end
+
+local imap = function(key, result, opts)
+	map("i", key, result, opts)
+end
+
+nmap("Q", cmd("q"), {})
+nmap("Y", "yy", {})
+-- nmap("x", '"_x', {})
+-- nmap("<del>", '"_x', {})
+nmap("<a-o>", "o<esc>", {})
+nmap("<a-O>", "O<esc>", {})
+nmap("gp", "'[v']", {})
+nmap("<c-p>", cmd("Telescope git_files"), {})
+nmap("{", cmd("keepjumps normal! {"), {})
+nmap("}", cmd("keepjumps normal! }"), {})
+nmap("<c-s>", cmd("w"), { silent = true })
+nmap("<c-y>", "<Plug>(Yanks)", {})
+
+map("", "<c-_>", cmd("Commentary"), {})
+
+-- window movement
+map("", "<a-h>", cmd("wincmd h"), {})
+map("", "<a-j>", cmd("wincmd j"), {})
+map("", "<a-k>", cmd("wincmd k"), {})
+map("", "<a-l>", cmd("wincmd l"), {})
+
+imap("<F6>", "h", {})
+imap("<c-s>", "<esc>" .. cmd("w"), { silent = true })
+imap("jk", "<esc>", {})
+imap("kj", "<esc>", {})
+
+map("v", "cp", '"+y', {})
+map("v", "<c-c>", '"+y', {})
+
+-- no idea how to port these, let's just cmd them
+vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])
+vim.cmd([[ nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR> ]])

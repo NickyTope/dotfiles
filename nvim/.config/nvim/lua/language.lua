@@ -2,8 +2,6 @@ local mapper = function(mode, key, result)
 	vim.api.nvim_buf_set_keymap(0, mode, key, result, { noremap = true, silent = true })
 end
 
-require("renamer").setup({})
-
 local icons = require("icons")
 
 local lsp_status = require("lsp-status")
@@ -82,29 +80,30 @@ local my_attach = function(client)
 	end
 end
 
-local null = require("null-ls")
-null.config({
+-- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
+local null_ls = require("null-ls")
+null_ls.config({
 	sources = {
 		-- cargo install stylua
-		null.builtins.formatting.stylua,
-		null.builtins.diagnostics.eslint_d.with({
+		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.diagnostics.eslint_d.with({
 			prefer_local = "node_modules/.bin",
 		}),
-		null.builtins.code_actions.eslint_d.with({
+		null_ls.builtins.code_actions.eslint_d.with({
 			prefer_local = "node_modules/.bin",
 		}),
-		null.builtins.formatting.eslint_d.with({
+		null_ls.builtins.formatting.eslint_d.with({
 			prefer_local = "node_modules/.bin",
 		}),
-		null.builtins.formatting.autopep8,
-		null.builtins.formatting.prettier.with({
+		null_ls.builtins.formatting.autopep8,
+		null_ls.builtins.formatting.prettier.with({
 			filetypes = {
 				"markdown",
 				"json",
 				"yaml",
 			},
 		}),
-		null.builtins.formatting.stylelint,
+		null_ls.builtins.formatting.stylelint,
 	},
 })
 
@@ -114,6 +113,11 @@ require("lspconfig")["null-ls"].setup({
 
 require("lspconfig").tsserver.setup({
 	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	handlers = {
+		["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+			virtual_text = false,
+		}),
+	},
 	on_attach = function(client, bufnr)
 		client.resolved_capabilities.document_formatting = false
 		local ts_utils = require("nvim-lsp-ts-utils")
@@ -130,7 +134,6 @@ require("lspconfig").tsserver.setup({
 })
 
 local sumneko_install = "/home/nicky/apps/lua-language-server/"
-
 require("lspconfig").sumneko_lua.setup({
 	on_attach = my_attach,
 	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
@@ -147,7 +150,10 @@ require("lspconfig").sumneko_lua.setup({
 require("lspconfig").dockerls.setup({ on_attach = my_attach })
 require("lspconfig").vimls.setup({ on_attach = my_attach })
 require("lspconfig").stylelint_lsp.setup({
-	on_attach = my_attach,
+	on_attach = function(client)
+		client.resolved_capabilities.document_formatting = false
+		my_attach(client)
+	end,
 	filetypes = { "css", "scss" },
 })
 require("lspconfig").cssls.setup({
@@ -165,7 +171,12 @@ require("lspconfig").jsonls.setup({
 require("lspconfig").yamlls.setup({ on_attach = my_attach })
 
 -- pip install 'python-lsp-server[all]'
-require("lspconfig").pylsp.setup({ on_attach = my_attach })
+require("lspconfig").pylsp.setup({
+	on_attach = function(client)
+		client.resolved_capabilities.document_formatting = false
+		my_attach(client)
+	end,
+})
 
 local cmp = require("cmp")
 cmp.setup({
