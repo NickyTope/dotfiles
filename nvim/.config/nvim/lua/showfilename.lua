@@ -45,13 +45,24 @@ M.show = function()
 	end
 end
 
-M.hide = function()
+M.win_valid = function()
 	if win then
-		api.nvim_win_close(win, true)
-		win = nil
-		vim.cmd("bd! " .. buf)
-		buf = nil
+		for _, w in pairs(vim.api.nvim_list_wins()) do
+			if w == win then
+				return true
+			end
+		end
 	end
+	return false
+end
+
+M.hide = function()
+	if M.win_valid() then
+		api.nvim_win_close(win, true)
+		vim.cmd("bd! " .. buf)
+	end
+	win = nil
+	buf = nil
 end
 
 return M
