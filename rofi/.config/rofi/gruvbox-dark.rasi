@@ -1,15 +1,3 @@
-configuration {
-  display-run: " ";
-  display-drun: "  ";
-  display-window: "  ";
-  drun-display-format: "{name}";
-  font: "JetBrainsMono Nerd Font Medium 10";
-  modi: "window,run,drun";
-  show-icons: true;
-	icon-theme: "Papirus";
-  drun-display-format: "{icon} {name}";
-}
-
 * {
   background: #282828;
   background-alt: #3c3836;
