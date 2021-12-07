@@ -32,11 +32,13 @@ wk.register({
 			a = { vim.lsp.buf.code_action, "Code Action" },
 			l = { vim.lsp.buf.code_lens, "Code Lens" },
 			s = { vim.lsp.buf.signature_help, "Signature Help" },
+			w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostix" },
 		},
 		f = { telescope.live_grep, "Find in files" },
 		F = { telescope.grep_string, "Find word" },
 		b = { telescope.buffers, "Buffer list" },
 		i = { telescope.oldfiles, "Old files" },
+		d = { telescope.lsp_document_diagnostics, "Diagnostix" },
 		q = {
 			name = "+quickfix",
 			q = { telescope.quickfix, "Telescope QF" },
