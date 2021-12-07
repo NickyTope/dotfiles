@@ -20,7 +20,7 @@ return require("packer").startup(function(use)
 	-- Editor convenience
 	use("tpope/vim-obsession")
 	use("dhruvasagar/vim-prosession")
-	use("junegunn/vim-peekaboo")
+	-- use("junegunn/vim-peekaboo")
 	use("tpope/vim-commentary")
 	use("machakann/vim-highlightedyank")
 	use({
@@ -87,6 +87,6 @@ return require("packer").startup(function(use)
 	use("nvim-telescope/telescope.nvim")
 
 	-- new plugins go here until confirmed useful...
-	use("github/copilot.vim")
+	-- use("github/copilot.vim")
 	use("kosayoda/nvim-lightbulb")
 end)
