@@ -4,6 +4,9 @@
 super + Return
 	alacritty
 
+super + shift + Return
+  WINIT_X11_SCALE_FACTOR=1.5 alacritty -vv
+
 # program launcher
 super + {@space,d}
   sleep 0 && rofi -show drun
