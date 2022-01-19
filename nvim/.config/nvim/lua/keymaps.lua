@@ -6,21 +6,28 @@ local cmd = function(txt)
 end
 
 local telescope = require("telescope.builtin")
+local trouble = require("trouble")
+
+local diag = function()
+	trouble.open("workspace_diagnostics")
+end
+
+local symbols = function()
+	telescope.symbols({ sources = { "kaomoji", "gitmoji" } })
+end
 
 wk.register({
 	["<leader>"] = {
 		o = { cmd("e ."), "Project root" },
 		e = { cmd("e"), "Reload file" },
 		["<leader>"] = { cmd("b#"), "Previous file" },
-		n = { vim.lsp.diagnostic.goto_next, "Next error" },
-		N = { vim.lsp.diagnostic.goto_prev, "Prev error" },
+		n = { vim.diagnostic.goto_next, "Next error" },
+		N = { vim.diagnostic.goto_prev, "Prev error" },
 		["rn"] = {
 			vim.lsp.buf.rename,
 			"Rename var",
 		},
 		p = { vim.lsp.buf.formatting, "Format file" },
-		-- ["ca"] = {vim.lsp.buf.code_action, "Code Action"},
-		-- ["cg"] = {vim.lsp.buf.code_lens, "Code Lens"},
 		l = {
 			name = "LSP",
 			r = { telescope.lsp_references, "References" },
@@ -29,16 +36,19 @@ wk.register({
 				"Rename var",
 			},
 			d = { vim.lsp.buf.definition, "Definition" },
+			h = { vim.lsp.buf.hover, "Hover (doc)" },
 			a = { vim.lsp.buf.code_action, "Code Action" },
-			l = { vim.lsp.buf.code_lens, "Code Lens" },
 			s = { vim.lsp.buf.signature_help, "Signature Help" },
 			w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostix" },
+			t = { trouble.toggle, "Trouble Toggle" },
+			T = { diag, "Trouble Diagnostix" },
 		},
 		f = { telescope.live_grep, "Find in files" },
 		F = { telescope.grep_string, "Find word" },
 		b = { telescope.buffers, "Buffer list" },
 		i = { telescope.oldfiles, "Old files" },
-		d = { telescope.lsp_document_diagnostics, "Diagnostix" },
+		d = { telescope.diagnostics, "Diagnostix" },
+		s = { symbols, "Symbols" },
 		q = {
 			name = "+quickfix",
 			q = { telescope.quickfix, "Telescope QF" },
@@ -59,6 +69,7 @@ wk.register({
 			p = { cmd("Git push"), "Git push" },
 			b = { cmd("Git blame"), "Git blame" },
 			h = { cmd("GBrowse"), "Git browse" },
+			g = { telescope.git_commits, "show commits" },
 		},
 		["uh"] = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
 	},

@@ -36,29 +36,11 @@ vim.g.vim_markdown_folding_disabled = 1
 
 vim.g.gruvbox_transparent_bg = true
 vim.g.gruvbox_bold = true
-vim.g.gruvbox_italicize_strings = true
+-- vim.g.gruvbox_italicize_strings = true
 vim.gruvbox_invert_selection = true
 vim.g.gruvbox_improved_warnings = true
 -- vim.g.gruvbox_improved_strings = true
 vim.cmd([[colorscheme gruvbox]])
-
--- local onedarkpro = require("onedarkpro")
--- onedarkpro.setup(
---   {
---     options = {
---       transparency = true,
---       cursorline = true
---     },
---     styles = {
---       comments = "italic",
---       functions = "NONE",
---       keywords = "bold,italic",
---       strings = "NONE",
---       variables = "NONE"
---     }
---   }
--- )
--- onedarkpro.load()
 
 -- transparency
 vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
@@ -79,13 +61,13 @@ vim.g.closetag_regions = {
 	["javascript.jsx"] = "jsxRegion",
 }
 
--- indent guides
-vim.g.indent_guides_auto_colors = 0
-vim.g.indent_guides_enable_on_vim_startup = 1
-vim.cmd([[
-hi IndentGuidesOdd guibg=none
-hi IndentGuidesEven guibg=#3C3836
-]])
+-- -- indent guides
+-- vim.g.indent_guides_auto_colors = 0
+-- vim.g.indent_guides_enable_on_vim_startup = 1
+-- vim.cmd([[
+-- hi IndentGuidesOdd guibg=none
+-- hi IndentGuidesEven guibg=#3C3836
+-- ]])
 
 -- ulti snips
 vim.g.UltiSnipsExpandTrigger = "<c-k>"

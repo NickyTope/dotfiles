@@ -13,9 +13,7 @@ return require("packer").startup(function(use)
 	-- Pretties
 	use("ap/vim-css-color")
 	use("ryanoasis/vim-devicons")
-	use("nathanaelkane/vim-indent-guides")
 	use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
-	use({ "olimorris/onedarkpro.nvim", requires = { "rktjmp/lush.nvim" } })
 
 	-- Editor convenience
 	use("tpope/vim-obsession")
@@ -89,4 +87,18 @@ return require("packer").startup(function(use)
 	-- new plugins go here until confirmed useful...
 	-- use("github/copilot.vim")
 	use("kosayoda/nvim-lightbulb")
+	use("onsails/lspkind-nvim")
+	use({
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup({
+				show_current_context = true,
+				show_current_context_start = true,
+				-- use_treesitter = true,
+				show_first_indent_level = false,
+			})
+		end,
+	})
+	use({ "folke/trouble.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+	use("nvim-telescope/telescope-symbols.nvim")
 end)

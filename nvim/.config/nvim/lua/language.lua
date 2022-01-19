@@ -30,6 +30,7 @@ require("nvim-treesitter.configs").setup({
 })
 
 local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
 require("telescope").setup({
 	defaults = {
 		file_sorter = require("telescope.sorters").get_fzy_sorter,
@@ -43,6 +44,7 @@ require("telescope").setup({
 				["<C-x>"] = false,
 				["<esc>"] = actions.close,
 				["<C-q>"] = actions.send_to_qflist,
+				["<c-t>"] = trouble.open_with_trouble,
 			},
 		},
 	},
@@ -82,7 +84,8 @@ end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 local null_ls = require("null-ls")
-null_ls.config({
+null_ls.setup({
+	on_attach = my_attach,
 	sources = {
 		-- cargo install stylua
 		null_ls.builtins.formatting.stylua,
@@ -98,6 +101,8 @@ null_ls.config({
 		null_ls.builtins.formatting.autopep8,
 		null_ls.builtins.formatting.prettier.with({
 			filetypes = {
+				"typescript",
+				"typescriptreact",
 				"markdown",
 				"json",
 				"yaml",
@@ -105,10 +110,6 @@ null_ls.config({
 		}),
 		null_ls.builtins.formatting.stylelint,
 	},
-})
-
-require("lspconfig")["null-ls"].setup({
-	on_attach = my_attach,
 })
 
 require("lspconfig").tsserver.setup({
@@ -179,6 +180,7 @@ require("lspconfig").pylsp.setup({
 })
 
 local cmp = require("cmp")
+local lspkind = require("lspkind")
 cmp.setup({
 	sources = {
 		{ name = "nvim_lua" },
@@ -213,5 +215,8 @@ cmp.setup({
 			behavior = cmp.ConfirmBehavior.Replace,
 			select = true,
 		}),
+	},
+	formatting = {
+		format = lspkind.cmp_format(),
 	},
 })
