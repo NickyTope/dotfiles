@@ -1,7 +1,9 @@
 #!/bin/bash
 
 xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --output eDP-1-1 --mode 3000x2000 --pos 0x0
+xrandr --newmode "2400x1600_60"  326.00  2400 2584 2840 3280  1600 1603 1613 1658 -hsync +vsync
+xrandr --addmode eDP-1-1 2400x1600_60
+xrandr --output eDP-1-1 --mode 2400x1600_60 --pos 0x0
 
 home=$(xrandr | grep "DP-1-1-2 connected" | wc -l)
 work=$(xrandr | grep "DP-1-1-8 connected" | wc -l)
