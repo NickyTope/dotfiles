@@ -49,7 +49,6 @@ return require("packer").startup(function(use)
 	-- use("filipdutescu/renamer.nvim")
 	use("hoob3rt/lualine.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
-	use("hrsh7th/vim-vsnip")
 	use({
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -57,7 +56,7 @@ return require("packer").startup(function(use)
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-vsnip",
+			"quangnguyen30192/cmp-nvim-ultisnips",
 		},
 	})
 

@@ -186,7 +186,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
 		{ name = "path", max_item_count = 3 },
-		{ name = "vsnip" },
+		{ name = "ultisnips" },
 		{
 			name = "buffer",
 			keyword_length = 4,
@@ -201,7 +201,7 @@ cmp.setup({
 	},
 	snippet = {
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body)
+			vim.fn["UltiSnips#anonymous"](args.body)
 		end,
 	},
 	experimental = {

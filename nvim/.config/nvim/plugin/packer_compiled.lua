@@ -89,15 +89,15 @@ _G.packer_plugins = {
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
     url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
+  ["cmp-nvim-ultisnips"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
+    url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
+  },
   ["cmp-path"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
-  },
-  ["cmp-vsnip"] = {
-    loaded = true,
-    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
-    url = "https://github.com/hrsh7th/cmp-vsnip"
   },
   ["completion-nvim"] = {
     loaded = true,
@@ -120,7 +120,7 @@ _G.packer_plugins = {
     url = "https://github.com/ellisonleao/gruvbox.nvim"
   },
   ["indent-blankline.nvim"] = {
-    config = { "\27LJ\2\n申1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\3\31show_current_context_start\2\25show_current_context\2\28show_first_indent_level\1\nsetup\21indent_blankline\frequire\0" },
+    config = { "\27LJ\2\n申1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\3\28show_first_indent_level\1\31show_current_context_start\2\25show_current_context\2\nsetup\21indent_blankline\frequire\0" },
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
@@ -345,11 +345,6 @@ _G.packer_plugins = {
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/vim-textobject-pack",
     url = "https://github.com/etdev/vim-textobject-pack"
   },
-  ["vim-vsnip"] = {
-    loaded = true,
-    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/vim-vsnip",
-    url = "https://github.com/hrsh7th/vim-vsnip"
-  },
   ["vim-yaml"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/vim-yaml",
@@ -376,7 +371,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
-try_loadstring("\27LJ\2\n申1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\3\31show_current_context_start\2\25show_current_context\2\28show_first_indent_level\1\nsetup\21indent_blankline\frequire\0", "config", "indent-blankline.nvim")
+try_loadstring("\27LJ\2\n申1\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\3\28show_first_indent_level\1\31show_current_context_start\2\25show_current_context\2\nsetup\21indent_blankline\frequire\0", "config", "indent-blankline.nvim")
 time([[Config for indent-blankline.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
