@@ -34,13 +34,24 @@ vim.g.highlightedyank_highlight_duration = 500
 -- " vim-markdown
 vim.g.vim_markdown_folding_disabled = 1
 
-vim.g.gruvbox_transparent_bg = true
-vim.g.gruvbox_bold = true
+-- vim.g.gruvbox_transparent_bg = true
+-- vim.g.gruvbox_bold = true
 -- vim.g.gruvbox_italicize_strings = true
-vim.gruvbox_invert_selection = true
-vim.g.gruvbox_improved_warnings = true
+-- vim.gruvbox_invert_selection = true
+-- vim.g.gruvbox_improved_warnings = true
 -- vim.g.gruvbox_improved_strings = true
-vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd([[colorscheme gruvbox]])
+
+local nightfox = require("nightfox")
+nightfox.setup({
+	fox = "nightfox",
+	styles = {
+		comments = "italic",
+		keywords = "bold",
+		functions = "italic,bold",
+	},
+})
+nightfox.load()
 
 -- transparency
 vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])

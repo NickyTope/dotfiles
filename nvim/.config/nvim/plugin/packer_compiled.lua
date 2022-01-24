@@ -155,6 +155,11 @@ _G.packer_plugins = {
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nginx.vim",
     url = "https://github.com/vim-scripts/nginx.vim"
   },
+  ["nightfox.nvim"] = {
+    loaded = true,
+    path = "/home/nicky/.local/share/nvim/site/pack/packer/start/nightfox.nvim",
+    url = "https://github.com/EdenEast/nightfox.nvim"
+  },
   ["null-ls.nvim"] = {
     loaded = true,
     path = "/home/nicky/.local/share/nvim/site/pack/packer/start/null-ls.nvim",

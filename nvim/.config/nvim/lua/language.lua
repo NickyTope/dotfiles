@@ -69,7 +69,7 @@ require("lualine").setup({
 		lualine_x = { "progress" },
 	},
 	options = {
-		theme = "gruvbox",
+		theme = "nightfox",
 	},
 })
 
