@@ -201,7 +201,7 @@ cmp.setup({
 	},
 	snippet = {
 		expand = function(args)
-			vim.fn["UltiSnips#anonymous"](args.body)
+			vim.fn["UltiSnips#Anon"](args.body)
 		end,
 	},
 	experimental = {
