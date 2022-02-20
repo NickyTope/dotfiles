@@ -14,10 +14,6 @@ au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
 ]])
 
 vim.cmd([[
-autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
-]])
-
-vim.cmd([[
 autocmd FileType scss setlocal commentstring=/*\ %s\ */
 ]])
 

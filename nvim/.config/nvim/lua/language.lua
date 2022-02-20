@@ -89,6 +89,7 @@ null_ls.setup({
 	sources = {
 		-- cargo install stylua
 		null_ls.builtins.formatting.stylua,
+		null_ls.builtins.formatting.gofmt,
 		null_ls.builtins.diagnostics.eslint_d.with({
 			prefer_local = "node_modules/.bin",
 		}),
@@ -170,6 +171,12 @@ require("lspconfig").jsonls.setup({
 })
 
 require("lspconfig").yamlls.setup({ on_attach = my_attach })
+require("lspconfig").gopls.setup({
+	on_attach = function(client)
+		client.resolved_capabilities.document_formatting = false
+		my_attach(client)
+	end,
+})
 
 -- pip install 'python-lsp-server[all]'
 require("lspconfig").pylsp.setup({
@@ -186,7 +193,7 @@ cmp.setup({
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
 		{ name = "path", max_item_count = 3 },
-		{ name = "ultisnips" },
+		{ name = "luasnip" },
 		{
 			name = "buffer",
 			keyword_length = 4,
@@ -201,7 +208,7 @@ cmp.setup({
 	},
 	snippet = {
 		expand = function(args)
-			vim.fn["UltiSnips#Anon"](args.body)
+			require("luasnip").lsp_expand(args.body)
 		end,
 	},
 	experimental = {

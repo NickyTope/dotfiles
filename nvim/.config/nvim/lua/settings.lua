@@ -80,10 +80,10 @@ vim.g.closetag_regions = {
 -- hi IndentGuidesEven guibg=#3C3836
 -- ]])
 
--- ulti snips
-vim.g.UltiSnipsExpandTrigger = "<c-k>"
-vim.g.UltiSnipsJumpForwardTrigger = "<c-k>"
-vim.g.UltiSnipsJumpBackwardTrigger = "<c-j>"
+-- -- ulti snips
+-- vim.g.UltiSnipsExpandTrigger = "<c-k>"
+-- vim.g.UltiSnipsJumpForwardTrigger = "<c-k>"
+-- vim.g.UltiSnipsJumpBackwardTrigger = "<c-j>"
 
 -- vim-move
 vim.g.move_key_modifier = "S"

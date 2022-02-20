@@ -6,6 +6,7 @@ local cmd = function(txt)
 end
 
 local telescope = require("telescope.builtin")
+local telescope_extensions = require("telescope").extensions
 local trouble = require("trouble")
 
 local diag = function()
@@ -59,6 +60,7 @@ wk.register({
 		},
 		j = { "J", "join lines" },
 		v = { '"+p', "Paste system clip" },
+		y = { telescope_extensions.neoclip.default, "Yank list" },
 		["<Esc>"] = { cmd("noh"), "Remove hl" },
 		g = {
 			name = "Git",
@@ -99,7 +101,6 @@ nmap("<c-p>", cmd("Telescope git_files"), {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
-nmap("<c-y>", "<Plug>(Yanks)", {})
 
 map("", "<c-_>", cmd("Commentary"), {})
 
@@ -116,6 +117,7 @@ imap("kj", "<esc>", {})
 
 map("v", "cp", '"+y', {})
 map("v", "<c-c>", '"+y', {})
+imap("<c-l>", cmd("lua vim.lsp.buf.signature_help()"), {})
 
 -- no idea how to port these, let's just cmd them
 vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])

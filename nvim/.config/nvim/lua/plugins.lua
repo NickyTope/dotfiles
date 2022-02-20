@@ -13,7 +13,7 @@ return require("packer").startup(function(use)
 	-- Pretties
 	use("ap/vim-css-color")
 	use("ryanoasis/vim-devicons")
-	use({ "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } })
+	use("EdenEast/nightfox.nvim")
 
 	-- Editor convenience
 	use("tpope/vim-obsession")
@@ -37,9 +37,9 @@ return require("packer").startup(function(use)
 	-- Input trickery
 	use("jiangmiao/auto-pairs")
 	use("alvan/vim-closetag")
-	use("SirVer/ultisnips")
+	-- use("SirVer/ultisnips")
 	use("tpope/vim-surround")
-	use("NickyTope/yanks.nvim")
+	use("L3MON4D3/LuaSnip")
 
 	-- LSP
 	use("neovim/nvim-lspconfig")
@@ -56,9 +56,12 @@ return require("packer").startup(function(use)
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-nvim-lsp",
-			"quangnguyen30192/cmp-nvim-ultisnips",
+			"saadparwaiz1/cmp_luasnip",
+			"onsails/lspkind-nvim",
+			-- "quangnguyen30192/cmp-nvim-ultisnips",
 		},
 	})
+	use({ "folke/trouble.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
 
 	-- git
 	use("tpope/vim-fugitive")
@@ -82,11 +85,6 @@ return require("packer").startup(function(use)
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
-
-	-- new plugins go here until confirmed useful...
-	-- use("github/copilot.vim")
-	use("kosayoda/nvim-lightbulb")
-	use("onsails/lspkind-nvim")
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -98,7 +96,15 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
-	use({ "folke/trouble.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
 	use("nvim-telescope/telescope-symbols.nvim")
-	use("EdenEast/nightfox.nvim")
+
+	-- new plugins go here until confirmed useful...
+	use({
+		"karb94/neoscroll.nvim",
+		config = function()
+			require("neoscroll").setup()
+		end,
+	})
+	use("tami5/sqlite.lua")
+	use("AckslD/nvim-neoclip.lua")
 end)

@@ -1,6 +1,8 @@
-require "settings"
-require "plugins"
-require "language"
+require("settings")
+require("plugins")
+require("language")
 -- require "format"
-require "autocommand"
-require "keymaps"
+require("autocommand")
+require("neoclip_setup")
+require("keymaps")
+require("snippets")
