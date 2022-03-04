@@ -24,6 +24,7 @@ wk.register({
 		["<leader>"] = { cmd("b#"), "Previous file" },
 		n = { vim.diagnostic.goto_next, "Next error" },
 		N = { vim.diagnostic.goto_prev, "Prev error" },
+		h = { telescope.help_tags, "Vim help" },
 		["rn"] = {
 			vim.lsp.buf.rename,
 			"Rename var",

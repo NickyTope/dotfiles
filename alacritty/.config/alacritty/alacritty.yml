@@ -1,4 +1,4 @@
-gruvbox: &gruvbox
+gruvbox: &gruvbo
   primary:
     background: &gruvbox_dark_bg "#282828"
     foreground: "#fbf1c7"
@@ -80,7 +80,7 @@ font:
   size: 9.0
 colors: *nightfox
 window:
-  opacity: 0.9
+  opacity: 0.8
 cursor:
   style:
     shape: Beam

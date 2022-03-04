@@ -55,12 +55,24 @@ require("lualine").setup({
 		lualine_a = {
 			{
 				"mode",
-				format = function(mode_name)
+				fmt = function(mode_name)
 					return mode_name:sub(1, 1)
 				end,
 			},
 		},
 		lualine_b = { "diff", "branch" },
+		lualine_c = {
+			{
+				"filename",
+				fmt = function(name)
+					if vim.bo.filetype == "dirvish" then
+						return vim.fn.expand("%")
+					end
+
+					return name
+				end,
+			},
+		},
 		lualine_x = { "filetype" },
 		lualine_y = { stat },
 		lualine_z = { "progress" },

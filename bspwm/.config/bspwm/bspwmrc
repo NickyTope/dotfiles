@@ -27,6 +27,7 @@ bspc rule -a Chrome desktop=web
 bspc rule -a Slack desktop=chat
 bspc rule -a '*:zoom' desktop=chat
 bspc rule -a Thunar state=floating
+bspc rule -a '*:org.gnome.Nautilus' state=floating
 bspc rule -a '*:gitk' state=floating
 bspc rule -a '*:dialog' state=floating
 bspc rule -a '*:volume' state=floating

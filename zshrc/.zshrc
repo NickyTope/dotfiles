@@ -111,7 +111,8 @@ alias lspinstall="yarn global add @babel/cli @babel/core @babel/node concurrentl
 alias ssh="TERM=linux ssh"
 alias shares="~/apps/ticker.sh/ticker.sh A200.AX VISM.AX"
 alias yrd="yarn run dev:srv"
-alias yrs="yarn run start"
+alias web="cd ~/code/kudos-boards-core/kudos-boards-webfront/"
+alias yrs="web && yarn run start"
 
 export APP_URI=https://dev-client.isw.net.au
 export API_GATEWAY=https://dev-server.isw.net.au

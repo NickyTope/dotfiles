@@ -99,12 +99,6 @@ return require("packer").startup(function(use)
 	use("nvim-telescope/telescope-symbols.nvim")
 
 	-- new plugins go here until confirmed useful...
-	use({
-		"karb94/neoscroll.nvim",
-		config = function()
-			require("neoscroll").setup()
-		end,
-	})
 	use("tami5/sqlite.lua")
 	use("AckslD/nvim-neoclip.lua")
 end)
