@@ -18,17 +18,6 @@ local function stat()
 	return lsp_status.status()
 end
 
-require("nvim-treesitter.configs").setup({
-	ensure_installed = "maintained",
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = true,
-	},
-	indent = {
-		enable = false,
-	},
-})
-
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 require("telescope").setup({
@@ -61,18 +50,7 @@ require("lualine").setup({
 			},
 		},
 		lualine_b = { "diff", "branch" },
-		lualine_c = {
-			{
-				"filename",
-				fmt = function(name)
-					if vim.bo.filetype == "dirvish" then
-						return vim.fn.expand("%")
-					end
-
-					return name
-				end,
-			},
-		},
+		lualine_c = { "filename" },
 		lualine_x = { "filetype" },
 		lualine_y = { stat },
 		lualine_z = { "progress" },
@@ -82,6 +60,7 @@ require("lualine").setup({
 	},
 	options = {
 		theme = "nightfox",
+		-- globalstatus = true,
 	},
 })
 

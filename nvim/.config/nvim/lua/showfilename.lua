@@ -11,6 +11,10 @@ M.show = function()
 		M.timer:stop()
 	end
 
+	if vim.bo.filetype ~= "nvimtree" then
+		return
+	end
+
 	if vim.fn.pumvisible() == 1 then
 		return
 	end
@@ -39,10 +43,6 @@ M.show = function()
 	win = api.nvim_open_win(buf, false, opts)
 
 	api.nvim_buf_set_lines(buf, 1, -1, false, { " " .. path })
-
-	if vim.bo.filetype ~= "dirvish" then
-		M.timer = vim.defer_fn(M.hide, 2000)
-	end
 end
 
 M.win_valid = function()

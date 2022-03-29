@@ -4,8 +4,8 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- File nav
-	use("justinmk/vim-dirvish")
-	use("kristijanhusak/vim-dirvish-git")
+	-- use("justinmk/vim-dirvish")
+	-- use("kristijanhusak/vim-dirvish-git")
 
 	use("mbbill/undotree")
 	use("tpope/vim-eunuch")
@@ -19,7 +19,7 @@ return require("packer").startup(function(use)
 	use("tpope/vim-obsession")
 	use("dhruvasagar/vim-prosession")
 	-- use("junegunn/vim-peekaboo")
-	use("tpope/vim-commentary")
+	-- use("tpope/vim-commentary")
 	use("machakann/vim-highlightedyank")
 	use({
 		"folke/which-key.nvim",
@@ -29,16 +29,16 @@ return require("packer").startup(function(use)
 	})
 
 	-- Text manilpulation
-	use("tpope/vim-repeat")
+	-- use("tpope/vim-repeat")
 	use("kana/vim-textobj-user")
 	use("etdev/vim-textobject-pack")
-	use("matze/vim-move")
+	-- use("matze/vim-move")
 
 	-- Input trickery
 	use("jiangmiao/auto-pairs")
 	use("alvan/vim-closetag")
 	-- use("SirVer/ultisnips")
-	use("tpope/vim-surround")
+	-- use("tpope/vim-surround")
 	use("L3MON4D3/LuaSnip")
 
 	-- LSP
@@ -101,4 +101,14 @@ return require("packer").startup(function(use)
 	-- new plugins go here until confirmed useful...
 	use("tami5/sqlite.lua")
 	use("AckslD/nvim-neoclip.lua")
+	use("machakann/vim-sandwich")
+	use("booperlv/nvim-gomove")
+	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
+	use("nvim-treesitter/nvim-treesitter-textobjects")
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 end)

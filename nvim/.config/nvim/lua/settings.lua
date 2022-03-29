@@ -40,10 +40,10 @@ vim.g.vim_markdown_folding_disabled = 1
 -- vim.gruvbox_invert_selection = true
 -- vim.g.gruvbox_improved_warnings = true
 -- vim.g.gruvbox_improved_strings = true
--- vim.cmd([[colorscheme gruvbox]])
 
+vim.cmd([[colorscheme nightfox]])
 local nightfox = require("nightfox")
-nightfox.setup({
+nightfox.init({
 	fox = "nightfox",
 	styles = {
 		comments = "italic",
@@ -51,7 +51,6 @@ nightfox.setup({
 		functions = "italic,bold",
 	},
 })
-nightfox.load()
 
 -- transparency
 vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
@@ -72,22 +71,6 @@ vim.g.closetag_regions = {
 	["javascript.jsx"] = "jsxRegion",
 }
 
--- -- indent guides
--- vim.g.indent_guides_auto_colors = 0
--- vim.g.indent_guides_enable_on_vim_startup = 1
--- vim.cmd([[
--- hi IndentGuidesOdd guibg=none
--- hi IndentGuidesEven guibg=#3C3836
--- ]])
-
--- -- ulti snips
--- vim.g.UltiSnipsExpandTrigger = "<c-k>"
--- vim.g.UltiSnipsJumpForwardTrigger = "<c-k>"
--- vim.g.UltiSnipsJumpBackwardTrigger = "<c-j>"
-
--- vim-move
-vim.g.move_key_modifier = "S"
-
 -- vim-rest-console
 vim.g.vrc_curl_opts = {
 	["--connect-timeout"] = 5,
@@ -96,16 +79,4 @@ vim.g.vrc_curl_opts = {
 	["--max-time"] = 20,
 	["--ipv4"] = "",
 	["-k"] = "",
-}
-
-local icons = require("icons")
-
-vim.g.dirvish_git_indicators = {
-	Modified = icons.changed,
-	Staged = icons.staged,
-	Untracked = icons.untracked,
-	Renamed = icons.moved,
-	Unmerged = icons.unmerged,
-	Ignored = icons.ignored,
-	Unknown = icons.unknown,
 }

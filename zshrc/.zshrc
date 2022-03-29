@@ -113,6 +113,7 @@ alias shares="~/apps/ticker.sh/ticker.sh A200.AX VISM.AX"
 alias yrd="yarn run dev:srv"
 alias web="cd ~/code/kudos-boards-core/kudos-boards-webfront/"
 alias yrs="web && yarn run start"
+alias fact="curl --no-progress-meter https://uselessfacts.jsph.pl/random.txt\?language\=en | head -n 1"
 
 export APP_URI=https://dev-client.isw.net.au
 export API_GATEWAY=https://dev-server.isw.net.au

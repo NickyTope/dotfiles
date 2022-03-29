@@ -102,6 +102,8 @@ nmap("<c-p>", cmd("Telescope git_files"), {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
+nmap("-", cmd("NvimTreeFindFile"), {})
+nmap("_", cmd("NvimTreeFindFile"), {})
 
 map("", "<c-_>", cmd("Commentary"), {})
 
@@ -121,5 +123,5 @@ map("v", "<c-c>", '"+y', {})
 imap("<c-l>", cmd("lua vim.lsp.buf.signature_help()"), {})
 
 -- no idea how to port these, let's just cmd them
-vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])
+-- vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])
 vim.cmd([[ nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR> ]])
