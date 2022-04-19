@@ -1,7 +1,6 @@
 require("settings")
 require("plugins")
 require("language")
--- require "format"
 require("autocommand")
 require("neoclip_setup")
 require("keymaps")
@@ -9,3 +8,4 @@ require("snippets")
 require("nvim-gomove")
 require("tree")
 require("treesitter-config")
+require("cmp-config")
