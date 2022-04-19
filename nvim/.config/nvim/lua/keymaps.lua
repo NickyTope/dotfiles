@@ -79,9 +79,7 @@ wk.register({
 	},
 })
 
-local map = function(mode, key, result, opts)
-	vim.api.nvim_set_keymap(mode, key, result, opts)
-end
+local map = vim.keymap.set
 
 local nmap = function(key, result, opts)
 	map("n", key, result, opts)
@@ -103,9 +101,9 @@ nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
 nmap("-", cmd("NvimTreeFindFile"), {})
-nmap("_", cmd("NvimTreeFindFile"), {})
 
-map("", "<c-_>", cmd("Commentary"), {})
+map("n", "<c-_>", cmd("lua require'Comment.api'.toggle_current_linewise_op()"))
+map("x", "<c-_>", "<Esc>" .. cmd("lua require'Comment.api'.locked.toggle_linewise_op(vim.fn.visualmode())"))
 
 -- window movement
 map("", "<a-h>", cmd("wincmd h"), {})
