@@ -11,7 +11,7 @@ M.show = function()
 		M.timer:stop()
 	end
 
-	if vim.bo.filetype ~= "nvimtree" then
+	if vim.bo.filetype == "NvimTree" then
 		return
 	end
 
@@ -43,6 +43,8 @@ M.show = function()
 	win = api.nvim_open_win(buf, false, opts)
 
 	api.nvim_buf_set_lines(buf, 1, -1, false, { " " .. path })
+
+	M.timer = vim.defer_fn(M.hide, 2000)
 end
 
 M.win_valid = function()
