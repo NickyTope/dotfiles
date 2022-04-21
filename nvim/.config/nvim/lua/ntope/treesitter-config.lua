@@ -13,6 +13,7 @@ require("nvim-treesitter.configs").setup({
 		"typescript",
 		"vim",
 		"yaml",
+		"markdown",
 	},
 	highlight = {
 		enable = true,

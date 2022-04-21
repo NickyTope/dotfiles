@@ -1,7 +1,7 @@
 -- show current file in float
 vim.defer_fn(function()
 	vim.cmd([[
-    autocmd BufEnter * lua require'showfilename'.show()
+    autocmd BufEnter * lua require'ntope.showfilename'.show()
     ]])
 end, 50)
 

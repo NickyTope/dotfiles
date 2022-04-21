@@ -1,4 +1,4 @@
-local icons = require("icons")
+local icons = require("ntope.icons")
 require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
 	auto_close = false,
 	auto_reload_on_write = true,

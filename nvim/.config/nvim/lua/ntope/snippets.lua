@@ -78,6 +78,10 @@ ls.add_snippets("javascript", { log, unwrap, useState, fcomp })
 ls.add_snippets("javascriptreact", { log, unwrap, useState, fcomp })
 ls.add_snippets("typescript", { log, unwrap })
 
+ls.add_snippets("markdown", {
+	ls.s("link", fmt("[{}]({}.md)", { i(1, "filename"), same(1) })),
+})
+
 vim.keymap.set({ "i", "s" }, "<c-k>", function()
 	if ls.expand_or_jumpable() then
 		ls.expand_or_jump()

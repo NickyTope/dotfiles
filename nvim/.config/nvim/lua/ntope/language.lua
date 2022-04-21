@@ -2,7 +2,7 @@ local mapper = function(mode, key, result)
 	vim.api.nvim_buf_set_keymap(0, mode, key, result, { noremap = true, silent = true })
 end
 
-local icons = require("icons")
+local icons = require("ntope.icons")
 
 local lsp_status = require("lsp-status")
 lsp_status.config({

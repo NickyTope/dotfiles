@@ -19,7 +19,6 @@ end
 
 wk.register({
 	["<leader>"] = {
-		o = { cmd("e ."), "Project root" },
 		e = { cmd("e"), "Reload file" },
 		["<leader>"] = { cmd("b#"), "Previous file" },
 		n = { vim.diagnostic.goto_next, "Next error" },

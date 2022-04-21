@@ -56,10 +56,6 @@ vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
 
 vim.g.yanks_max = 1000
 
--- vimwiki
-vim.g.vimwiki_folding = "list"
-vim.g.vimwiki_key_mappings = { table_mappings = 0 }
-
 -- prosession
 vim.g.prosession_dir = "~/.config/nvim/session/"
 

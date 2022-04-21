@@ -81,7 +81,6 @@ return require("packer").startup(function(use)
 
 	-- tools
 	use("diepm/vim-rest-console")
-	use("vimwiki/vimwiki")
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
