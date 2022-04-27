@@ -24,6 +24,7 @@ wk.register({
 		n = { vim.diagnostic.goto_next, "Next error" },
 		N = { vim.diagnostic.goto_prev, "Prev error" },
 		h = { telescope.help_tags, "Vim help" },
+		["mp"] = { cmd("silent !zathura /tmp/preview.pdf &"), "Open preview in Zathura" },
 		["rn"] = {
 			vim.lsp.buf.rename,
 			"Rename var",

@@ -9,6 +9,7 @@ vim.cmd([[
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
 au BufNewFile,BufRead *html.mustache set ft=html
 au BufNewFile,BufRead *.conf set ft=nginx
+au BufWritePost *.md silent !pandoc -o /tmp/preview.pdf %
 " vimwiki uses - to decrease header level
 ]])
 -- au BufEnter *.md nmap <buffer> - <Plug>(dirvish_up)
