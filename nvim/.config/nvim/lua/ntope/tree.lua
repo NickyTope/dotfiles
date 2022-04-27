@@ -1,9 +1,7 @@
 local icons = require("ntope.icons")
 require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
-	auto_close = false,
 	auto_reload_on_write = true,
 	disable_netrw = false,
-	hide_root_folder = false,
 	hijack_cursor = false,
 	hijack_netrw = true,
 	hijack_unnamed_buffer_when_opening = false,
@@ -15,6 +13,7 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
 	view = {
 		width = 30,
 		height = 30,
+		hide_root_folder = false,
 		side = "left",
 		preserve_window_proportions = false,
 		number = false,
@@ -44,7 +43,12 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
 	diagnostics = {
 		enable = false,
 		show_on_dirs = false,
-		icons = icons,
+		icons = {
+			hint = icons.hint,
+			info = icons.info,
+			warning = icons.warning,
+			error = icons.error,
+		},
 	},
 	filters = {
 		dotfiles = false,
