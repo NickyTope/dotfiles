@@ -9,7 +9,7 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
 	open_on_setup = true,
 	open_on_tab = false,
 	sort_by = "name",
-	update_cwd = false,
+	update_cwd = true,
 	view = {
 		width = 30,
 		height = 30,
@@ -31,7 +31,7 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
 		auto_open = true,
 	},
 	update_focused_file = {
-		enable = false,
+		enable = true,
 		update_cwd = false,
 		ignore_list = {},
 	},

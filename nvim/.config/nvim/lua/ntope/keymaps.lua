@@ -29,7 +29,7 @@ wk.register({
 			vim.lsp.buf.rename,
 			"Rename var",
 		},
-		p = { vim.lsp.buf.formatting, "Format file" },
+		p = { vim.lsp.buf.format, "Format file" },
 		l = {
 			name = "LSP",
 			r = { telescope.lsp_references, "References" },
@@ -89,6 +89,9 @@ local imap = function(key, result, opts)
 	map("i", key, result, opts)
 end
 
+map("n", "<c-h>", "<Plug>(CybuPrev)")
+map("n", "<c-l>", "<Plug>(CybuNext)")
+
 nmap("Q", cmd("q"), {})
 nmap("Y", "yy", {})
 -- nmap("x", '"_x', {})
@@ -100,6 +103,7 @@ nmap("<c-p>", cmd("Telescope git_files"), {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
+nmap("<c-v>", cmd("vsp"), {})
 nmap("-", cmd("NvimTreeFindFile"), {})
 
 map("n", "<c-_>", cmd("lua require'Comment.api'.toggle_current_linewise_op()"))
@@ -118,7 +122,6 @@ imap("kj", "<esc>", {})
 
 map("v", "cp", '"+y', {})
 map("v", "<c-c>", '"+y', {})
-imap("<c-l>", cmd("lua vim.lsp.buf.signature_help()"), {})
 
 -- no idea how to port these, let's just cmd them
 -- vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])

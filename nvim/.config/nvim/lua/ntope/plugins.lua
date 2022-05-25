@@ -84,6 +84,7 @@ return require("packer").startup(function(use)
 	use("nvim-lua/popup.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("nvim-telescope/telescope.nvim")
+	use("nvim-telescope/telescope-ui-select.nvim")
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
@@ -110,5 +111,21 @@ return require("packer").startup(function(use)
 			require("Comment").setup()
 		end,
 	})
+	use({
+		"m-demare/hlargs.nvim",
+		config = function()
+			require("hlargs").setup()
+		end,
+	})
+	use({
+		"ghillb/cybu.nvim",
+		config = function()
+			require("cybu").setup({
+				display_time = 1500,
+			})
+		end,
+	})
+	-- use("jakewvincent/mkdnflow.nvim")
+	-- use("Shatur/neovim-session-manager")
 	-- use("davidgranstrom/nvim-markdown-preview")
 end)

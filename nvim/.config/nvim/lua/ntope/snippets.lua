@@ -94,7 +94,7 @@ vim.keymap.set({ "i", "s" }, "<c-l>", function()
 	if ls.choice_active() then
 		ls.change_choice(1)
 	else
-		print("no choice active")
+		vim.lsp.buf.signature_help()
 	end
 end, { silent = true })
 

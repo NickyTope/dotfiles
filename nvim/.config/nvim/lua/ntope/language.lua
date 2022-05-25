@@ -21,6 +21,11 @@ end
 local actions = require("telescope.actions")
 local trouble = require("trouble.providers.telescope")
 require("telescope").setup({
+	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown({}),
+		},
+	},
 	defaults = {
 		file_sorter = require("telescope.sorters").get_fzy_sorter,
 		prompt_prefix = " >",
@@ -38,6 +43,7 @@ require("telescope").setup({
 		},
 	},
 })
+require("telescope").load_extension("ui-select")
 
 require("lualine").setup({
 	sections = {
@@ -68,8 +74,8 @@ local my_attach = function(client)
 	-- require "completion".on_attach(client)
 	lsp_status.on_attach(client)
 	mapper("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-	if client.resolved_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+	if client.server_capabilities.documentFormattingProvider then
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })")
 	end
 end
 
@@ -112,7 +118,7 @@ require("lspconfig").tsserver.setup({
 		}),
 	},
 	on_attach = function(client, bufnr)
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.documentFormattingProvider = false
 		local ts_utils = require("nvim-lsp-ts-utils")
 
 		ts_utils.setup_client(client)
@@ -144,7 +150,6 @@ require("lspconfig").dockerls.setup({ on_attach = my_attach })
 require("lspconfig").vimls.setup({ on_attach = my_attach })
 require("lspconfig").stylelint_lsp.setup({
 	on_attach = function(client)
-		client.resolved_capabilities.document_formatting = false
 		my_attach(client)
 	end,
 	filetypes = { "css", "scss" },
@@ -164,7 +169,6 @@ require("lspconfig").jsonls.setup({
 require("lspconfig").yamlls.setup({ on_attach = my_attach })
 require("lspconfig").gopls.setup({
 	on_attach = function(client)
-		client.resolved_capabilities.document_formatting = false
 		my_attach(client)
 	end,
 })
@@ -172,7 +176,6 @@ require("lspconfig").gopls.setup({
 -- pip install 'python-lsp-server[all]'
 require("lspconfig").pylsp.setup({
 	on_attach = function(client)
-		client.resolved_capabilities.document_formatting = false
 		my_attach(client)
 	end,
 })
