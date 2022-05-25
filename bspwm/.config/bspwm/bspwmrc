@@ -18,7 +18,8 @@ bspc config pointer_follows_monitor       true
 bspc config focus_follows_pointer         true
 bspc config click_to_focus                true
 # bspc config focused_border_color "#81A1C1"
-bspc config focused_border_color "#719CD6"
+# bspc config focused_border_color "#719CD6"
+bspc config focused_border_color "#9d79d6"
 
 bspc config external_rules_command ~/.config/bspwm/external_rules.sh
 

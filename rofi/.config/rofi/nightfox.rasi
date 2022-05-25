@@ -1,0 +1,65 @@
+* {
+  background: #192330;
+  background-alt: #475072;
+
+  foreground: #9d79d6;
+
+  blue: #84cee4;
+
+  background-color: @background;
+  active-foreground: @blue;
+  normal-foreground: @foreground;
+  selected-foreground: @blue;
+  text-color: @foreground;
+  
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+element {
+  padding: 12;
+}
+
+element-text {
+  background-color: inherit;
+  text-color:       inherit;
+}
+
+element.selected {
+  text-color: @blue;
+}
+
+entry {
+  background-color: @background-alt;
+  padding: 12 0 12 3;
+  text-color: @foreground;
+  normal-foreground: @foreground;
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+listview {
+  columns: 1;
+  lines: 8;
+}
+
+mainbox {
+  children: [inputbar, listview];
+}
+
+prompt {
+  background-color: @background-alt;
+  enabled: true;
+  font: "Cascadia Code 12";
+  padding: 12 0 0 12;
+  text-color: @foreground;
+}
+
+window {
+  transparency: "real";
+  width: 700;
+}

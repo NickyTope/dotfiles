@@ -156,4 +156,4 @@ configuration {
   drun-display-format: "{icon} {name}";
 
 }
-@theme "~/.config/rofi/gruvbox-dark.rasi"
+@theme "~/.config/rofi/nightfox.rasi"
