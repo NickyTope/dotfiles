@@ -72,13 +72,8 @@ ZSH_THEME="eastwood"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  npm
-  nvm
-  git
-  z
   fzf-z
   vi-mode
-  dirhistory
 )
 
 alias gs="git status"
@@ -106,8 +101,8 @@ alias dsa="docker start proxy redis mongo minio"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
-alias npmglobalinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server"
-alias lspinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server"
+alias npmglobalinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server cssmodules-language-server"
+alias lspinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server cssmodules-language-server"
 alias ssh="TERM=linux ssh"
 alias shares="~/apps/ticker.sh/ticker.sh A200.AX VISM.AX"
 alias yrd="yarn run dev:srv"
