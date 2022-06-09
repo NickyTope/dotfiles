@@ -71,15 +71,15 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#192330"
-    foreground = "#9d79d6"
+    foreground = "#719cd6"
     timeout = 5
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
     background = "#282828"
-    foreground = "#9d79d6"
-    frame_color = "#9d79d6"
+    foreground = "#719cd6"
+    frame_color = "#719cd6"
     timeout = 5
 
 [urgency_critical]
