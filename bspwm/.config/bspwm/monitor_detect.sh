@@ -21,18 +21,21 @@ fi
 if [ "$home" == "1" ]
 then
   echo "welcome home"
-  xrandr --output DP-1-1-1 --mode 2560x1440 --right-of eDP-1-1 --rotate normal
+  xrandr --output DP-1-1-1 --mode 2560x1440 --pos 0x0 --rotate normal
   xrandr --output DP-1-1-2 --mode 2560x1440 --right-of DP-1-1-1 --rotate normal
+  xrandr --output eDP-1-1 --mode 2400x1600_60 --pos 1540x1440
 elif [ "$work" == "1" ]
 then
   echo "ugh, work"
-  xrandr --output DP-1-1-8 --mode 2560x1440 --right-of eDP-1-1 --rotate normal
+  xrandr --output DP-1-1-8 --mode 2560x1440 --pos 0x0 --rotate normal
   xrandr --output DP-1-1-1 --mode 2560x1440 --right-of DP-1-1-8 --rotate normal
+  xrandr --output eDP-1-1 --mode 2400x1600_60 --pos 1540x1440
 elif [ "$dock" == "1" ]
 then
   echo "docked"
   xrandr --output DP-1-1-1 --mode 2560x1440 --right-of eDP-1-1 --rotate normal
   xrandr --output DP-1-1-2-8 --mode 2560x1440 --right-of DP-1-1-1 --rotate normal
+  xrandr --output eDP-1-1 --mode 2400x1600_60 --pos 1540x1440
 elif [ "$second" == "1" ]
 then
   echo "activating second monitor"
