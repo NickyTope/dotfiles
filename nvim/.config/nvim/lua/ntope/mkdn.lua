@@ -1,0 +1,31 @@
+require("mkdnflow").setup({
+	create_dirs = true,
+	perspective = {
+		priority = "first",
+		fallback = "current",
+		root_tell = "",
+	},
+	filetypes = { md = true, rmd = true, markdown = true },
+	prefix = {
+		evaluate = true,
+		string = [[os.date('%Y-%m-%d_')]],
+	},
+	wrap = false,
+	default_bib_path = "",
+	use_mappings_table = true,
+	mappings = {
+		MkdnNextLink = { "n", "<Tab>" },
+		MkdnPrevLink = { "n", "<S-Tab>" },
+		MkdnNextHeading = { "n", "<leader>]" },
+		MkdnPrevHeading = { "n", "<leader>[" },
+		MkdnGoBack = { "n", "<BS>" },
+		MkdnGoForward = { "n", "<Del>" },
+		MkdnFollowLink = { { "n", "v" }, "<CR>" },
+		MkdnDestroyLink = { "n", "<M-CR>" },
+		MkdnYankAnchorLink = { "n", "ya" },
+		MkdnYankFileAnchorLink = { "n", "yfa" },
+		MkdnIncreaseHeading = { "n", "+" },
+		MkdnDecreaseHeading = { "n", "-" },
+		MkdnNewListItem = false,
+	},
+})

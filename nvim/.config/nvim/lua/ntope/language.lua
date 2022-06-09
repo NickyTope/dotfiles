@@ -132,6 +132,15 @@ require("lspconfig").tsserver.setup({
 	end,
 })
 
+require("lspconfig").cssmodules_ls.setup({
+	-- provide your on_attach to bind keymappings
+	on_attach = my_attach,
+	-- optionally
+	init_options = {
+		camelCase = "dashes",
+	},
+})
+
 local sumneko_install = "/home/nicky/apps/lua-language-server/"
 require("lspconfig").sumneko_lua.setup({
 	on_attach = my_attach,

@@ -103,7 +103,6 @@ nmap("<c-p>", cmd("Telescope git_files"), {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
-nmap("<c-v>", cmd("vsp"), {})
 nmap("-", cmd("NvimTreeFindFile"), {})
 
 map("n", "<c-_>", cmd("lua require'Comment.api'.toggle_current_linewise_op()"))

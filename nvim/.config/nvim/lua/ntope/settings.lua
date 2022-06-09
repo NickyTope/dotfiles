@@ -43,6 +43,7 @@ vim.g.vim_markdown_folding_disabled = 1
 
 local nightfox = require("nightfox")
 nightfox.init({
+	transparent = true,
 	styles = {
 		comments = "italic",
 		keywords = "bold",
