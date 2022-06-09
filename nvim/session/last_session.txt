@@ -1,0 +1,1 @@
+%home%nicky%code%dotfiles.vim
