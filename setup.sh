@@ -1,7 +1,7 @@
 #!/bin/bash
 
 INSTALL_DIR=`pwd`
-CFG=("alacritty" "bspwm" "dunst" "kitty" "nvim" "picom" "polybar" "rofi" "sxhkd")
+CFG=("alacritty" "bspwm" "dunst" "kitty" "nvim" "picom" "polybar" "rofi" "sxhkd" "fontconfig")
 
 cd ~/.config
 
