@@ -22,6 +22,12 @@ cd yay-bin
 makepkg -si
 ```
 
+### gpu / cpu
+
+- nvidia settings, smi
+- amdgpu
+- amd / intel ucode
+
 ### neovim - install from source
 
 ```
@@ -50,3 +56,39 @@ sudo make install
 - font manager
 - inkscape
 - gimp
+- archlinux-keyring
+- gnome-keyring
+- colorpicker
+- maim
+- i3lock-fancy-multimonitor
+- meld
+- lazygit
+- mpv
+- remmina
+
+### fonts
+
+- adobe-source-code-pro-fonts
+- cantarell-fonts
+- nerd-fonts-hermit
+- nerd-fonts-inconsolata
+- nerd-fonts-jetbrains-mono
+- nerd-fonts-mononoki
+- nerd-fonts-roboto-mono
+- noto-fonts-lite
+- otf-nerd-fonts-fira-code
+- ttf-borg-sans-mono
+- ttf-carlito
+- ttf-cutive-mono
+- ttf-dejavu
+- ttf-droid
+- ttf-font-awesome
+- ttf-hack
+- ttf-haeck
+- ttf-ibm-plex
+- ttf-impallari-dancing-script
+- ttf-liberation
+- ttf-lilex
+- ttf-roboto
+- ttf-roboto-mono
+- ttf-twemoji
