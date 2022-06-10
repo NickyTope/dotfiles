@@ -15,9 +15,9 @@ then
   bspc monitor ^2 -d web chat win 
 elif [ $count == 3 ]
 then
-  bspc monitor ^1 -d term
-  bspc monitor ^2 -d code code2 scratch
-  bspc monitor ^3 -d web chat win
+  bspc monitor ^1 -d code code2 scratch
+  bspc monitor ^2 -d web chat win
+  bspc monitor ^3 -d term
 fi
 
 # echo ${#monitors[@]}
