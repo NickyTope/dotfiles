@@ -27,7 +27,7 @@ vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.swapfile = false
 vim.opt.signcolumn = "yes"
 vim.opt.completeopt = { "menuone", "noselect" }
-
+vim.opt.sessionoptions = "buffers"
 -- " highlighted yank
 vim.g.highlightedyank_highlight_duration = 500
 
@@ -56,9 +56,6 @@ vim.cmd([[colorscheme nightfox]])
 vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
 
 vim.g.yanks_max = 1000
-
--- prosession
-vim.g.prosession_dir = "~/.config/nvim/session/"
 
 -- closetag (auto close xml tags)
 vim.g.closetag_filenames = "*.html,*.jsx,*.tsx,*.vue,*.xhml,*.xml"

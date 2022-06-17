@@ -16,8 +16,8 @@ return require("packer").startup(function(use)
 	use("EdenEast/nightfox.nvim")
 
 	-- Editor convenience
-	use("tpope/vim-obsession")
-	use("dhruvasagar/vim-prosession")
+	-- use("tpope/vim-obsession")
+	-- use("dhruvasagar/vim-prosession")
 	-- use("junegunn/vim-peekaboo")
 	-- use("tpope/vim-commentary")
 	use("machakann/vim-highlightedyank")
@@ -125,6 +125,7 @@ return require("packer").startup(function(use)
 			})
 		end,
 	})
+	use("Shatur/neovim-session-manager")
 	-- use("jakewvincent/mkdnflow.nvim")
 	-- use("Shatur/neovim-session-manager")
 	-- use("davidgranstrom/nvim-markdown-preview")
