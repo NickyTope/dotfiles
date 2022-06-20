@@ -29,6 +29,7 @@ wk.register({
 			vim.lsp.buf.rename,
 			"Rename var",
 		},
+    o = { cmd("NvimTreeToggle"), "Toggle tree" },
 		p = { vim.lsp.buf.format, "Format file" },
 		l = {
 			name = "LSP",
