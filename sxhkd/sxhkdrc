@@ -79,7 +79,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1,2,3,4,5,6,7,8}
-	bspc {desktop -f,node -d} '{term,code,web,code2,chat,scratch,win}'
+	bspc {desktop -f,node -d} '{term,code,code2,four,web,chat,win,eight}'
 
 # scratchterm
 super + u

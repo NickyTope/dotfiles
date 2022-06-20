@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/nicky/.oh-my-zsh"
+export ZSH="/usr/share/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -72,7 +72,6 @@ ZSH_THEME="eastwood"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  fzf-z
   vi-mode
 )
 
@@ -120,7 +119,6 @@ export ANDROID_SDK_ROOT=/opt/android-sdk
 export ANDROID_PATH=$ANDROID_SDK_ROOT/emulator
 export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$PATH:$GOPATH/bin:/home/nicky/bin:$ANDROID_PATH:$CARGO_PATH:/home/nicky/.local/bin
-export PATH="$(yarn global bin):$PATH"
 export VISUAL=nvim
 export EDITOR=nvim
 export BAT_THEME=gruvbox-dark
@@ -136,6 +134,7 @@ export LANGUAGE=en_US.UTF-8
 source $ZSH/oh-my-zsh.sh
 
 source /usr/share/nvm/init-nvm.sh
+export PATH="$(yarn global bin):$PATH"
 
 source /opt/google-cloud-sdk/completion.zsh.inc
 source /opt/google-cloud-sdk/path.zsh.inc
@@ -144,3 +143,10 @@ autoload -Uz compinit
 compinit
 
 bindkey '\e.' insert-last-word
+
+# clone antidote if necessary
+[[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
+# source antidote
+. ~/.antidote/antidote.zsh
+# generate and source plugins from ~/.zsh_plugins.txt
+antidote load
