@@ -1,0 +1,45 @@
+(defpoll clock_time :interval "5s" "date +\%I")
+(defpoll clock_minute :interval "5s" "date +\%M")
+
+(defwidget main []
+  (box
+    :class "wrapper"
+    :orientation "v"
+    :spacing "3"
+    :space-evenly "false"
+    (clock_module)
+    (workspaces)
+    ))
+
+(defwidget greeter [?text name]
+  (box :orientation "vertical"
+    (button :onclick "notify-send 'Hello' 'Hello, ${name}'"
+      "Greet")))
+
+(defwidget clock_module []
+  (box :class "module" :space-evenly "false" :orientation "h" :spacing "3" 
+    (label :text clock_time :class "clock_time_class" )
+    (label :text clock_minute :class "clock_minute_class")
+  )
+)
+
+(defwidget workspaces []
+  (literal :content workspace)
+)
+(deflisten workspace "./workspaces.sh")
+
+
+(defwindow sidebar
+           :monitor 1
+           :geometry (geometry :x "5px"
+                               :y "0%"
+                               :width "95px"
+                               :height "96%"
+                               :anchor "center left")
+           :windowtype "dock"
+           :reserve (struts :distance "100px" :side "left")
+           :stacking "fg"
+           :wm-ignore "false"
+  (main)
+  )
+

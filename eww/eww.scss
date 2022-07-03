@@ -1,0 +1,49 @@
+.wrapper {
+  background: #192330;
+
+  /* --fg: #cdcecf; */
+  /* --black: #393b44; */
+  /* --red: #c94f6d; */
+  /* --green: #81b29a; */
+  /* --yellow: #dbc074; */
+  /* --blue: #719cd6; */
+  /* --magenta: #9d79d6; */
+  /* --cyan: #63cdcf; */
+  /* --white: #dfdfe0; */
+  /**/
+/* bright-black = #475072 */
+/* bright-red = #d6616b */
+/* bright-green = #58cd8b */
+/* bright-yellow = #ffe37e */
+/* bright-blue = #84cee4 */
+/* bright-magenta = #b8a1e3 */
+/* bright-cyan = #59f0ff */
+/* bright-white = #f2f2f2 */
+
+}
+
+.clock_time_class, .clock_minute_class {
+    font-size: 33;
+}
+.clock_minute_class {
+    margin: 5px 2px 0px 3px;
+    color: #719cd6;
+}
+
+.clock_time_class {
+    color: #9d79d6;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-left: 7px;
+}
+
+.ws {
+  color: #dfdfe0;
+
+}
+
+.focused {
+  background: #9d79d6;
+}
+
+
