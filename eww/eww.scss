@@ -1,5 +1,12 @@
+.sidebar, .wrapper {
+  border-radius: 30px;
+  background: transparent;
+}
+
 .wrapper {
-  background: #192330;
+  /* background: #192330; */
+  background: rgba(25,35,48,0.8);
+  font-family: Roboto;
 
   /* --fg: #cdcecf; */
   /* --black: #393b44; */
@@ -22,28 +29,49 @@
 
 }
 
-.clock_time_class, .clock_minute_class {
-    font-size: 33;
-}
-.clock_minute_class {
-    margin: 5px 2px 0px 3px;
-    color: #719cd6;
+
+.module {
+  margin-top: 10px;
 }
 
-.clock_time_class {
-    color: #9d79d6;
-    font-weight: bold;
-    margin-top: 5px;
-    margin-left: 7px;
+.clock {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 20px;
+}
+.clock_hour {
+  font-size: 25px;
+  color: #9d79d6;
+  font-weight: bold;
+}
+.clock_minute {
+  font-size: 38px;
+  margin-top: -15px;
+  color: #719cd6;
 }
 
-.ws {
-  color: #dfdfe0;
-
+.ws-name {
+  color: #475072;
 }
-
-.focused {
+.ws-name.focused {
   background: #9d79d6;
+  color: #dfdfe0;
+}
+.ws-name.occupied {
+  color: #81b29a;
 }
 
+.stats {
+  margin-bottom: 25px;
+}
 
+.statlabel {
+  color: #475072;
+}
+.statbar {
+  background: #475072;
+  color: #719cd6;
+}
+.statval {
+  padding: 10px;
+}
