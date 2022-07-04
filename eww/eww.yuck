@@ -1,5 +1,6 @@
 (defpoll clock_hour :interval "5s" "date +\%I")
 (defpoll clock_minute :interval "5s" "date +\%M")
+(defpoll clock_day :interval "1h" "date +\%A")
 (defpoll memory :interval "2s" "./memory.sh")
 (defpoll cpu :interval "2s" "./cpu.sh")
 (defpoll vol :interval "1s" "ponymix get-volume")
@@ -20,6 +21,7 @@
            (box :class "module clock" :orientation "v" 
                 (label :text clock_hour :class "clock_hour" )
                 (label :text clock_minute :class "clock_minute")
+                (label :text clock_day :class "clock_day")
                 )
            )
 
@@ -31,37 +33,37 @@
                 ))
 
 (defwidget mem []
-           (box :class "module" :orientation "v" :width "60" :height "80"
+           (box :class "module" :orientation "v" :width "60"
                 (label :class "statlabel" :text "mem")
                 (circular-progress :value memory
                                    :class "statbar"
                                    :thickness 5
                                    :start-at 50
-                                   (label :class "statval" :text memory)
+                                   (label :class "statval" :text memory :width "40")
                                    )
                 ))
 
 
 (defwidget cpu []
-           (box :class "module" :orientation "v" :width "60" :height "80"
+           (box :class "module" :orientation "v" :width "60"
                 (label :class "statlabel" :text "cpu")
                 (circular-progress :value cpu
                                    :class "statbar"
                                    :thickness 5
                                    :start-at 50
-                                   (label :class "statval" :text cpu)
+                                   (label :class "statval" :text cpu :width "40")
                                    )
                 ))
 
 
 (defwidget volume []
-           (box :class "module" :orientation "v" :width "60" :height "80"
+           (box :class "module" :orientation "v" :width "60"
                 (label :class "statlabel" :text "vol")
                 (circular-progress :value vol
                                    :class "statbar"
                                    :thickness 5
                                    :start-at 50
-                                   (label :class "statval" :text vol)
+                                   (label :class "statval" :text vol :width "40")
                                    )
                 ))
 
