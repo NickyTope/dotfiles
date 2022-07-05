@@ -1,6 +1,6 @@
 (defpoll clock_hour :interval "5s" "date +\%I")
 (defpoll clock_minute :interval "5s" "date +\%M")
-(defpoll clock_day :interval "1h" "date +\%A")
+(defpoll clock_day :interval "1h" "date +\"%a %b %d\"")
 (defpoll memory :interval "2s" "./memory.sh")
 (defpoll cpu :interval "2s" "./cpu.sh")
 (defpoll vol :interval "1s" "ponymix get-volume")
@@ -33,7 +33,7 @@
                 ))
 
 (defwidget mem []
-           (box :class "module" :orientation "v" :width "60"
+           (box :class "module" :orientation "v" :width "70"
                 (label :class "statlabel" :text "mem")
                 (circular-progress :value memory
                                    :class "statbar"
@@ -45,7 +45,7 @@
 
 
 (defwidget cpu []
-           (box :class "module" :orientation "v" :width "60"
+           (box :class "module" :orientation "v" :width "70"
                 (label :class "statlabel" :text "cpu")
                 (circular-progress :value cpu
                                    :class "statbar"
@@ -78,11 +78,11 @@
            :monitor 0
            :geometry (geometry :x "-5px"
                                :y "0%"
-                               :width "60px"
+                               :width "70px"
                                :height "96%"
                                :anchor "center right")
            :windowtype "dock"
-           :reserve (struts :distance "65px" :side "right")
+           :reserve (struts :distance "75px" :side "right")
            :stacking "fg"
            :wm-ignore "false"
            (main)
