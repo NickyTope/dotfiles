@@ -72,12 +72,13 @@ nighfox: &nightfox
 font:
   normal:
     family: Cascadia Code
+    style: SemiBold
   bold:
     style: Bold
   italic:
-    family: Script12 BT
+    family: Hurmit Nerd Font Mono
     style: Roman
-  size: 9.0
+  size: 9
 colors: *nightfox
 window:
   opacity: 0.9

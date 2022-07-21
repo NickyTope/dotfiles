@@ -78,8 +78,8 @@ super + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-super + {_,shift + }{1,2,3,4,5,6,7,8}
-	bspc {desktop -f,node -d} '{term,code,code2,four,web,chat,win,eight}'
+super + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
+	bspc {desktop -f,node -d} '{term,code,code2,four,five,web,chat,win,nine,ten}'
 
 # scratchterm
 super + u
@@ -155,10 +155,10 @@ super + o ; {f,s,z,t}
 
 # Volume
 XF86AudioLowerVolume
-	ponymix decrease 2
+	~/.config/bspwm/volume.sh -5
 
 XF86AudioRaiseVolume
-	ponymix increase 2
+	~/.config/bspwm/volume.sh 5
 
 XF86AudioMute
 	ponymix toggle
