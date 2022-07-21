@@ -79,7 +79,7 @@ alias gs="git status"
 alias gaa="git add . --all"
 alias gc="git commit"
 alias gk="gitk"
-alias gg="git-cola"
+alias gg="lazygit"
 alias gpp="git pull --rebase && git push"
 alias gpl="git pull --rebase --autostash"
 alias gps="git push"
@@ -94,7 +94,7 @@ alias x="startx"
 alias yayu="yay -Syu --devel --timeupdate"
 alias n="nvim"
 alias :q="exit"
-alias wk="cd ~/vimwiki && nvim"
+alias wk="cd ~/Documents/Notes/ && nvim"
 alias ksa="core && docker start proxy redis mongodb minio && kudos dev all"
 alias dsa="docker start proxy redis mongo minio"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
@@ -136,8 +136,10 @@ source $ZSH/oh-my-zsh.sh
 source /usr/share/nvm/init-nvm.sh
 export PATH="$(yarn global bin):$PATH"
 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 source /opt/google-cloud-sdk/completion.zsh.inc
 source /opt/google-cloud-sdk/path.zsh.inc
+source <(kubectl completion zsh)
 
 autoload -Uz compinit
 compinit

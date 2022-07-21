@@ -31,6 +31,9 @@ vim.opt.sessionoptions = "buffers"
 -- " highlighted yank
 vim.g.highlightedyank_highlight_duration = 500
 
+-- vim.opt.shada = "!,<50,s10,h"
+vim.cmd([[set shada="NONE"]])
+
 -- " vim-markdown
 vim.g.vim_markdown_folding_disabled = 1
 
@@ -43,12 +46,12 @@ vim.g.vim_markdown_folding_disabled = 1
 
 local nightfox = require("nightfox")
 nightfox.init({
-	transparent = true,
-	styles = {
-		comments = "italic",
-		keywords = "bold",
-		functions = "italic,bold",
-	},
+  transparent = true,
+  styles = {
+    comments = "italic",
+    keywords = "bold",
+    functions = "italic,bold",
+  },
 })
 vim.cmd([[colorscheme nightfox]])
 
@@ -60,16 +63,16 @@ vim.g.yanks_max = 1000
 -- closetag (auto close xml tags)
 vim.g.closetag_filenames = "*.html,*.jsx,*.tsx,*.vue,*.xhml,*.xml"
 vim.g.closetag_regions = {
-	["typescript.tsx"] = "jsxRegion,tsxRegion",
-	["javascript.jsx"] = "jsxRegion",
+  ["typescript.tsx"] = "jsxRegion,tsxRegion",
+  ["javascript.jsx"] = "jsxRegion",
 }
 
 -- vim-rest-console
 vim.g.vrc_curl_opts = {
-	["--connect-timeout"] = 5,
-	["-s"] = "",
-	["-i"] = "",
-	["--max-time"] = 20,
-	["--ipv4"] = "",
-	["-k"] = "",
+  ["--connect-timeout"] = 5,
+  ["-s"] = "",
+  ["-i"] = "",
+  ["--max-time"] = 20,
+  ["--ipv4"] = "",
+  ["-k"] = "",
 }

@@ -1,4 +1,4 @@
-gruvbox: &gruvbo
+gruvbox: &gruvbox
   primary:
     background: &gruvbox_dark_bg "#282828"
     foreground: "#fbf1c7"

@@ -25,11 +25,11 @@ fi
 if [ "$HOSTNAME" == "miniarch" ]; then
   if [ $count == 1 ]
   then
-    bspc monitor ^1 -d term code code2 four web chat win eight
+    bspc monitor ^1 -d term code code2 four five web chat win nine ten
   elif [ $count == 2 ]
   then
-    bspc monitor ^1 -d term code code2 four
-    bspc monitor ^2 -d web chat win eight
+    bspc monitor ^1 -d term code code2 four five
+    bspc monitor ^2 -d web chat win nine ten
   fi
 fi
 

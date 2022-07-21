@@ -3,7 +3,7 @@
 (defpoll clock_day :interval "1h" "date +\"%a %b %d\"")
 (defpoll memory :interval "2s" "./memory.sh")
 (defpoll cpu :interval "2s" "./cpu.sh")
-(defpoll vol :interval "1s" "ponymix get-volume")
+(defpoll vol :interval "3s" "pulsemixer --get-volume | awk '{print $1}'")
 
 (defwidget main []
            (centerbox
@@ -38,7 +38,7 @@
                 (circular-progress :value memory
                                    :class "statbar"
                                    :thickness 5
-                                   :start-at 50
+                                   :start-at 25
                                    (label :class "statval" :text memory :width "40")
                                    )
                 ))
@@ -50,7 +50,7 @@
                 (circular-progress :value cpu
                                    :class "statbar"
                                    :thickness 5
-                                   :start-at 50
+                                   :start-at 25
                                    (label :class "statval" :text cpu :width "40")
                                    )
                 ))
@@ -62,7 +62,7 @@
                 (circular-progress :value vol
                                    :class "statbar"
                                    :thickness 5
-                                   :start-at 50
+                                   :start-at 25
                                    (label :class "statval" :text vol :width "40")
                                    )
                 ))

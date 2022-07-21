@@ -141,11 +141,10 @@ require("lspconfig").cssmodules_ls.setup({
 	},
 })
 
-local sumneko_install = "/home/nicky/apps/lua-language-server/"
+-- local sumneko_install = "/home/nicky/apps/lua-language-server/"
 require("lspconfig").sumneko_lua.setup({
 	on_attach = my_attach,
 	capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-	cmd = { sumneko_install .. "bin/Linux/lua-language-server", "-E", sumneko_install .. "main.lua" },
 	settings = {
 		Lua = {
 			diagnostics = {
