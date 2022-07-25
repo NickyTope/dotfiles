@@ -108,4 +108,5 @@ return require("packer").startup(function(use)
     end,
   })
   use("stevearc/dressing.nvim")
+  use("b0o/incline.nvim")
 end)

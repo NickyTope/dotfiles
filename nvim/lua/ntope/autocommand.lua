@@ -1,9 +1,9 @@
 -- show current file in float
-vim.defer_fn(function()
-	vim.cmd([[
-    autocmd BufEnter * lua require'ntope.showfilename'.show()
-    ]])
-end, 50)
+-- vim.defer_fn(function()
+-- 	vim.cmd([[
+--     autocmd BufEnter * lua require'ntope.showfilename'.show()
+--     ]])
+-- end, 50)
 
 vim.cmd([[
 au BufNewFile,BufRead *Jenkinsfile* set syntax=groovy
@@ -18,22 +18,3 @@ au BufWritePost *.md silent !pandoc -o /tmp/preview.pdf %
 vim.cmd([[
 autocmd FileType scss setlocal commentstring=/*\ %s\ */
 ]])
-
--- vim.cmd([[
--- if !exists("dirvish_setup")
---   au FileType dirvish call CustomDirvishSetup()
---   let dirvish_setup = 1
---   hi link DirvishTitle Search
--- endif
-
--- function! CustomDirvishSetup()
---   setlocal conceallevel=2
---   map <buffer> ma :e %
---   map <buffer> mf :Mkdir %
---   map <buffer> mc yy:!cp " "
---   map <buffer> mm yy:!mv " "
---   map <buffer> md yy:!rm "
---   map <buffer> <c-v> :call dirvish#open("vsplit", 0)<cr>
---   map <buffer> <c-p> <cmd>lua require'telescope.builtin'.find_files{search_dirs={vim.fn.expand('%')}}<cr>
--- endfunction
--- ]])
