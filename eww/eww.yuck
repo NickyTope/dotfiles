@@ -4,6 +4,7 @@
 (defpoll memory :interval "2s" "./memory.sh")
 (defpoll cpu :interval "2s" "./cpu.sh")
 (defpoll vol :interval "3s" "pulsemixer --get-volume | awk '{print $1}'")
+(defpoll ip :interval "3s" "./ipaddr.sh")
 
 (defwidget main []
            (centerbox
@@ -27,6 +28,7 @@
 
 (defwidget stats []
            (box :orientation "v" :space-evenly false :valign "end" :class "stats"
+                (ipaddr)
                 (volume)
                 (mem)
                 (cpu)
@@ -42,6 +44,11 @@
                                    (label :class "statval" :text memory :width "40")
                                    )
                 ))
+
+(defwidget ipaddr []
+           (box :orientation "v" :width "50"
+                (label :class "ipaddr" :text ip))
+           )
 
 
 (defwidget cpu []

@@ -7,7 +7,7 @@ return require("packer").startup(function(use)
   -- use("tpope/vim-eunuch")
 
   -- Pretties
-  use("ap/vim-css-color")
+  -- use("ap/vim-css-color")
   use("ryanoasis/vim-devicons")
   use("EdenEast/nightfox.nvim")
 
@@ -47,7 +47,6 @@ return require("packer").startup(function(use)
       "onsails/lspkind-nvim",
     },
   })
-  use({ "folke/trouble.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
 
   -- git
   use("tpope/vim-fugitive")
@@ -103,4 +102,10 @@ return require("packer").startup(function(use)
     end,
   })
   use("Shatur/neovim-session-manager")
+  use({ "brenoprata10/nvim-highlight-colors",
+    config = function()
+      require("nvim-highlight-colors").setup()
+    end,
+  })
+  use("stevearc/dressing.nvim")
 end)

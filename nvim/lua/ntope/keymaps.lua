@@ -7,14 +7,15 @@ end
 
 local telescope = require("telescope.builtin")
 local telescope_extensions = require("telescope").extensions
-local trouble = require("trouble")
-
-local diag = function()
-  trouble.open("workspace_diagnostics")
-end
 
 local symbols = function()
   telescope.symbols({ sources = { "kaomoji", "gitmoji" } })
+end
+
+local diag = function()
+  telescope.diagnostics(require('telescope.themes').get_ivy({
+    previewer = false
+  }))
 end
 
 wk.register({
@@ -38,13 +39,11 @@ wk.register({
         vim.lsp.buf.rename,
         "Rename var",
       },
-      d = { vim.lsp.buf.definition, "Definition" },
+      d = { diag, "Diagnostix" },
       h = { vim.lsp.buf.hover, "Hover (doc)" },
       a = { vim.lsp.buf.code_action, "Code Action" },
       s = { vim.lsp.buf.signature_help, "Signature Help" },
       w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostix" },
-      t = { trouble.toggle, "Trouble Toggle" },
-      T = { diag, "Trouble Diagnostix" },
     },
     f = { telescope.live_grep, "Find in files" },
     F = { telescope.grep_string, "Find word" },

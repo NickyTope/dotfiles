@@ -44,6 +44,8 @@ clipster -d &
 killall udiskie
 udiskie &
 killall pa-notify
-eww daemon &
-eww open sidebar &
+if [ "$HOSTNAME" = "miniarch" ]; then
+  eww daemon &
+  eww open sidebar &
+fi
 echo "rc complete"
