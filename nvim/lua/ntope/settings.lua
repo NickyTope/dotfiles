@@ -1,5 +1,5 @@
 vim.cmd([[filetype plugin on]])
-vim.opt.laststatus = 2
+vim.opt.laststatus = 3
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.tabstop = 2

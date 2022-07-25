@@ -13,9 +13,31 @@ local symbols = function()
 end
 
 local diag = function()
-  telescope.diagnostics(require('telescope.themes').get_ivy({
+  telescope.diagnostics(require("telescope.themes").get_ivy({
     previewer = false
   }))
+end
+
+local find_files = function()
+  local git_ls_files = function()
+    telescope.git_files(
+      require("telescope.themes").get_dropdown({
+        previewer = false,
+        winblend = 10,
+        width = 0.5,
+        results_height = 15,
+      }))
+  end
+  local rg_files = function()
+    telescope.find_files(
+      require("telescope.themes").get_dropdown({
+        previewer = false,
+        winblend = 10,
+        width = 0.5,
+        results_height = 15,
+      }))
+  end
+  if not pcall(git_ls_files) then rg_files() end
 end
 
 wk.register({
@@ -100,7 +122,7 @@ nmap("Y", "yy", {})
 nmap("<a-o>", "o<esc>", {})
 nmap("<a-O>", "O<esc>", {})
 nmap("gp", "'[v']", {})
-nmap("<c-p>", cmd("Telescope git_files"), {})
+nmap("<c-p>", find_files, {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
