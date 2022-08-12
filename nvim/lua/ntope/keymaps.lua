@@ -18,6 +18,14 @@ local diag = function()
   }))
 end
 
+local format_slowly = function()
+  vim.lsp.buf.format({
+    filter = function(c) return c.name ~= 'tsserver' end,
+    timeout_ms = 4000,
+    async = true,
+  })
+end
+
 local find_files = function()
   local git_ls_files = function()
     telescope.git_files(
@@ -42,18 +50,28 @@ end
 
 wk.register({
   ["<leader>"] = {
-    e = { cmd("e"), "Reload file" },
     ["<leader>"] = { cmd("b#"), "Previous file" },
-    n = { vim.diagnostic.goto_next, "Next error" },
-    N = { vim.diagnostic.goto_prev, "Prev error" },
-    h = { telescope.help_tags, "Vim help" },
-    ["mp"] = { cmd("silent !zathura /tmp/preview.pdf &"), "Open preview in Zathura" },
-    ["rn"] = {
-      vim.lsp.buf.rename,
-      "Rename var",
+    ["<Esc>"] = { cmd("noh"), "Remove hl" },
+    b = { telescope.buffers, "Buffer list" },
+    d = { telescope.diagnostics, "Diagnostix" },
+    e = { cmd("e"), "Reload file" },
+    f = { telescope.live_grep, "Find in files" },
+    F = { telescope.grep_string, "Find word" },
+    g = {
+      name = "Git",
+      s = { cmd("G|18wincmd_"), "Git status" },
+      l = { cmd("Glog"), "Git log" },
+      f = { cmd("Git fetch"), "Git fetch" },
+      r = { cmd("Git rebase"), "Git rebase" },
+      p = { cmd("Git push"), "Git push" },
+      b = { cmd("Git blame"), "Git blame" },
+      B = { telescope.git_branches, "git branches" },
+      h = { cmd("GBrowse"), "Git browse" },
+      g = { telescope.git_commits, "git commits" },
     },
-    o = { cmd("NvimTreeToggle"), "Toggle tree" },
-    p = { vim.lsp.buf.format, "Format file" },
+    h = { telescope.help_tags, "Vim help" },
+    i = { require('ntope.showfilename').show, "Info (showfilename)" },
+    j = { "J", "join lines" },
     l = {
       name = "LSP",
       r = { telescope.lsp_references, "References" },
@@ -67,12 +85,15 @@ wk.register({
       s = { vim.lsp.buf.signature_help, "Signature Help" },
       w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostix" },
     },
-    f = { telescope.live_grep, "Find in files" },
-    F = { telescope.grep_string, "Find word" },
-    b = { telescope.buffers, "Buffer list" },
-    i = { telescope.oldfiles, "Old files" },
-    d = { telescope.diagnostics, "Diagnostix" },
-    s = { symbols, "Symbols" },
+    n = { vim.diagnostic.goto_next, "Next error" },
+    N = { vim.diagnostic.goto_prev, "Prev error" },
+    ["mp"] = { cmd("silent !zathura /tmp/preview.pdf &"), "Open preview in Zathura" },
+    ["rn"] = {
+      vim.lsp.buf.rename,
+      "Rename var",
+    },
+    o = { cmd("NvimTreeToggle"), "Toggle tree" },
+    p = { format_slowly, "Format file" },
     q = {
       name = "+quickfix",
       q = { telescope.quickfix, "Telescope QF" },
@@ -81,23 +102,10 @@ wk.register({
       c = { cmd("cclo"), "Close QF" },
       o = { cmd("copen"), "Open QF" },
     },
-    j = { "J", "join lines" },
+    s = { symbols, "Symbols" },
+    ["uh"] = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
     v = { '"+p', "Paste system clip" },
     y = { telescope_extensions.neoclip.default, "Yank list" },
-    ["<Esc>"] = { cmd("noh"), "Remove hl" },
-    g = {
-      name = "Git",
-      s = { cmd("G"), "Git status" },
-      l = { cmd("Glog"), "Git log" },
-      f = { cmd("Git fetch"), "Git fetch" },
-      r = { cmd("Git rebase"), "Git rebase" },
-      p = { cmd("Git push"), "Git push" },
-      b = { cmd("Git blame"), "Git blame" },
-      B = { telescope.git_branches, "git branches" },
-      h = { cmd("GBrowse"), "Git browse" },
-      g = { telescope.git_commits, "git commits" },
-    },
-    ["uh"] = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
   },
 })
 

@@ -29,8 +29,7 @@ bspc rule -a Thunar state=floating
 bspc rule -a '*:org.gnome.Nautilus' state=floating
 bspc rule -a '*:gitk' state=floating
 bspc rule -a '*:dialog' state=floating
-bspc rule -a '*:volume' state=floating
-bspc rule -a '*:pavucontrol' state=floating rectangle=600x800+0+0 center=on
+bspc rule -a '*:simplescreenrecorder' state=floating
 bspc rule -a "scratchterm" state=floating rectangle=1600x800+0+0 center=on
 
 ~/.config/polybar/launch.sh &

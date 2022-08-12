@@ -64,12 +64,8 @@ require("lualine").setup({
 })
 
 local my_attach = function(client)
-  -- require "completion".on_attach(client)
   lsp_status.on_attach(client)
   mapper("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-  if client.server_capabilities.documentFormattingProvider then
-    vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = false })")
-  end
 end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
@@ -92,8 +88,6 @@ null_ls.setup({
     null_ls.builtins.formatting.autopep8,
     null_ls.builtins.formatting.prettier.with({
       filetypes = {
-        "typescript",
-        "typescriptreact",
         "markdown",
         "json",
         "yaml",
@@ -103,27 +97,8 @@ null_ls.setup({
   },
 })
 
-require("lspconfig").tsserver.setup({
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
-  handlers = {
-    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-      virtual_text = false,
-    }),
-  },
-  on_attach = function(client, bufnr)
-    client.server_capabilities.documentFormattingProvider = false
-    local ts_utils = require("nvim-lsp-ts-utils")
 
-    ts_utils.setup_client(client)
-    my_attach(client)
-
-    -- no default maps, so you may want to define some here
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "gs", ":TSLspOrganize<CR>", { silent = true })
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "qq", ":TSLspFixCurrent<CR>", { silent = true })
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>rf", ":TSLspRenameFile<CR>", { silent = true })
-    vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>gi", ":TSLspImportAll<CR>", { silent = true })
-  end,
-})
+require("lspconfig").tsserver.setup({ on_attach = my_attach })
 
 require("lspconfig").cssmodules_ls.setup({
   -- provide your on_attach to bind keymappings
@@ -137,7 +112,6 @@ require("lspconfig").cssmodules_ls.setup({
 -- local sumneko_install = "/home/nicky/apps/lua-language-server/"
 require("lspconfig").sumneko_lua.setup({
   on_attach = my_attach,
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   settings = {
     Lua = {
       diagnostics = {
@@ -157,7 +131,6 @@ require("lspconfig").stylelint_lsp.setup({
 })
 require("lspconfig").cssls.setup({
   on_attach = my_attach,
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
   debug = true,
   cmd = { "css-languageserver", "--stdio" },
 })

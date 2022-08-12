@@ -32,7 +32,6 @@ return require("packer").startup(function(use)
   -- LSP
   use("neovim/nvim-lspconfig")
   use("nvim-lua/completion-nvim")
-  use("jose-elias-alvarez/nvim-lsp-ts-utils")
   use("nvim-lua/lsp-status.nvim")
   use("hoob3rt/lualine.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
@@ -102,11 +101,10 @@ return require("packer").startup(function(use)
     end,
   })
   use("Shatur/neovim-session-manager")
-  use({ "brenoprata10/nvim-highlight-colors",
-    config = function()
-      require("nvim-highlight-colors").setup()
-    end,
-  })
   use("stevearc/dressing.nvim")
   use("b0o/incline.nvim")
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use("petertriho/nvim-scrollbar")
+  use("NickyTope/nvim-highlight-colors")
 end)

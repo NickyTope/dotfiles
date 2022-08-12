@@ -73,11 +73,9 @@ font:
   normal:
     family: Cascadia Code
     style: SemiBold
-  bold:
-    style: Bold
   italic:
     family: Hurmit Nerd Font Mono
-    style: Roman
+    style: medium
   size: 9
 colors: *nightfox
 window:
