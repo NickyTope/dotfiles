@@ -99,6 +99,14 @@ null_ls.setup({
 
 
 require("lspconfig").tsserver.setup({ on_attach = my_attach })
+-- require("lspconfig").tsserver.setup({
+--   handlers = {
+--     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+--       virtual_text = false,
+--     })
+--   },
+--   on_attach = my_attach })
+
 
 require("lspconfig").cssmodules_ls.setup({
   -- provide your on_attach to bind keymappings
@@ -153,3 +161,13 @@ require("lspconfig").pylsp.setup({
     my_attach(client)
   end,
 })
+
+local config = vim.diagnostic.config()
+config.underline = true
+config.virtual_text = false
+-- config.virtual_text = {
+--   severity = {
+--     min = vim.diagnostic.severity.ERROR
+--   }
+-- }
+vim.diagnostic.config(config)

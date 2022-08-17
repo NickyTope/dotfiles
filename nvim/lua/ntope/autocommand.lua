@@ -31,6 +31,11 @@ local function format()
   end
 end
 
+local my = vim.api.nvim_create_augroup("MyGroup", {
+  clear = false
+})
+
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  callback = format
+  callback = format,
+  group = my,
 })
