@@ -94,9 +94,14 @@ null_ls.setup({
       },
     }),
     null_ls.builtins.formatting.stylelint,
+    -- TODO
+    -- null_ls.builtins.formatting.npm_groovy_lint,
   },
 })
 
+require("lspconfig").groovyls.setup({
+  cmd = { "docker", "run", "--rm", "-ia", "stdin", "-ia", "stderr", "-ia", "stdout", "glsp" },
+})
 
 require("lspconfig").tsserver.setup({ on_attach = my_attach })
 -- require("lspconfig").tsserver.setup({
@@ -106,7 +111,6 @@ require("lspconfig").tsserver.setup({ on_attach = my_attach })
 --     })
 --   },
 --   on_attach = my_attach })
-
 
 require("lspconfig").cssmodules_ls.setup({
   -- provide your on_attach to bind keymappings
@@ -164,10 +168,10 @@ require("lspconfig").pylsp.setup({
 
 local config = vim.diagnostic.config()
 config.underline = true
-config.virtual_text = false
--- config.virtual_text = {
---   severity = {
---     min = vim.diagnostic.severity.ERROR
---   }
--- }
+-- config.virtual_text = false
+config.virtual_text = {
+  severity = {
+    min = vim.diagnostic.severity.ERROR,
+  },
+}
 vim.diagnostic.config(config)

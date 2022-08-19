@@ -136,8 +136,8 @@ nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
 nmap("-", cmd("NvimTreeFindFile"), {})
 
-map("n", "<c-_>", cmd("lua require'Comment.api'.toggle_current_linewise_op()"))
-map("x", "<c-_>", "<Esc>" .. cmd("lua require'Comment.api'.locked.toggle_linewise_op(vim.fn.visualmode())"))
+map("n", "<c-_>", cmd("lua require'Comment.api'.toggle.linewise.current()"))
+map("x", "<c-_>", "<Esc>" .. cmd("lua require'Comment.api'.locked.toggle.linewise.current(vim.fn.visualmode())"))
 
 -- window movement
 map("", "<a-h>", cmd("wincmd h"), {})
