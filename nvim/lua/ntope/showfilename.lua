@@ -6,6 +6,14 @@ local M = {
   timeout = 10000,
 }
 
+M.toggle = function()
+  if win then
+    M.hide()
+  else
+    M.show()
+  end
+end
+
 M.show = function()
   if win then
     M.hide()
@@ -51,9 +59,8 @@ M.show = function()
   api.nvim_buf_set_lines(buf, 1, -1, false, { " " .. path })
   local filestat
   local gitstat
-  vim.fn.jobstart("ls -la " ..
-    path .. [[ | awk '{ print "\towner: " $3 "\n\tperms: " $1 "\n\tudate: " $6 " " $7 " " $8 }']]
-    ,
+  vim.fn.jobstart(
+    "ls -la " .. path .. [[ | awk '{ print "\towner: " $3 "\n\tperms: " $1 "\n\tudate: " $6 " " $7 " " $8 }']],
     {
       stdout_buffered = true,
       on_stdout = function(_, data)
@@ -67,7 +74,8 @@ M.show = function()
           api.nvim_buf_set_lines(buf, 7, 8, false, gitstat)
         end
       end,
-    })
+    }
+  )
   vim.fn.jobstart("git --no-pager diff --stat -B -M -C " .. path, {
     stdout_buffered = true,
     on_stdout = function(_, data)

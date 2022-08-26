@@ -103,8 +103,14 @@ return require("packer").startup(function(use)
   use("Shatur/neovim-session-manager")
   use("stevearc/dressing.nvim")
   use("b0o/incline.nvim")
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    setup = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
+  })
   use("petertriho/nvim-scrollbar")
   use("NickyTope/nvim-highlight-colors")
   use("samodostal/image.nvim")

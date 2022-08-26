@@ -5,6 +5,8 @@
 (defpoll cpu :interval "2s" "./cpu.sh")
 (defpoll vol :interval "3s" "pulsemixer --get-volume | awk '{print $1}'")
 (defpoll ip :interval "3s" "./ipaddr.sh")
+(defpoll shares :interval "10m" "python ~/.config/bspwm/stocks.py")
+;; (defpoll qan :interval "15m" "python ~/.config/bspwm/price.py qan.ax")
 
 (defwidget main []
            (centerbox
@@ -28,6 +30,7 @@
 
 (defwidget stats []
            (box :orientation "v" :space-evenly false :valign "end" :class "stats"
+                (stocks)
                 (ipaddr)
                 (volume)
                 (mem)
@@ -50,6 +53,19 @@
                 (label :class "ipaddr" :text ip))
            )
 
+
+(defwidget stocks []
+           (box :orientation "v" :width "50"
+                (label :class "stocks" :text shares))
+           )
+
+
+;; (defwidget qanchart []
+;;            (graph :value qan
+;;                   :thickness 2
+;;                   :time-range "3d"
+;;                   :dynamic true
+;;                   ))
 
 (defwidget cpu []
            (box :class "module" :orientation "v" :width "70"

@@ -66,6 +66,7 @@ require("lualine").setup({
 local my_attach = function(client)
   lsp_status.on_attach(client)
   mapper("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+  mapper("n", "td", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
@@ -167,11 +168,14 @@ require("lspconfig").pylsp.setup({
 })
 
 local config = vim.diagnostic.config()
+print(config)
 config.underline = true
 -- config.virtual_text = false
 config.virtual_text = {
+  -- spacing = 2,
+  -- prefix = "<",
   severity = {
-    min = vim.diagnostic.severity.ERROR,
+    min = vim.diagnostic.severity.WARN,
   },
 }
 vim.diagnostic.config(config)

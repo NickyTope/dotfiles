@@ -14,13 +14,15 @@ end
 
 local diag = function()
   telescope.diagnostics(require("telescope.themes").get_ivy({
-    previewer = false
+    previewer = false,
   }))
 end
 
 local format_slowly = function()
   vim.lsp.buf.format({
-    filter = function(c) return c.name ~= 'tsserver' end,
+    filter = function(c)
+      return c.name ~= "tsserver"
+    end,
     timeout_ms = 4000,
     async = true,
   })
@@ -28,24 +30,24 @@ end
 
 local find_files = function()
   local git_ls_files = function()
-    telescope.git_files(
-      require("telescope.themes").get_dropdown({
-        previewer = false,
-        winblend = 10,
-        width = 0.5,
-        results_height = 15,
-      }))
+    telescope.git_files(require("telescope.themes").get_dropdown({
+      previewer = false,
+      winblend = 10,
+      width = 0.5,
+      results_height = 15,
+    }))
   end
   local rg_files = function()
-    telescope.find_files(
-      require("telescope.themes").get_dropdown({
-        previewer = false,
-        winblend = 10,
-        width = 0.5,
-        results_height = 15,
-      }))
+    telescope.find_files(require("telescope.themes").get_dropdown({
+      previewer = false,
+      winblend = 10,
+      width = 0.5,
+      results_height = 15,
+    }))
   end
-  if not pcall(git_ls_files) then rg_files() end
+  if not pcall(git_ls_files) then
+    rg_files()
+  end
 end
 
 wk.register({
@@ -67,9 +69,11 @@ wk.register({
       B = { telescope.git_branches, "git branches" },
       h = { cmd("GBrowse"), "Git browse" },
       g = { telescope.git_commits, "git commits" },
+      -- d = goto definition (defined in language.lua when lsp client connects)
+      -- t = goto type definition (defined in language.lua when lsp client connects)
     },
     h = { telescope.help_tags, "Vim help" },
-    i = { require('ntope.showfilename').show, "Info (showfilename)" },
+    i = { require("ntope.showfilename").toggle, "Info (showfilename)" },
     j = { "J", "join lines" },
     l = {
       name = "LSP",
@@ -83,6 +87,7 @@ wk.register({
       l = { vim.diagnostic.open_float, "Diagnostic float" },
       a = { vim.lsp.buf.code_action, "Code Action" },
       s = { vim.lsp.buf.signature_help, "Signature Help" },
+      t = { vim.lsp.buf.type_definition, "Type def" },
       w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostix" },
     },
     n = { vim.diagnostic.goto_next, "Next error" },
@@ -135,6 +140,7 @@ nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
 nmap("-", cmd("NvimTreeFindFile"), {})
+nmap("<c-Space>", cmd("lua require'ntope.complete'.toggle()"), {})
 
 map("n", "<c-_>", cmd("lua require'Comment.api'.toggle.linewise.current()"))
 map("x", "<c-_>", "<Esc>" .. cmd("lua require'Comment.api'.locked.toggle.linewise.current(vim.fn.visualmode())"))
