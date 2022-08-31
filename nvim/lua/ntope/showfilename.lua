@@ -78,6 +78,7 @@ M.show = function()
   )
   vim.fn.jobstart("git --no-pager diff --stat -B -M -C " .. path, {
     stdout_buffered = true,
+    cwd = vim.fn.expand("%:h"),
     on_stdout = function(_, data)
       if data then
         if data[1] == "" then
