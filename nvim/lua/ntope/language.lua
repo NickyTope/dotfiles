@@ -37,6 +37,9 @@ require("telescope").setup({
   },
 })
 require("telescope").load_extension("ui-select")
+vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
+vim.g.gitblame_date_format = "%r"
+local git_blame = require("gitblame")
 
 require("lualine").setup({
   sections = {
@@ -49,7 +52,7 @@ require("lualine").setup({
       },
     },
     lualine_b = { "diff", "branch" },
-    lualine_c = { "filename" },
+    lualine_c = { "filename", { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } },
     lualine_x = { "filetype" },
     lualine_y = { stat },
     lualine_z = { "progress" },
@@ -137,14 +140,13 @@ require("lspconfig").sumneko_lua.setup({
 require("lspconfig").dockerls.setup({ on_attach = my_attach })
 require("lspconfig").vimls.setup({ on_attach = my_attach })
 require("lspconfig").stylelint_lsp.setup({
-  on_attach = function(client)
-    my_attach(client)
-  end,
   filetypes = { "css", "scss" },
 })
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").cssls.setup({
-  on_attach = my_attach,
-  debug = true,
+  capabilities = capabilities,
   cmd = { "css-languageserver", "--stdio" },
 })
 
