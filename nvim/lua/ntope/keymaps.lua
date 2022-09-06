@@ -50,6 +50,10 @@ local find_files = function()
   end
 end
 
+local leap = function()
+  require("leap").leap({ target_windows = { vim.fn.win_getid() } })
+end
+
 wk.register({
   ["<leader>"] = {
     ["<leader>"] = { cmd("b#"), "Previous file" },
@@ -107,7 +111,8 @@ wk.register({
       c = { cmd("cclo"), "Close QF" },
       o = { cmd("copen"), "Open QF" },
     },
-    s = { symbols, "Symbols" },
+    w = { symbols, "Symbols" },
+    s = { leap, "Leap" },
     ["uh"] = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
     v = { '"+p', "Paste system clip" },
     y = { telescope_extensions.neoclip.default, "Yank list" },

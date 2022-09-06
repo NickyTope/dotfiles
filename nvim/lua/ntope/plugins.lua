@@ -3,13 +3,14 @@ return require("packer").startup(function(use)
   --
   use("wbthomason/packer.nvim")
 
-  use("mbbill/undotree")
-  -- use("tpope/vim-eunuch")
-
   -- Pretties
-  -- use("ap/vim-css-color")
   use("ryanoasis/vim-devicons")
   use("EdenEast/nightfox.nvim")
+  use("stevearc/dressing.nvim")
+  use("b0o/incline.nvim")
+  use("petertriho/nvim-scrollbar")
+  use("samodostal/image.nvim")
+  use("NickyTope/nvim-highlight-colors")
 
   -- Editor convenience
   use("machakann/vim-highlightedyank")
@@ -23,11 +24,19 @@ return require("packer").startup(function(use)
   -- Text manilpulation
   use("kana/vim-textobj-user")
   use("etdev/vim-textobject-pack")
+  use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  })
 
   -- Input trickery
   use("jiangmiao/auto-pairs")
   use("alvan/vim-closetag")
   use("L3MON4D3/LuaSnip")
+  use("machakann/vim-sandwich")
+  use("booperlv/nvim-gomove")
 
   -- LSP
   use("neovim/nvim-lspconfig")
@@ -64,10 +73,13 @@ return require("packer").startup(function(use)
 
   -- tools
   use("diepm/vim-rest-console")
+  use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
+  use("AckslD/nvim-neoclip.lua") -- yank history
   use("nvim-lua/popup.nvim")
   use("nvim-lua/plenary.nvim")
   use("nvim-telescope/telescope.nvim")
   use("nvim-telescope/telescope-ui-select.nvim")
+  use("tami5/sqlite.lua")
   use({
     "lukas-reineke/indent-blankline.nvim",
     config = function()
@@ -80,20 +92,7 @@ return require("packer").startup(function(use)
     end,
   })
   use("nvim-telescope/telescope-symbols.nvim")
-
-  -- new plugins go here until confirmed useful...
-  use("tami5/sqlite.lua")
-  use("AckslD/nvim-neoclip.lua")
-  use("machakann/vim-sandwich")
-  use("booperlv/nvim-gomove")
-  use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
   use("nvim-treesitter/nvim-treesitter-textobjects")
-  use({
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-  })
   use({
     "m-demare/hlargs.nvim",
     config = function()
@@ -101,8 +100,6 @@ return require("packer").startup(function(use)
     end,
   })
   use("Shatur/neovim-session-manager")
-  use("stevearc/dressing.nvim")
-  use("b0o/incline.nvim")
   use({
     "iamcco/markdown-preview.nvim",
     run = "cd app && npm install",
@@ -111,8 +108,9 @@ return require("packer").startup(function(use)
     end,
     ft = { "markdown" },
   })
-  use("petertriho/nvim-scrollbar")
-  use("NickyTope/nvim-highlight-colors")
-  use("samodostal/image.nvim")
+  use("mbbill/undotree")
+
+  -- new plugins go here until confirmed useful...
   use({ "f-person/git-blame.nvim", requires = { "f-person/lua-timeago" } })
+  use("ggandor/leap.nvim")
 end)
