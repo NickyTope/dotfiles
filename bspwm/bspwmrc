@@ -47,4 +47,5 @@ if [ "$HOSTNAME" = "miniarch" ]; then
   eww daemon &
   eww open sidebar &
 fi
+~/.config/bspwm/welcome.sh &
 echo "rc complete"

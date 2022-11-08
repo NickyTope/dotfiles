@@ -72,7 +72,10 @@ nighfox: &nightfox
 font:
   normal:
     family: Cascadia Code
-    style: SemiBold
+    style: Regular
+  bold:
+    family: Cascadia Code
+    style: Bold
   italic:
     family: Hurmit Nerd Font Mono
     style: medium

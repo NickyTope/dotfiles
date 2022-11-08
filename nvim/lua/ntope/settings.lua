@@ -51,6 +51,7 @@ nightfox.init({
     comments = "italic",
     keywords = "bold",
     functions = "italic,bold",
+    strings = "italic",
   },
 })
 vim.cmd([[colorscheme nightfox]])
@@ -66,6 +67,9 @@ vim.g.closetag_regions = {
   ["typescript.tsx"] = "jsxRegion,tsxRegion",
   ["javascript.jsx"] = "jsxRegion",
 }
+
+vim.g.gitblame_date_format = "%r"
+vim.g.gitblame_enabled = 0
 
 -- vim-rest-console
 vim.g.vrc_curl_opts = {

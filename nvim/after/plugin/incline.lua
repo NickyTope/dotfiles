@@ -15,8 +15,8 @@ require("incline").setup({
         Normal = "Todo",
       },
       inactive = {
-        Normal = "Directory"
-      }
-    }
-  }
+        Normal = "Directory",
+      },
+    },
+  },
 })

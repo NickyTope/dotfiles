@@ -69,8 +69,8 @@ wk.register({
       f = { cmd("Git fetch"), "Git fetch" },
       r = { cmd("Git rebase"), "Git rebase" },
       p = { cmd("Git push"), "Git push" },
-      b = { cmd("Git blame"), "Git blame" },
-      B = { telescope.git_branches, "git branches" },
+      b = { cmd("GitBlameToggle"), "Toggle inline blame" },
+      B = { cmd("Git blame"), "Git blame" },
       h = { cmd("GBrowse"), "Git browse" },
       g = { telescope.git_commits, "git commits" },
       -- d = goto definition (defined in language.lua when lsp client connects)
@@ -92,7 +92,6 @@ wk.register({
       a = { vim.lsp.buf.code_action, "Code Action" },
       s = { vim.lsp.buf.signature_help, "Signature Help" },
       t = { vim.lsp.buf.type_definition, "Type def" },
-      w = { telescope.lsp_workspace_diagnostics, "Workspace Diagnostix" },
     },
     n = { vim.diagnostic.goto_next, "Next error" },
     N = { vim.diagnostic.goto_prev, "Prev error" },
@@ -104,14 +103,21 @@ wk.register({
     o = { cmd("NvimTreeToggle"), "Toggle tree" },
     p = { format_slowly, "Format file" },
     q = {
-      name = "+quickfix",
+      name = "Quickfix",
       q = { telescope.quickfix, "Telescope QF" },
       n = { cmd("cn"), "Next QF item" },
       b = { cmd("cb"), "Prev QF item" },
       c = { cmd("cclo"), "Close QF" },
       o = { cmd("copen"), "Open QF" },
     },
-    w = { symbols, "Symbols" },
+    w = {
+      name = "word operations",
+      y = { symbols, "Symbols" },
+      s = { '"syiw:%s!\\(<c-r>s\\)!\\1', "substitute word" },
+      S = { '"syiW:%s!\\(<c-r>s\\)!\\1', "substitute WORD" },
+      g = { '"gyiw:g/<c-r>g/norm ', "operate on lines containing word" },
+      G = { '"gyiW:g/<c-r>g/norm ', "operate on lines containing WORD" },
+    },
     s = { leap, "Leap" },
     ["uh"] = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
     v = { '"+p', "Paste system clip" },
@@ -163,6 +169,8 @@ imap("kj", "<esc>", {})
 
 map("v", "cp", '"+y', {})
 map("v", "<c-c>", '"+y', {})
+map("v", "<leader>g", '"gy:g/<c-r>g/norm ', {})
+map("v", "<leader>s", '"sy:%s!\\(<c-r>s\\)!<c-r>s', {})
 
 -- no idea how to port these, let's just cmd them
 -- vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])

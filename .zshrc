@@ -75,6 +75,12 @@ plugins=(
   vi-mode
 )
 
+function fzfz() {
+  cd $(z | awk '{print $2}' | fzf --scheme=path --tac)
+}
+zle -N fzfz
+bindkey '^g' fzfz
+
 alias gs="git status"
 alias gaa="git add . --all"
 alias gc="git commit"
@@ -97,11 +103,12 @@ alias :q="exit"
 alias wk="cd ~/Documents/Notes/ && nvim"
 alias ksa="core && docker start proxy redis mongodb minio && kudos dev all"
 alias dsa="docker start proxy redis mongo minio"
+alias docker-rmq="docker ps -a -q -f status=exited | xargs docker rm"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
-alias npmglobalinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server cssmodules-language-server"
-alias lspinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver yaml-language-server cssmodules-language-server"
+alias npmglobalinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server"
+alias lspinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server"
 alias ssh="TERM=linux ssh"
 alias shares="python ~/.config/bspwm/stocks.py"
 alias yrd="yarn run dev:srv"
@@ -148,8 +155,8 @@ compinit
 bindkey '\e.' insert-last-word
 
 # clone antidote if necessary
-[[ -e ~/.antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.antidote
+[[ -e ~/.config/antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.config/antidote
 # source antidote
-. ~/.antidote/antidote.zsh
+. ~/.config/antidote/antidote.zsh
 # generate and source plugins from ~/.zsh_plugins.txt
 antidote load

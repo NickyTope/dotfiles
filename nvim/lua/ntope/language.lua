@@ -37,22 +37,11 @@ require("telescope").setup({
   },
 })
 require("telescope").load_extension("ui-select")
-vim.g.gitblame_display_virtual_text = 0 -- Disable virtual text
-vim.g.gitblame_date_format = "%r"
-local git_blame = require("gitblame")
 
 require("lualine").setup({
   sections = {
-    lualine_a = {
-      {
-        "mode",
-        fmt = function(mode_name)
-          return mode_name:sub(1, 1)
-        end,
-      },
-    },
     lualine_b = { "diff", "branch" },
-    lualine_c = { "filename", { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } },
+    lualine_c = { "filename" },
     lualine_x = { "filetype" },
     lualine_y = { stat },
     lualine_z = { "progress" },
@@ -95,6 +84,7 @@ null_ls.setup({
         "markdown",
         "json",
         "yaml",
+        "typescriptreact",
       },
     }),
     null_ls.builtins.formatting.stylelint,
@@ -170,14 +160,13 @@ require("lspconfig").pylsp.setup({
 })
 
 local config = vim.diagnostic.config()
-print(config)
 config.underline = true
 -- config.virtual_text = false
 config.virtual_text = {
   -- spacing = 2,
   -- prefix = "<",
   severity = {
-    min = vim.diagnostic.severity.WARN,
+    min = vim.diagnostic.severity.ERROR,
   },
 }
 vim.diagnostic.config(config)
