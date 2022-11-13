@@ -77,6 +77,7 @@ plugins=(
 
 function fzfz() {
   cd $(z | awk '{print $2}' | fzf --scheme=path --tac)
+  zle reset-prompt
 }
 zle -N fzfz
 bindkey '^g' fzfz
