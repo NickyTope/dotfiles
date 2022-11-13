@@ -4,11 +4,7 @@ if [ $# -eq 1 ]; then
   pulsemixer --change-volume $1
 fi
 
-NOTIFY_ID=0
-
-if [ -f /tmp/vol ]; then
-  NOTIFY_ID=$(cat /tmp/vol)
-fi
+NOTIFY_ID=1337
 
 VOLUME=$(pulsemixer --get-volume | awk '{print $1}')
 
@@ -19,22 +15,22 @@ elif [ "$VOLUME" -ge "20" ]; then
   ICON=audio-volume-medium
 fi
 
-PROG="═══════════\\n"
+BAR="⠀▁▁▁▁▁▁▁▁▁▁▁\n▕"
 for ((i = 0 ; i < 101 ; i+=10)); do
   if [ "$VOLUME" -eq 0 ]; then
-    PROG="$PROG"
+    BAR="$BAR"
   elif [ "$VOLUME" -ge "$i" ]; then
-    PROG="$PROG█"
+    BAR="$BAR█"
   elif [ "$VOLUME" -ge $(($i-5)) ]; then
-    PROG="$PROG▌"
-  # else
-    # PROG="$PROG▁"
+    BAR="$BAR▌"
+  else
+    BAR="$BAR⠀"
   fi
 done
-PROG="$PROG\\n═══════════"
+BAR="$BAR▏\\n⠀▔▔▔▔▔▔▔▔▔▔▔"
 
 
-NEW_ID=$(notify-send  "volume - ${VOLUME}" "${PROG}" --print-id --replace-id=${NOTIFY_ID} --icon=${ICON} --urgency=low --expire-time=1000)
+notify-send  "volume - ${VOLUME}" "${BAR}" --print-id --replace-id=${NOTIFY_ID} --icon=${ICON} --urgency=low --expire-time=1000
 
-echo $NEW_ID > /tmp/vol
+# echo $NEW_ID > /tmp/vol
 
