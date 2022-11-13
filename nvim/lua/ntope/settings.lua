@@ -45,13 +45,15 @@ vim.g.vim_markdown_folding_disabled = 1
 -- vim.g.gruvbox_improved_strings = true
 
 local nightfox = require("nightfox")
-nightfox.init({
-  transparent = true,
-  styles = {
-    comments = "italic",
-    keywords = "bold",
-    functions = "italic,bold",
-    strings = "italic",
+nightfox.setup({
+  options = {
+    transparent = true,
+    styles = {
+      comments = "italic",
+      keywords = "bold",
+      functions = "italic,bold",
+      strings = "italic",
+    },
   },
 })
 vim.cmd([[colorscheme nightfox]])
