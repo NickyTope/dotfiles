@@ -42,7 +42,6 @@ picom &
 clipster -d &
 killall udiskie
 udiskie &
-killall pa-notify
 if [ "$HOSTNAME" = "miniarch" ]; then
   eww daemon &
   eww open sidebar &
