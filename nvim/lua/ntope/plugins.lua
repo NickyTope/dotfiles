@@ -10,7 +10,6 @@ return require("packer").startup(function(use)
   use("b0o/incline.nvim")
   use("petertriho/nvim-scrollbar")
   use("samodostal/image.nvim")
-  use("NickyTope/nvim-highlight-colors")
 
   -- Editor convenience
   use("machakann/vim-highlightedyank")

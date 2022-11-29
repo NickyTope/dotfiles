@@ -50,8 +50,9 @@ local find_files = function()
   end
 end
 
-local leap = function()
-  require("leap").leap({ target_windows = { vim.fn.win_getid() } })
+local toggle_name = function()
+  require("incline").toggle()
+  require("ntope.showfilename").toggle()
 end
 
 wk.register({
@@ -59,6 +60,7 @@ wk.register({
     ["<leader>"] = { cmd("b#"), "Previous file" },
     ["<Esc>"] = { cmd("noh"), "Remove hl" },
     b = { telescope.buffers, "Buffer list" },
+    c = { cmd("!zenity --color-selection --color='\\#<cword>'"), "preview color" },
     e = { cmd("e"), "Reload file" },
     f = { telescope.live_grep, "Find in files" },
     F = { telescope.grep_string, "Find word" },
@@ -77,7 +79,7 @@ wk.register({
       -- t = goto type definition (defined in language.lua when lsp client connects)
     },
     h = { telescope.help_tags, "Vim help" },
-    i = { require("ntope.showfilename").toggle, "Info (showfilename)" },
+    i = { toggle_name, "Info (showfilename)" },
     j = { "J", "join lines" },
     l = {
       name = "LSP",

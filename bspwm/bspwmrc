@@ -8,16 +8,15 @@ timedatectl timesync-status &
 
 ~/.config/bspwm/desktops.sh
 
-bspc config border_width         2
-bspc config border_color        "475072"
-bspc config window_gap          12
+bspc config border_width         1
+bspc config window_gap          10
 
 bspc config split_ratio          0.5
 bspc config borderless_monocle   true
 bspc config gapless_monocle      false
 bspc config pointer_follows_monitor       true
 bspc config focus_follows_pointer         true
-bspc config focused_border_color "#9d79d6"
+bspc config focused_border_color "#c94f6d"
 
 bspc config external_rules_command ~/.config/bspwm/external_rules.sh
 
@@ -29,6 +28,7 @@ bspc rule -a Thunar state=floating
 bspc rule -a '*:org.gnome.Nautilus' state=floating
 bspc rule -a '*:gitk' state=floating
 bspc rule -a '*:dialog' state=floating
+bspc rule -a '*:gcolor3' state=floating
 bspc rule -a '*:simplescreenrecorder' state=floating
 bspc rule -a "scratchterm" state=floating rectangle=1600x800+0+0 center=on
 
