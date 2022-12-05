@@ -111,4 +111,5 @@ return require("packer").startup(function(use)
 
   -- new plugins go here until confirmed useful...
   use({ "f-person/git-blame.nvim", requires = { "f-person/lua-timeago" } })
+  use("brenoprata10/nvim-highlight-colors")
 end)
