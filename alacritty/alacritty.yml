@@ -43,7 +43,7 @@ gruvbox: &gruvbox
 
 nighfox: &nightfox
   primary:
-    background: "#192330"
+    background: "#1d1529"
     foreground: "#cdcecf"
   # Normal colors
   normal:
@@ -82,7 +82,7 @@ font:
   size: 9
 colors: *nightfox
 window:
-  opacity: 0.9
+  opacity: 0.8
 cursor:
   style:
     shape: Beam
