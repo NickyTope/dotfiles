@@ -76,7 +76,7 @@ local fcomp = ls.s(
 
 ls.add_snippets("javascript", { log, unwrap, useState, fcomp })
 ls.add_snippets("javascriptreact", { log, unwrap, useState, fcomp })
-ls.add_snippets("typescript", { log, unwrap })
+ls.add_snippets("typescript", { log, unwrap, useState })
 
 ls.add_snippets("markdown", {
   ls.s("link", fmt("[{}]({}.md)", { i(1, "filename"), same(1) })),
@@ -90,14 +90,6 @@ vim.keymap.set({ "i", "s" }, "<c-k>", function()
   end
 end, { silent = true })
 
--- vim.keymap.set({ "i", "s" }, "<c-l>", function()
---   if ls.choice_active() then
---     ls.change_choice(1)
---   else
---     vim.lsp.buf.signature_help()
---   end
--- end, { silent = true })
---
 vim.keymap.set({ "i", "s" }, "<c-h>", function()
   if ls.choice_active() then
     ls.change_choice(-1)

@@ -133,6 +133,8 @@ require("lspconfig").stylelint_lsp.setup({
   filetypes = { "css", "scss" },
 })
 
+require("lspconfig").tailwindcss.setup({})
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").cssls.setup({
@@ -166,7 +168,7 @@ config.virtual_text = {
   -- spacing = 2,
   -- prefix = "<",
   severity = {
-    min = vim.diagnostic.severity.ERROR,
+    min = vim.diagnostic.severity.INFO,
   },
 }
 vim.diagnostic.config(config)

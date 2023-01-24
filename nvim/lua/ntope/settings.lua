@@ -51,8 +51,14 @@ nightfox.setup({
     styles = {
       comments = "italic",
       keywords = "bold",
-      functions = "italic,bold",
-      strings = "italic",
+      -- functions = "NONE",
+      -- conditionals = "NONE",
+      -- constants = "NONE",
+      -- numbers = "NONE",
+      operators = "italic",
+      -- strings = "NONE",
+      types = "italic",
+      -- variables = "bold",
     },
   },
 })
@@ -60,6 +66,9 @@ vim.cmd([[colorscheme nightfox]])
 
 -- transparency
 vim.cmd([[hi Normal guibg=NONE ctermbg=NONE]])
+
+-- window separator
+vim.cmd([[hi Winseparator guifg=#9d79d6]])
 
 vim.g.yanks_max = 1000
 

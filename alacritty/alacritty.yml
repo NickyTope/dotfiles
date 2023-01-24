@@ -74,11 +74,9 @@ font:
     family: Cascadia Code
     style: Regular
   bold:
-    family: Cascadia Code
-    style: Bold
+    family: Free Mono
   italic:
-    family: Hurmit Nerd Font Mono
-    style: medium
+    family: Operator Mono for Powerline
   size: 9
 colors: *nightfox
 window:

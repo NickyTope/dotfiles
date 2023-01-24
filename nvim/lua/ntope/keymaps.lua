@@ -177,3 +177,11 @@ map("v", "<leader>s", '"sy:%s!\\(<c-r>s\\)!<c-r>s', {})
 -- no idea how to port these, let's just cmd them
 -- vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])
 vim.cmd([[ nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR> ]])
+
+vim.cmd([[
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <A-h> <C-\><C-N><C-w>h
+  tnoremap <A-j> <C-\><C-N><C-w>j
+  tnoremap <A-k> <C-\><C-N><C-w>k
+  tnoremap <A-l> <C-\><C-N><C-w>l
+]])

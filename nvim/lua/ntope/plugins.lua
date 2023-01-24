@@ -10,6 +10,7 @@ return require("packer").startup(function(use)
   use("b0o/incline.nvim")
   use("petertriho/nvim-scrollbar")
   use("samodostal/image.nvim")
+  use("brenoprata10/nvim-highlight-colors")
 
   -- Editor convenience
   use("machakann/vim-highlightedyank")
@@ -58,6 +59,7 @@ return require("packer").startup(function(use)
   -- git
   use("tpope/vim-fugitive")
   use("tpope/vim-rhubarb")
+  use({ "f-person/git-blame.nvim", requires = { "f-person/lua-timeago" } })
 
   -- Syntax
   use("mitsuhiko/vim-jinja")
@@ -110,6 +112,4 @@ return require("packer").startup(function(use)
   use("mbbill/undotree")
 
   -- new plugins go here until confirmed useful...
-  use({ "f-person/git-blame.nvim", requires = { "f-person/lua-timeago" } })
-  use("brenoprata10/nvim-highlight-colors")
 end)
