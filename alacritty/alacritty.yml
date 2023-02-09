@@ -78,13 +78,18 @@ font:
   italic:
     family: Operator Mono for Powerline
   size: 9
+
 colors: *nightfox
+
 window:
   opacity: 0.8
+
 cursor:
   style:
     shape: Beam
-  vi_mode_style: Block
+  vi_mode_style:
+    shape: Block
+
 key_bindings:
   - { key: V, mods: Alt, action: Paste }
   - { key: C, mods: Alt, action: Copy }

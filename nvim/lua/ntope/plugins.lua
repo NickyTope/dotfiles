@@ -112,4 +112,5 @@ return require("packer").startup(function(use)
   use("mbbill/undotree")
 
   -- new plugins go here until confirmed useful...
+  use({ "shortcuts/no-neck-pain.nvim", tag = "*" })
 end)

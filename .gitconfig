@@ -5,8 +5,8 @@
   email = nicky.tope@gmail.com
 [alias]
   br = "!f() { git submodule foreach \"git checkout $1 || :\" && git checkout $1; }; f"
-  compare = "!f() { git --no-pager log --oneline $2..$1; }; f"
-  compare-all = "!f() { git submodule foreach \"git compare $1 $2 || :\" && git compare $1 $2; }; f"
+  compare = "!f() { echo showing commits in $1 that are not in $2; git --no-pager log --oneline $2..$1; }; f"
+  compare-all = "!f() { git submodule foreach \"git compare $1 $2 || :\"; echo CORE; git compare $1 $2; }; f"
   npm = "git submodule foreach npm i && npm i"
 [pull]
 	rebase = false

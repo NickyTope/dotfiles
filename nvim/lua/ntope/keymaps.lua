@@ -155,8 +155,9 @@ nmap("<c-s>", cmd("w"), { silent = true })
 nmap("-", cmd("NvimTreeFindFile"), {})
 nmap("<c-Space>", cmd("lua require'ntope.complete'.toggle()"), {})
 
-map("n", "<c-_>", cmd("lua require'Comment.api'.toggle.linewise.current()"))
-map("x", "<c-_>", "<Esc>" .. cmd("lua require'Comment.api'.locked.toggle.linewise.current(vim.fn.visualmode())"))
+-- use gc maps instead !!
+-- map("n", "<c-_>", cmd("lua require'Comment.api'.toggle.linewise.current()"))
+-- map("x", "<c-_>", "<Esc>" .. cmd("lua require'Comment.api'.locked.toggle.linewise.current(vim.fn.visualmode())"))
 
 -- window movement
 map("", "<a-h>", cmd("wincmd h"), {})
@@ -169,7 +170,7 @@ imap("<c-s>", "<esc>" .. cmd("w"), { silent = true })
 imap("jk", "<esc>", {})
 imap("kj", "<esc>", {})
 
-map("v", "cp", '"+y', {})
+map("v", "Y", '"+y', {})
 map("v", "<c-c>", '"+y', {})
 map("v", "<leader>g", '"gy:g/<c-r>g/norm ', {})
 map("v", "<leader>s", '"sy:%s!\\(<c-r>s\\)!<c-r>s', {})
