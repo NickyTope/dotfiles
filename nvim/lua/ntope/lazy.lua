@@ -62,7 +62,7 @@ require("lazy").setup({
 
   -- Editor convenience
   "machakann/vim-highlightedyank",
-  { "folke/which-key.nvim", config = true },
+  { "folke/which-key.nvim",  config = true },
 
   -- Text manilpulation
   "kana/vim-textobj-user",
@@ -88,6 +88,7 @@ require("lazy").setup({
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "saadparwaiz1/cmp_luasnip",
       "onsails/lspkind-nvim",
@@ -100,12 +101,12 @@ require("lazy").setup({
   { "f-person/git-blame.nvim", dependencies = { "f-person/lua-timeago" } },
 
   -- Syntax
-  { "mitsuhiko/vim-jinja", ft = "jinja" },
+  { "mitsuhiko/vim-jinja",     ft = "jinja" },
   "yuezk/vim-js",
-  { "stephpy/vim-yaml", ft = "yaml" },
-  { "vim-scripts/groovy.vim", ft = "groovy" },
-  { "chrisbra/csv.vim", ft = "csv" },
-  { "plasticboy/vim-markdown", ft = "markdown", dependencies = { "godlygeek/tabular" } },
+  { "stephpy/vim-yaml",                ft = "yaml" },
+  { "vim-scripts/groovy.vim",          ft = "groovy" },
+  { "chrisbra/csv.vim",                ft = "csv" },
+  { "plasticboy/vim-markdown",         ft = "markdown",    dependencies = { "godlygeek/tabular" } },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   "vim-scripts/nginx.vim",
   "neoclide/vim-jsx-improve",
@@ -132,7 +133,7 @@ require("lazy").setup({
   },
   "nvim-telescope/telescope-symbols.nvim",
   "nvim-treesitter/nvim-treesitter-textobjects",
-  { "m-demare/hlargs.nvim", config = true },
+  { "m-demare/hlargs.nvim",     config = true },
   "Shatur/neovim-session-manager",
   "mbbill/undotree",
 

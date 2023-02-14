@@ -116,7 +116,7 @@ require("lspconfig").cssmodules_ls.setup({
 })
 
 -- local sumneko_install = "/home/nicky/apps/lua-language-server/"
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
   on_attach = my_attach,
   settings = {
     Lua = {
