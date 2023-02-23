@@ -19,23 +19,3 @@ au BufWritePost *.md silent !pandoc -o /tmp/preview.pdf %
 vim.cmd([[
 autocmd FileType scss setlocal commentstring=/*\ %s\ */
 ]])
-
-local function format()
-  local clients = vim.lsp.buf_get_clients();
-  if #clients > 0 then
-    vim.lsp.buf.format({
-      async = false,
-      filter = function(c) return c.name ~= 'tsserver' end,
-      timeout_ms = 4000
-    })
-  end
-end
-
-local my = vim.api.nvim_create_augroup("MyGroup", {
-  clear = false
-})
-
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  callback = format,
-  group = my,
-})

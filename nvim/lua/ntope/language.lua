@@ -64,33 +64,46 @@ end
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
 local null_ls = require("null-ls")
 null_ls.setup({
-  on_attach = my_attach,
+  on_attach = function(client, bufnr)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({
+          async = false,
+          filter = function(c)
+            return c.name ~= "tsserver"
+          end,
+        })
+      end,
+    })
+  end,
   sources = {
     -- cargo install stylua
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.diagnostics.eslint_d.with({
-      prefer_local = "node_modules/.bin",
-    }),
-    null_ls.builtins.code_actions.eslint_d.with({
-      prefer_local = "node_modules/.bin",
-    }),
-    null_ls.builtins.formatting.eslint_d.with({
-      prefer_local = "node_modules/.bin",
-    }),
     null_ls.builtins.formatting.autopep8,
     null_ls.builtins.formatting.prettier.with({
       filetypes = {
         "markdown",
         "json",
         "yaml",
-        "typescriptreact",
       },
     }),
     null_ls.builtins.formatting.stylelint,
-    -- TODO
-    -- null_ls.builtins.formatting.npm_groovy_lint,
   },
+})
+
+require("lspconfig").eslint.setup({
+  settings = {
+    packageManager = "yarn",
+  },
+  on_attach = function(client, bufnr)
+    my_attach(client)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      command = "EslintFixAll",
+    })
+  end,
 })
 
 require("lspconfig").groovyls.setup({
@@ -98,13 +111,6 @@ require("lspconfig").groovyls.setup({
 })
 
 require("lspconfig").tsserver.setup({ on_attach = my_attach })
--- require("lspconfig").tsserver.setup({
---   handlers = {
---     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
---       virtual_text = false,
---     })
---   },
---   on_attach = my_attach })
 
 require("lspconfig").cssmodules_ls.setup({
   -- provide your on_attach to bind keymappings
