@@ -1,5 +1,6 @@
 local icons = require("ntope.icons")
-require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
+require("nvim-tree").setup({
+  -- BEGIN_DEFAULT_OPTS
   auto_reload_on_write = true,
   disable_netrw = false,
   hijack_cursor = false,
@@ -32,7 +33,7 @@ require("nvim-tree").setup({ -- BEGIN_DEFAULT_OPTS
   update_focused_file = {
     enable = true,
     update_cwd = false,
-    ignore_list = { "fugitive" },
+    ignore_list = { "fugitive", "gitcommit", "COMMIT_EDITMSG" },
   },
   ignore_ft_on_setup = {},
   system_open = {
