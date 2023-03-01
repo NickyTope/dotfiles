@@ -107,14 +107,13 @@ alias docker-rmq="docker ps -a -q -f status=exited | xargs docker rm"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
-alias npmglobalinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server"
-alias lspinstall="yarn global add @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server"
+alias lspinstall="bun add --global @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server"
 alias ssh="TERM=linux ssh"
 alias shares="python ~/.config/bspwm/stocks.py"
 alias yrd="yarn run dev:srv"
 alias web="cd ~/code/boards-core/boards-webfront/"
 alias yrs="web && yarn run start"
-alias fact="curl --no-progress-meter https://uselessfacts.jsph.pl/random.txt\?language\=en | head -n 1"
+alias fact="curl --no-progress-meter https://uselessfacts.jsph.pl/api/v2/facts/random\?language\=en | jq .text"
 alias pandoc='docker run --rm -v "`pwd`:/data" -v "/usr/share/fonts/TTF:/fonts" pandoc/latex'
 
 export APP_URI=https://dev-client.isw.net.au
@@ -160,3 +159,10 @@ bindkey '\e.' insert-last-word
 . ~/.config/antidote/antidote.zsh
 # generate and source plugins from ~/.zsh_plugins.txt
 antidote load
+
+# bun completions
+[ -s "/home/nicky/.bun/_bun" ] && source "/home/nicky/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

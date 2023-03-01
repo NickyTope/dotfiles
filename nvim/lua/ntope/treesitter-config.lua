@@ -1,21 +1,4 @@
 require("nvim-treesitter.configs").setup({
-  ensure_installed = {
-    "bash",
-    "css",
-    "dockerfile",
-    "go",
-    "html",
-    "javascript",
-    "json",
-    "lua",
-    "python",
-    "scss",
-    "typescript",
-    "vim",
-    "yaml",
-    "markdown",
-    "help",
-  },
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = true,
@@ -40,7 +23,6 @@ require("nvim-treesitter.configs").setup({
     },
     lsp_interop = {
       enable = true,
-      border = "none",
       peek_definition_code = {
         ["<leader>gd"] = "@function.outer",
         ["<leader>gD"] = "@class.outer",

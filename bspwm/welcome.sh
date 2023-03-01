@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FACT=$(curl --no-progress-meter https://uselessfacts.jsph.pl/random.txt\?language\=en | head -n 1)
+FACT=$(curl --no-progress-meter https://uselessfacts.jsph.pl/api/v2/facts/random\?language\=en | jq .text)
 DATE=$()
 
-notify-send  "Welcome `whoami`, it's `date +%A`" "$FACT" --icon=caffeine-cup-full -t 8000
+notify-send  "Welcome `whoami`, it's `date +%A`" "$FACT" --icon=caffeine-cup-full -t 20000

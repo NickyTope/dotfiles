@@ -42,7 +42,28 @@ require("lualine").setup({
   sections = {
     lualine_b = { "diff", "branch" },
     lualine_c = { "filename" },
-    lualine_x = { "filetype" },
+    lualine_x = {
+      -- {
+      --   require("noice").api.status.message.get_hl,
+      --   cond = require("noice").api.status.message.has,
+      -- },
+      {
+        require("noice").api.status.command.get,
+        cond = require("noice").api.status.command.has,
+        color = { fg = "#ff9e64" },
+      },
+      {
+        require("noice").api.status.mode.get,
+        cond = require("noice").api.status.mode.has,
+        color = { fg = "#ff9e64" },
+      },
+      {
+        require("noice").api.status.search.get,
+        cond = require("noice").api.status.search.has,
+        color = { fg = "#ff9e64" },
+      },
+      "filetype",
+    },
     lualine_y = { stat },
     lualine_z = { "progress" },
   },
@@ -110,7 +131,9 @@ require("lspconfig").groovyls.setup({
   cmd = { "docker", "run", "--rm", "-ia", "stdin", "-ia", "stderr", "-ia", "stdout", "glsp" },
 })
 
-require("lspconfig").tsserver.setup({ on_attach = my_attach })
+require("lspconfig").tsserver.setup({
+  on_attach = my_attach,
+})
 
 require("lspconfig").cssmodules_ls.setup({
   -- provide your on_attach to bind keymappings

@@ -103,11 +103,11 @@ require("lazy").setup({
   -- Syntax
   { "mitsuhiko/vim-jinja",     ft = "jinja" },
   "yuezk/vim-js",
-  { "stephpy/vim-yaml",                ft = "yaml" },
-  { "vim-scripts/groovy.vim",          ft = "groovy" },
-  { "chrisbra/csv.vim",                ft = "csv" },
-  { "plasticboy/vim-markdown",         ft = "markdown",    dependencies = { "godlygeek/tabular" } },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  { "stephpy/vim-yaml",        ft = "yaml" },
+  { "vim-scripts/groovy.vim",  ft = "groovy" },
+  { "chrisbra/csv.vim",        ft = "csv" },
+  { "plasticboy/vim-markdown", ft = "markdown", dependencies = { "godlygeek/tabular" } },
+  "nvim-treesitter/nvim-treesitter",
   "vim-scripts/nginx.vim",
   "neoclide/vim-jsx-improve",
 
@@ -139,4 +139,11 @@ require("lazy").setup({
 
   -- new plugins go here until confirmed ful...
   { "shortcuts/no-neck-pain.nvim", version = "*" },
+  {
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  },
 })
