@@ -55,10 +55,67 @@ require("lazy").setup({
   -- Pretties
   "ryanoasis/vim-devicons",
   "stevearc/dressing.nvim",
-  "b0o/incline.nvim",
-  "petertriho/nvim-scrollbar",
-  "samodostal/image.nvim",
-  "brenoprata10/nvim-highlight-colors",
+  {
+    "b0o/incline.nvim",
+    config = function()
+      require("incline").setup({
+        render = function(props)
+          local bufname = vim.api.nvim_buf_get_name(props.buf)
+          if bufname == "" then
+            return "[No name]"
+          else
+            bufname = vim.fn.fnamemodify(bufname, ":t")
+          end
+          local icon = require("nvim-web-devicons").get_icon(bufname, nil, { default = true })
+          return icon .. " " .. bufname
+        end,
+        window = {
+          winhighlight = {
+            active = {
+              Normal = "Todo",
+            },
+            inactive = {
+              Normal = "Directory",
+            },
+          },
+        },
+      })
+    end,
+  },
+  {
+    "petertriho/nvim-scrollbar",
+    config = function()
+      local palette = require("nightfox.palette").load("nightfox")
+      require("scrollbar").setup({
+        handle = {
+          color = palette.bg4,
+        },
+      })
+    end,
+  },
+  {
+    "samodostal/image.nvim",
+    config = function()
+      require("image").setup({
+        render = {
+          min_padding = 2,
+          show_label = true,
+          use_dither = true,
+        },
+        events = {
+          update_on_nvim_resize = true,
+        },
+      })
+    end,
+  },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    config = function()
+      require("nvim-highlight-colors").setup({
+        render = "background",
+      })
+    end,
+  },
 
   -- Editor convenience
   "machakann/vim-highlightedyank",
@@ -140,10 +197,56 @@ require("lazy").setup({
   -- new plugins go here until confirmed ful...
   { "shortcuts/no-neck-pain.nvim", version = "*" },
   {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup({
+        background_colour = "#000000",
+      })
+    end,
+  },
+  {
     "folke/noice.nvim",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+                ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                ["vim.lsp.util.stylize_markdown"] = true,
+                ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        -- you can enable a preset for easier configuration
+        presets = {
+          bottom_search = true,    -- use a classic bottom cmdline for search
+          command_palette = true,  -- position the cmdline and popupmenu together
+          long_message_to_split = true, -- long messages will be sent to a split
+          inc_rename = false,      -- enables an input dialog for inc-rename.nvim
+          lsp_doc_border = false,  -- add a border to hover docs and signature help
+        },
+        views = {
+          cmdline_popup = {
+            border = {
+              style = "rounded",
+              padding = { 0, 1 },
+            },
+            filter_options = {},
+            win_options = {
+              winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+            },
+          },
+        },
+        routes = {
+          {
+            view = "notify",
+            filter = { event = "msg_showmode" },
+          },
+        },
+      })
+    end,
   },
 })
