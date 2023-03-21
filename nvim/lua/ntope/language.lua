@@ -29,9 +29,9 @@ require("telescope").setup({
     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
     mappings = {
       i = {
-        ["<C-x>"] = false,
-        ["<esc>"] = actions.close,
-        ["<C-q>"] = actions.send_to_qflist,
+            ["<C-x>"] = false,
+            ["<esc>"] = actions.close,
+            ["<C-q>"] = actions.send_to_qflist,
       },
     },
   },
@@ -78,8 +78,8 @@ require("lualine").setup({
 
 local my_attach = function(client)
   lsp_status.on_attach(client)
-  mapper("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
-  mapper("n", "td", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+  mapper("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
+  mapper("n", "td", "<cmd>Lspsaga peek_type_definition<CR>")
 end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md

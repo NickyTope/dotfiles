@@ -31,7 +31,7 @@ require("nvim-tree").setup({
     auto_open = true,
   },
   update_focused_file = {
-    enable = true,
+    enable = false,
     update_cwd = false,
     ignore_list = { "fugitive", "gitcommit", "COMMIT_EDITMSG" },
   },

@@ -51,7 +51,6 @@ local find_files = function()
 end
 
 local toggle_name = function()
-  require("incline").toggle()
   require("ntope.showfilename").toggle()
 end
 
@@ -85,18 +84,18 @@ wk.register({
       name = "LSP",
       r = { telescope.lsp_references, "References" },
       n = {
-        vim.lsp.buf.rename,
-        "Rename var",
+        cmd("Lspsaga rename ++project"),
+        "Rename (in project)",
       },
       d = { diag, "Diagnostix" },
-      h = { vim.lsp.buf.hover, "Hover (doc)" },
+      h = { cmd("Lspsaga hover_doc"), "Hover (doc)" },
       l = { vim.diagnostic.open_float, "Diagnostic float" },
-      a = { vim.lsp.buf.code_action, "Code Action" },
+      a = { cmd("Lspsaga code_action"), "Code Action" },
       s = { vim.lsp.buf.signature_help, "Signature Help" },
       t = { vim.lsp.buf.type_definition, "Type def" },
     },
-    n = { vim.diagnostic.goto_next, "Next error" },
-    N = { vim.diagnostic.goto_prev, "Prev error" },
+    n = { cmd("Lspsaga diagnostic_jump_next"), "Next error" },
+    N = { cmd("Lspsaga diagnostic_jump_prev"), "Prev error" },
     ["mp"] = { cmd("silent !zathura /tmp/preview.pdf &"), "Open preview in Zathura" },
     ["rn"] = {
       vim.lsp.buf.rename,
@@ -120,8 +119,9 @@ wk.register({
       g = { '"gyiw:g/<c-r>g/norm ', "operate on lines containing word" },
       G = { '"gyiW:g/<c-r>g/norm ', "operate on lines containing WORD" },
     },
-    s = { leap, "Leap" },
-    ["uh"] = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
+    u = {
+      h = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
+    },
     v = { '"+p', "Paste system clip" },
     y = { telescope_extensions.neoclip.default, "Yank list" },
   },
@@ -141,6 +141,13 @@ vim.keymap.set("i", "<c-l>", function()
   vim.lsp.buf.signature_help()
 end)
 
+local focus_file = function()
+  require("nvim-tree.api").tree.find_file({
+    open = true,
+    focus = true,
+  })
+end
+
 nmap("Q", cmd("q"), {})
 nmap("Y", "yy", {})
 -- nmap("x", '"_x', {})
@@ -152,7 +159,7 @@ nmap("<c-p>", find_files, {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
-nmap("-", cmd("NvimTreeFindFile"), {})
+nmap("-", focus_file, {})
 nmap("<c-Space>", cmd("lua require'ntope.complete'.toggle()"), {})
 
 -- use gc maps instead !!

@@ -30,6 +30,7 @@ vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.sessionoptions = "buffers"
 -- " highlighted yank
 vim.g.highlightedyank_highlight_duration = 500
+vim.g.mapleader = " "
 
 -- vim.opt.shada = "!,<50,s10,h"
 vim.cmd([[set shada="NONE"]])
