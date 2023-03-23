@@ -2,7 +2,6 @@ return {
 
   -- Pretties
   "ryanoasis/vim-devicons",
-  "stevearc/dressing.nvim",
 
   -- Editor convenience
   "machakann/vim-highlightedyank",
@@ -18,7 +17,6 @@ return {
   "alvan/vim-closetag",
   "L3MON4D3/LuaSnip",
   "machakann/vim-sandwich",
-  "booperlv/nvim-gomove",
 
   -- git
   "tpope/vim-fugitive",
@@ -37,8 +35,6 @@ return {
 
   -- tools
   "diepm/vim-rest-console",
-  { "nvim-tree/nvim-tree.lua", dependencies = { "nvim-tree/nvim-web-devicons" } },
-  "AckslD/nvim-neoclip.lua",
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
   "nvim-telescope/telescope.nvim",
@@ -57,8 +53,7 @@ return {
   },
   "nvim-telescope/telescope-symbols.nvim",
   "nvim-treesitter/nvim-treesitter-textobjects",
-  { "m-demare/hlargs.nvim",    config = true },
-  "Shatur/neovim-session-manager",
+  { "m-demare/hlargs.nvim",        config = true },
   "mbbill/undotree",
 
   -- new plugins go here until confirmed ful...

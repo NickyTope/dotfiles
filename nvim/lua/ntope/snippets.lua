@@ -54,6 +54,21 @@ local useState = ls.s(
   })
 )
 
+local useStateTyped = ls.s(
+  "ust",
+  fmt("const [{}, {}] = useState<{}>({});", {
+    i(1, "state"),
+    f(function(args)
+      local name = args[1][1]
+      local first = string.upper(string.sub(name, 1, 1))
+      local rest = string.sub(name, 2, -1)
+      return "set" .. first .. rest
+    end, { 1 }),
+    i(2),
+    i(0),
+  })
+)
+
 local fcomp = ls.s(
   "fcomp",
   fmt(
@@ -64,7 +79,7 @@ local fcomp = ls.s(
       <div>hello {}</div>
     );
   }}
-  ]] ,
+  ]],
     {
       filename(),
       i(1, "props"),
@@ -77,6 +92,7 @@ local fcomp = ls.s(
 ls.add_snippets("javascript", { log, unwrap, useState, fcomp })
 ls.add_snippets("javascriptreact", { log, unwrap, useState, fcomp })
 ls.add_snippets("typescript", { log, unwrap, useState })
+ls.add_snippets("typescriptreact", { log, unwrap, useState, useStateTyped, fcomp })
 
 ls.add_snippets("markdown", {
   ls.s("link", fmt("[{}]({}.md)", { i(1, "filename"), same(1) })),

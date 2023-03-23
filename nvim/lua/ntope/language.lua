@@ -11,7 +11,6 @@ lsp_status.config({
   indicator_info = icons.info,
   indicator_hint = icons.hint,
   indicator_ok = icons.ok,
-  status_symbol = "",
 })
 lsp_status.register_progress()
 local function stat()
@@ -29,9 +28,9 @@ require("telescope").setup({
     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
     mappings = {
       i = {
-            ["<C-x>"] = false,
-            ["<esc>"] = actions.close,
-            ["<C-q>"] = actions.send_to_qflist,
+        ["<C-x>"] = false,
+        ["<esc>"] = actions.close,
+        ["<C-q>"] = actions.send_to_qflist,
       },
     },
   },

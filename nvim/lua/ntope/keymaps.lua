@@ -161,6 +161,15 @@ nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
 nmap("-", focus_file, {})
 nmap("<c-Space>", cmd("lua require'ntope.complete'.toggle()"), {})
+map("n", "<S-h>", "<Plug>GoNSMLeft", {})
+map("n", "<S-j>", "<Plug>GoNSMDown", {})
+map("n", "<S-k>", "<Plug>GoNSMUp", {})
+map("n", "<S-l>", "<Plug>GoNSMRight", {})
+
+map("x", "<S-h>", "<Plug>GoVSMLeft", {})
+map("x", "<S-j>", "<Plug>GoVSMDown", {})
+map("x", "<S-k>", "<Plug>GoVSMUp", {})
+map("x", "<S-l>", "<Plug>GoVSMRight", {})
 
 -- use gc maps instead !!
 -- map("n", "<c-_>", cmd("lua require'Comment.api'.toggle.linewise.current()"))
