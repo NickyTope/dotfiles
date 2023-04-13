@@ -41,6 +41,7 @@ alias web="cd ~/code/boards-core/boards-webfront/"
 alias yrs="web && yarn run start"
 alias fact="curl --no-progress-meter https://uselessfacts.jsph.pl/api/v2/facts/random\?language\=en | jq .text"
 alias pandoc='docker run --rm -v "`pwd`:/data" -v "/usr/share/fonts/TTF:/fonts" pandoc/latex'
+alias gotop=vtop
 
 # ░█▀▀░█▀█░█░█
 # ░█▀▀░█░█░▀▄▀
@@ -62,6 +63,7 @@ export TERM_ITALICS=true
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+export OPENAI_API_KEY="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"
 
 # ░█▀█░█▀█░█▀▄░█▀▀░░░░▀▀█░█▀▀
 # ░█░█░█░█░█░█░█▀▀░░░░░░█░▀▀█

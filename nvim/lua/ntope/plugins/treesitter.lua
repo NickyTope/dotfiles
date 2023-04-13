@@ -12,6 +12,7 @@ return {
           "go",
           "help",
           "html",
+          "http",
           "javascript",
           "json",
           "lua",

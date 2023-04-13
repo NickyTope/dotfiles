@@ -5,18 +5,16 @@ return {
 
   -- Editor convenience
   "machakann/vim-highlightedyank",
-  { "folke/which-key.nvim",  config = true },
+  { "folke/which-key.nvim",    config = true },
 
   -- Text manilpulation
   "kana/vim-textobj-user",
   "etdev/vim-textobject-pack",
-  { "numToStr/Comment.nvim", config = true },
 
   -- Input trickery
-  "jiangmiao/auto-pairs",
   "alvan/vim-closetag",
   "L3MON4D3/LuaSnip",
-  "machakann/vim-sandwich",
+  -- "machakann/vim-sandwich",
 
   -- git
   "tpope/vim-fugitive",
@@ -34,7 +32,6 @@ return {
   "neoclide/vim-jsx-improve",
 
   -- tools
-  "diepm/vim-rest-console",
   "nvim-lua/popup.nvim",
   "nvim-lua/plenary.nvim",
   "nvim-telescope/telescope.nvim",
@@ -58,4 +55,5 @@ return {
 
   -- new plugins go here until confirmed ful...
   { "shortcuts/no-neck-pain.nvim", version = "*" },
+  { "nvim-pack/nvim-spectre",      config = true },
 }

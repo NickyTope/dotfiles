@@ -54,6 +54,23 @@ local toggle_name = function()
   require("ntope.showfilename").toggle()
 end
 
+local spectre_replace = function(select_word)
+  return function()
+    require("spectre").open_visual({ select_word = select_word })
+  end
+end
+
+-- local diagnostic = function(forward)
+--   return function()
+--     if forward then
+--       vim.diagnostic.goto_next()
+--     else
+--       vim.diagnostic.goto_prev()
+--     end
+--     vim.lsp.buf.code_action()
+--   end
+-- end
+
 wk.register({
   ["<leader>"] = {
     ["<leader>"] = { cmd("b#"), "Previous file" },
@@ -91,11 +108,14 @@ wk.register({
       h = { cmd("Lspsaga hover_doc"), "Hover (doc)" },
       l = { vim.diagnostic.open_float, "Diagnostic float" },
       a = { cmd("Lspsaga code_action"), "Code Action" },
+      -- a = { vim.lsp.buf.code_action, "Code Action" },
       s = { vim.lsp.buf.signature_help, "Signature Help" },
       t = { vim.lsp.buf.type_definition, "Type def" },
     },
     n = { cmd("Lspsaga diagnostic_jump_next"), "Next error" },
     N = { cmd("Lspsaga diagnostic_jump_prev"), "Prev error" },
+    -- n = { diagnostic(true), "Next error" },
+    -- N = { diagnostic(false), "Prev error" },
     ["mp"] = { cmd("silent !zathura /tmp/preview.pdf &"), "Open preview in Zathura" },
     ["rn"] = {
       vim.lsp.buf.rename,
@@ -110,6 +130,12 @@ wk.register({
       b = { cmd("cb"), "Prev QF item" },
       c = { cmd("cclo"), "Close QF" },
       o = { cmd("copen"), "Open QF" },
+    },
+    r = {
+      name = "Replace",
+      n = { vim.lsp.buf.rename, "Rename var" },
+      r = { spectre_replace(false), "Find and Replace" },
+      R = { spectre_replace(true), "Current word replace" },
     },
     w = {
       name = "word operations",
@@ -161,15 +187,6 @@ nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
 nmap("-", focus_file, {})
 nmap("<c-Space>", cmd("lua require'ntope.complete'.toggle()"), {})
-map("n", "<S-h>", "<Plug>GoNSMLeft", {})
-map("n", "<S-j>", "<Plug>GoNSMDown", {})
-map("n", "<S-k>", "<Plug>GoNSMUp", {})
-map("n", "<S-l>", "<Plug>GoNSMRight", {})
-
-map("x", "<S-h>", "<Plug>GoVSMLeft", {})
-map("x", "<S-j>", "<Plug>GoVSMDown", {})
-map("x", "<S-k>", "<Plug>GoVSMUp", {})
-map("x", "<S-l>", "<Plug>GoVSMRight", {})
 
 -- use gc maps instead !!
 -- map("n", "<c-_>", cmd("lua require'Comment.api'.toggle.linewise.current()"))
