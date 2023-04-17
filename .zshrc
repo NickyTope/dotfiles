@@ -63,7 +63,7 @@ export TERM_ITALICS=true
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
-export OPENAI_API_KEY="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"
+[[ -f ~/.env.sh ]] && source ~/.env.sh
 
 # ░█▀█░█▀█░█▀▄░█▀▀░░░░▀▀█░█▀▀
 # ░█░█░█░█░█░█░█▀▀░░░░░░█░▀▀█
