@@ -41,8 +41,8 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     config = function()
       require("indent_blankline").setup({
-        show_current_context = true,
-        show_current_context_start = true,
+        show_current_context = false,
+        show_current_context_start = false,
         _treesitter = true,
         show_first_indent_level = false,
       })

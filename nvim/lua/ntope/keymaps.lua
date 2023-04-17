@@ -32,7 +32,6 @@ local find_files = function()
   local git_ls_files = function()
     telescope.git_files(require("telescope.themes").get_dropdown({
       previewer = false,
-      winblend = 10,
       width = 0.5,
       results_height = 15,
     }))

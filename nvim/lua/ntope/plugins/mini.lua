@@ -26,8 +26,10 @@ return {
       require("mini.pairs").setup()
       require("mini.comment").setup()
       require("mini.surround").setup()
-      require("mini.cursorword").setup()
+      require("mini.indentscope").setup()
+      require("mini.cursorword").setup({ delay = 500 })
       require("mini.bufremove").setup()
+      require("mini.jump").setup()
     end,
   },
 }
