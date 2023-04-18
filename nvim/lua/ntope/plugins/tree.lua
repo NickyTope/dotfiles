@@ -11,8 +11,6 @@ return {
         hijack_cursor = false,
         hijack_netrw = true,
         hijack_unnamed_buffer_when_opening = false,
-        ignore_buffer_on_setup = false,
-        open_on_setup = false,
         open_on_tab = false,
         sort_by = "name",
         update_cwd = true,
@@ -40,7 +38,6 @@ return {
           update_cwd = false,
           ignore_list = { "fugitive", "gitcommit", "COMMIT_EDITMSG" },
         },
-        ignore_ft_on_setup = {},
         system_open = {
           cmd = nil,
           args = {},

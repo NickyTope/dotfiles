@@ -32,6 +32,9 @@ vim.opt.sessionoptions = "buffers"
 vim.g.highlightedyank_highlight_duration = 500
 vim.g.mapleader = " "
 
+vim.opt.cmdheight = 0
+vim.opt.shortmess:append("S")
+
 -- vim.opt.shada = "!,<50,s10,h"
 vim.cmd([[set shada="NONE"]])
 
@@ -47,22 +50,5 @@ vim.g.vim_markdown_folding_disabled = 1
 
 vim.g.yanks_max = 1000
 
--- closetag (auto close xml tags)
-vim.g.closetag_filenames = "*.html,*.jsx,*.tsx,*.vue,*.xhml,*.xml"
-vim.g.closetag_regions = {
-  ["typescript.tsx"] = "jsxRegion,tsxRegion",
-  ["javascript.jsx"] = "jsxRegion",
-}
-
 vim.g.gitblame_date_format = "%r"
 vim.g.gitblame_enabled = 0
-
--- vim-rest-console
-vim.g.vrc_curl_opts = {
-  ["--connect-timeout"] = 5,
-  ["-s"] = "",
-  ["-i"] = "",
-  ["--max-time"] = 20,
-  ["--ipv4"] = "",
-  ["-k"] = "",
-}

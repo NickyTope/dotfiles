@@ -4,7 +4,6 @@ return {
   "ryanoasis/vim-devicons",
 
   -- Editor convenience
-  "machakann/vim-highlightedyank",
   { "folke/which-key.nvim",    config = true },
 
   -- Text manilpulation

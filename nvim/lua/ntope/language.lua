@@ -37,30 +37,32 @@ require("telescope").setup({
 })
 require("telescope").load_extension("ui-select")
 
+local function recording()
+  local reg = vim.fn.reg_recording()
+  if reg == "" then
+    return ""
+  else
+    return "rec @" .. reg
+  end
+end
+
+local function search()
+  if vim.v.hlsearch == 1 then
+    local ok, count = pcall(vim.fn.searchcount)
+    if ok and count["total"] > 0 then
+      return "🔎 " .. count["current"] .. "/" .. count["total"]
+    end
+  end
+  return ""
+end
+
 require("lualine").setup({
   sections = {
     lualine_b = { "diff", "branch" },
     lualine_c = { "filename" },
     lualine_x = {
-      -- {
-      --   require("noice").api.status.message.get_hl,
-      --   cond = require("noice").api.status.message.has,
-      -- },
-      {
-        require("noice").api.status.command.get,
-        cond = require("noice").api.status.command.has,
-        color = { fg = "#ff9e64" },
-      },
-      {
-        require("noice").api.status.mode.get,
-        cond = require("noice").api.status.mode.has,
-        color = { fg = "#ff9e64" },
-      },
-      {
-        require("noice").api.status.search.get,
-        cond = require("noice").api.status.search.has,
-        color = { fg = "#ff9e64" },
-      },
+      recording,
+      search,
       "filetype",
     },
     lualine_y = { stat },
