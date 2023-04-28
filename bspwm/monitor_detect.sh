@@ -56,10 +56,15 @@ if [ "$HOSTNAME" == "miniarch" ]; then
   dp0=$(xrandr --listmonitors | grep "DisplayPort-0" | wc -l)
   dp1=$(xrandr --listmonitors | grep "DisplayPort-1" | wc -l)
   dp2=$(xrandr --listmonitors | grep "DisplayPort-2" | wc -l)
+  dp3=$(xrandr --listmonitors | grep "DisplayPort-3" | wc -l)
+  dp4=$(xrandr --listmonitors | grep "DisplayPort-4" | wc -l)
 
   if [ "$dp0" -eq "1" ] && [ "$dp1" -eq "1" ]; then
     xrandr --output DisplayPort-0 --pos 0x0
     xrandr --output DisplayPort-1 --right-of DisplayPort-0
+  elif [ "$dp3" -eq "1" ] && [ "$dp4" -eq "1" ]; then
+    xrandr --output DisplayPort-4 --pos 0x0
+    xrandr --output DisplayPort-3 --right-of DisplayPort-4
   fi
 
 fi

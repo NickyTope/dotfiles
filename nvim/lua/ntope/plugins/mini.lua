@@ -29,25 +29,21 @@ return {
       require("mini.indentscope").setup({
         draw = {
           delay = 500,
-          animation = function()
-            return 5
+          animation = function(_n, total)
+            if total > 40 then
+              return 0
+            elseif total > 30 then
+              return 2
+            elseif total > 20 then
+              return 5
+            end
+            return 15
           end,
         },
       })
       require("mini.cursorword").setup({ delay = 500 })
       require("mini.bufremove").setup()
       require("mini.jump").setup()
-      require("mini.basics").setup({
-        options = {
-          basics = false,
-        },
-        mappings = {
-          basics = false,
-        },
-        autocommands = {
-          basics = true,
-        },
-      })
     end,
   },
 }

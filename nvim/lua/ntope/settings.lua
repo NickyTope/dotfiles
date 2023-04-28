@@ -26,8 +26,8 @@ vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.swapfile = false
 vim.opt.signcolumn = "yes"
-vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.sessionoptions = "buffers"
+vim.opt.completeopt = { "menuone", "noselect" }
 -- " highlighted yank
 vim.g.highlightedyank_highlight_duration = 500
 vim.g.mapleader = " "

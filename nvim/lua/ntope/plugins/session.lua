@@ -8,8 +8,4 @@ return {
       })
     end,
   },
-  {
-    "rmagatti/session-lens",
-    config = true,
-  },
 }
