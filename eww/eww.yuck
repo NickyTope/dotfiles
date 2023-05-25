@@ -6,6 +6,7 @@
 (defpoll vol :interval "3s" "pulsemixer --get-volume | awk '{print $1}'")
 (defpoll ip :interval "3s" "./ipaddr.sh")
 (defpoll shares :interval "10m" "python ~/.config/bspwm/stocks.py")
+(defpoll kb_batt :interval "30m" "./kb_batt.sh")
 ;; (defpoll qan :interval "15m" "python ~/.config/bspwm/price.py qan.ax")
 
 (defwidget main []
@@ -32,6 +33,7 @@
            (box :orientation "v" :space-evenly false :valign "end" :class "stats"
                 (stocks)
                 (ipaddr)
+                (keyboard_batt)
                 (volume)
                 (mem)
                 (cpu)
@@ -87,6 +89,18 @@
                                    :thickness 5
                                    :start-at 25
                                    (label :class "statval" :text vol :width "40")
+                                   )
+                ))
+
+
+(defwidget keyboard_batt []
+           (box :class "module" :orientation "v" :width "60"
+                (label :class "statlabel" :text "kb")
+                (circular-progress :value kb_batt
+                                   :class "statbar"
+                                   :thickness 5
+                                   :start-at 25
+                                   (label :class "statval" :text kb_batt :width "40")
                                    )
                 ))
 
