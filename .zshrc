@@ -90,6 +90,7 @@ source $ZSH/oh-my-zsh.sh
 
 autoload -Uz compinit
 compinit
+autoload zmv
 
 bindkey '\e.' insert-last-word
 

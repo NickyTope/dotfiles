@@ -70,11 +70,16 @@ end
 --   end
 -- end
 
+local clear_hidden_buffers = function()
+  require("close_buffers").delete({ type = "hidden", force = true })
+end
+
 wk.register({
   ["<leader>"] = {
     ["<leader>"] = { cmd("b#"), "Previous file" },
     ["<Esc>"] = { cmd("noh"), "Remove hl" },
     b = { telescope.buffers, "Buffer list" },
+    ["BD"] = { clear_hidden_buffers, "Clear hidden buffer" },
     c = { cmd("!zenity --color-selection --color='\\#<cword>'"), "preview color" },
     e = { cmd("e"), "Reload file" },
     f = { telescope.live_grep, "Find in files" },

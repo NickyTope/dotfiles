@@ -177,7 +177,16 @@ require("lspconfig").jsonls.setup({
   cmd = { "vscode-json-languageserver", "--stdio" },
 })
 
-require("lspconfig").yamlls.setup({ on_attach = my_attach })
+require("lspconfig").yamlls.setup({
+  on_attach = my_attach,
+  settings = {
+    redhat = { telemetry = { enabled = false } },
+    yaml = {
+      keyOrdering = false,
+    },
+  },
+})
+
 require("lspconfig").gopls.setup({
   on_attach = function(client)
     my_attach(client)

@@ -1,3 +1,6 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require("ntope.settings")
 require("ntope.lazy")
 require("ntope.language")

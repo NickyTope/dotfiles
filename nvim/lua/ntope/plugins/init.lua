@@ -48,7 +48,6 @@ return {
     end,
   },
   "nvim-telescope/telescope-symbols.nvim",
-  "nvim-treesitter/nvim-treesitter-textobjects",
   { "m-demare/hlargs.nvim",        config = true },
   "mbbill/undotree",
 

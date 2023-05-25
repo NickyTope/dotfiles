@@ -26,27 +26,20 @@ vim.opt.grepprg = "rg --vimgrep"
 vim.opt.grepformat = "%f:%l:%c:%m"
 vim.opt.swapfile = false
 vim.opt.signcolumn = "yes"
-vim.opt.sessionoptions = "buffers"
 vim.opt.completeopt = { "menuone", "noselect" }
 -- " highlighted yank
 vim.g.highlightedyank_highlight_duration = 500
 vim.g.mapleader = " "
 
+vim.o.sessionoptions = "curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 vim.opt.cmdheight = 0
 vim.opt.shortmess:append("S")
 
--- vim.opt.shada = "!,<50,s10,h"
-vim.cmd([[set shada="NONE"]])
+vim.cmd([[set shada='10,<10,/50,:50,s10,h]])
 
 -- " vim-markdown
 vim.g.vim_markdown_folding_disabled = 1
-
--- vim.g.gruvbox_transparent_bg = true
--- vim.g.gruvbox_bold = true
--- vim.g.gruvbox_italicize_strings = true
--- vim.gruvbox_invert_selection = true
--- vim.g.gruvbox_improved_warnings = true
--- vim.g.gruvbox_improved_strings = true
 
 vim.g.yanks_max = 1000
 

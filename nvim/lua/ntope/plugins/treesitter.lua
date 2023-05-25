@@ -13,10 +13,12 @@ return {
           "go",
           "help",
           "html",
-          "http",
+          -- "http",
           "javascript",
+          "jsdoc",
           "json",
           "lua",
+          "luap",
           "markdown",
           "markdown_inline",
           "python",
@@ -33,28 +35,7 @@ return {
           additional_vim_regex_highlighting = true,
         },
         indent = {
-          enable = false,
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            -- Automatically jump forward to textobj, similar to targets.vim
-            lookahead = true,
-            keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-            },
-          },
-          lsp_interop = {
-            enable = true,
-            peek_definition_code = {
-              ["<leader>gd"] = "@function.outer",
-              ["<leader>gD"] = "@class.outer",
-            },
-          },
+          enable = true,
         },
       })
     end,
