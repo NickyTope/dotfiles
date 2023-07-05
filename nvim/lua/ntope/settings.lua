@@ -31,7 +31,7 @@ vim.opt.completeopt = { "menuone", "noselect" }
 vim.g.highlightedyank_highlight_duration = 500
 vim.g.mapleader = " "
 
-vim.o.sessionoptions = "curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "curdir,buffers,folds,help,tabpages,winsize,terminal"
 
 vim.opt.cmdheight = 0
 vim.opt.shortmess:append("S")
