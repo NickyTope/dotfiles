@@ -23,10 +23,9 @@ return {
   -- Syntax
   { "mitsuhiko/vim-jinja",     ft = "jinja" },
   "yuezk/vim-js",
-  { "stephpy/vim-yaml",        ft = "yaml" },
-  { "vim-scripts/groovy.vim",  ft = "groovy" },
-  { "chrisbra/csv.vim",        ft = "csv" },
-  { "plasticboy/vim-markdown", ft = "markdown", dependencies = { "godlygeek/tabular" } },
+  { "stephpy/vim-yaml",       ft = "yaml" },
+  { "vim-scripts/groovy.vim", ft = "groovy" },
+  { "chrisbra/csv.vim",       ft = "csv" },
   "vim-scripts/nginx.vim",
   "neoclide/vim-jsx-improve",
 

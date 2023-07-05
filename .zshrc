@@ -98,6 +98,10 @@ bindkey '\e.' insert-last-word
 . ~/.config/antidote/antidote.zsh
 antidote load
 
+function subdir_do() {
+  for d in ./*/ ; do (echo "=== $d ===" && cd "$d" && "$@") ; done
+}
+
 function fzfz() {
   cd $(z | awk '{print $2}' | fzf --scheme=path --tac)
   zle reset-prompt

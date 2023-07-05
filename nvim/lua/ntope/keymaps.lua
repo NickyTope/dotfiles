@@ -74,6 +74,9 @@ local clear_hidden_buffers = function()
   require("close_buffers").delete({ type = "hidden", force = true })
 end
 
+local harpoon_mark = require("harpoon.mark")
+local harpoon_ui = require("harpoon.ui")
+
 wk.register({
   ["<leader>"] = {
     ["<leader>"] = { cmd("b#"), "Previous file" },
@@ -98,7 +101,13 @@ wk.register({
       -- d = goto definition (defined in language.lua when lsp client connects)
       -- t = goto type definition (defined in language.lua when lsp client connects)
     },
-    h = { telescope.help_tags, "Vim help" },
+    h = {
+      name = "Harpoon",
+      a = { harpoon_mark.add_file, "Add File" },
+      h = { harpoon_ui.toggle_quick_menu, "Quick Menu" },
+      n = { harpoon_ui.nav_next, "Next File" },
+      N = { harpoon_ui.nav_prec, "Prev File" },
+    },
     i = { toggle_name, "Info (showfilename)" },
     j = { "J", "join lines" },
     l = {
@@ -141,6 +150,7 @@ wk.register({
       r = { spectre_replace(false), "Find and Replace" },
       R = { spectre_replace(true), "Current word replace" },
     },
+    t = { telescope.builtin, "Telescope builtin" },
     w = {
       name = "word operations",
       y = { symbols, "Symbols" },
@@ -213,7 +223,6 @@ map("v", "<leader>g", '"gy:g/<c-r>g/norm ', {})
 map("v", "<leader>s", '"sy:%s!\\(<c-r>s\\)!<c-r>s', {})
 
 -- no idea how to port these, let's just cmd them
--- vim.cmd([[ nnoremap _ :vsp <c-r>=expand("%:.:h")<cr><cr> ]])
 vim.cmd([[ nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR> ]])
 
 vim.cmd([[
