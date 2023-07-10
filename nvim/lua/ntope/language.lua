@@ -179,6 +179,8 @@ require("lspconfig").jsonls.setup({
 
 require("lspconfig").yamlls.setup({
   on_attach = my_attach,
+  filetypes = { "yaml" },
+  autostart = false,
   settings = {
     redhat = { telemetry = { enabled = false } },
     yaml = {

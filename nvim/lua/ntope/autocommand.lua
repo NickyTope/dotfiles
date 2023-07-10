@@ -5,6 +5,7 @@ au BufNewFile,BufRead *.conf set ft=nginx
 au BufNewFile,BufRead *.yuck set ft=lisp
 au BufNewFile,BufRead dunstrc set ft=dosini
 au BufWritePost *.md silent !pandoc -o /tmp/preview.pdf %
+autocmd BufRead,BufNewFile */templates/*.yml,*/templates/*.tpl,*.gotmpl,helmfile*.yml set ft=helm
 ]])
 
 -- zmk

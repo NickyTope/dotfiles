@@ -25,7 +25,11 @@ return {
       require("mini.ai").setup()
       require("mini.pairs").setup()
       require("mini.comment").setup()
-      require("mini.surround").setup()
+      require("mini.surround").setup({
+        mappings = {
+          update_n_lines = "sN",
+        },
+      })
       require("mini.indentscope").setup({
         draw = {
           delay = 500,
