@@ -70,6 +70,7 @@ export LANGUAGE=en_US.UTF-8
 # ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░▀▀░░▀▀▀
 [ -f ~/.npmrc ] && rm ~/.npmrc
 [ -s "/home/nicky/.bun/_bun" ] && source "/home/nicky/.bun/_bun"
+source <(npm completion)
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 source /usr/share/nvm/init-nvm.sh
