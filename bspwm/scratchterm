@@ -5,5 +5,6 @@ if [ "$id" != "" ]
 then
   bspc node "$id" --flag hidden -f -d $(bspc query -D -d) --follow
 else
-  alacritty --class "scratchterm,scratchterm" &
+  # alacritty --class "scratchterm,scratchterm" &
+  wezterm start --class "scratchterm"
 fi
