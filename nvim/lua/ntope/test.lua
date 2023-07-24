@@ -6,7 +6,7 @@ M.out = ""
 M.stat = ""
 -- { mode = "n", cmd = { "c", "i", "*" }, index = 1 }
 
-M.on_key = function(key)
+M._on_key = function(key)
 	if string.len(key) > 1 then
 		return
 	end
@@ -55,6 +55,7 @@ end
 
 M.setup = function(opts)
 	M.keys = opts.keys or {}
+	M.on_key = M._on_key
 	M.ns = vim.on_key(M.on_key)
 end
 
@@ -69,7 +70,7 @@ M.log = function()
 end
 
 M.stop = function()
-	vim.on_key(nil, M.ns)
+	M.on_key = nil
 end
 
 M.setup({

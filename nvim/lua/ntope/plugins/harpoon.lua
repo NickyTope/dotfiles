@@ -1,8 +1,8 @@
 return {
-  {
-    "ThePrimeagen/harpoon",
-    config = function()
-      require("harpoon").setup({})
-    end,
-  },
+	{
+		"ThePrimeagen/harpoon",
+		config = function()
+			require("harpoon").setup({})
+		end,
+	},
 }

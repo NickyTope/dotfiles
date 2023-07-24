@@ -1,56 +1,56 @@
 return {
 
-  -- Pretties
-  "ryanoasis/vim-devicons",
+	-- Pretties
+	"ryanoasis/vim-devicons",
 
-  -- Editor convenience
-  { "folke/which-key.nvim",    config = true },
+	-- Editor convenience
+	{ "folke/which-key.nvim", config = true },
 
-  -- Text manilpulation
-  "kana/vim-textobj-user",
-  "etdev/vim-textobject-pack",
+	-- Text manilpulation
+	"kana/vim-textobj-user",
+	"etdev/vim-textobject-pack",
 
-  -- Input trickery
-  "alvan/vim-closetag",
-  "L3MON4D3/LuaSnip",
-  -- "machakann/vim-sandwich",
+	-- Input trickery
+	"alvan/vim-closetag",
+	"L3MON4D3/LuaSnip",
+	-- "machakann/vim-sandwich",
 
-  -- git
-  "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
-  { "f-person/git-blame.nvim", dependencies = { "f-person/lua-timeago" } },
+	-- git
+	"tpope/vim-fugitive",
+	"tpope/vim-rhubarb",
+	{ "f-person/git-blame.nvim", dependencies = { "f-person/lua-timeago" } },
 
-  -- Syntax
-  { "mitsuhiko/vim-jinja",     ft = "jinja" },
-  "yuezk/vim-js",
-  { "stephpy/vim-yaml",       ft = "yaml" },
-  { "vim-scripts/groovy.vim", ft = "groovy" },
-  { "chrisbra/csv.vim",       ft = "csv" },
-  "vim-scripts/nginx.vim",
-  "neoclide/vim-jsx-improve",
+	-- Syntax
+	{ "mitsuhiko/vim-jinja", ft = "jinja" },
+	"yuezk/vim-js",
+	{ "stephpy/vim-yaml", ft = "yaml" },
+	{ "vim-scripts/groovy.vim", ft = "groovy" },
+	{ "chrisbra/csv.vim", ft = "csv" },
+	"vim-scripts/nginx.vim",
+	"neoclide/vim-jsx-improve",
 
-  -- tools
-  "nvim-lua/popup.nvim",
-  "nvim-lua/plenary.nvim",
-  "nvim-telescope/telescope.nvim",
-  "nvim-telescope/telescope-ui-select.nvim",
-  "tami5/sqlite.lua",
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    config = function()
-      require("indent_blankline").setup({
-        show_current_context = false,
-        show_current_context_start = false,
-        _treesitter = true,
-        show_first_indent_level = false,
-      })
-    end,
-  },
-  "nvim-telescope/telescope-symbols.nvim",
-  { "m-demare/hlargs.nvim",        config = true },
-  "mbbill/undotree",
+	-- tools
+	"nvim-lua/popup.nvim",
+	"nvim-lua/plenary.nvim",
+	"nvim-telescope/telescope.nvim",
+	"nvim-telescope/telescope-ui-select.nvim",
+	"tami5/sqlite.lua",
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		config = function()
+			require("indent_blankline").setup({
+				show_current_context = false,
+				show_current_context_start = false,
+				_treesitter = true,
+				show_first_indent_level = false,
+			})
+		end,
+	},
+	"nvim-telescope/telescope-symbols.nvim",
+	{ "m-demare/hlargs.nvim", config = true },
+	"mbbill/undotree",
 
-  -- new plugins go here until confirmed ful...
-  { "shortcuts/no-neck-pain.nvim", version = "*" },
-  { "nvim-pack/nvim-spectre",      config = true },
+	-- new plugins go here until confirmed ful...
+	{ "shortcuts/no-neck-pain.nvim", version = "*" },
+	{ "nvim-pack/nvim-spectre", config = true },
 }

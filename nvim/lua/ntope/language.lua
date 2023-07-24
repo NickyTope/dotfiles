@@ -150,8 +150,21 @@ require("lspconfig").lua_ls.setup({
 	on_attach = my_attach,
 	settings = {
 		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+			},
 			diagnostics = {
+				-- Get the language server to recognize the `vim` global
 				globals = { "vim" },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
 			},
 		},
 	},
@@ -206,14 +219,14 @@ require("lspconfig").pylsp.setup({
 	end,
 })
 
-local config = vim.diagnostic.config()
-config.underline = true
--- config.virtual_text = false
-config.virtual_text = {
-	-- spacing = 2,
-	-- prefix = "<",
-	severity = {
-		min = vim.diagnostic.severity.INFO,
-	},
-}
-vim.diagnostic.config(config)
+-- local config = vim.diagnostic.config()
+-- config.underline = true
+-- -- config.virtual_text = false
+-- config.virtual_text = {
+-- 	-- spacing = 2,
+-- 	-- prefix = "<",
+-- 	severity = {
+-- 		min = vim.diagnostic.severity.INFO,
+-- 	},
+-- }
+-- vim.diagnostic.config(config)
