@@ -82,7 +82,7 @@ wk.register({
 	["<leader>"] = {
 		["<leader>"] = { cmd("b#"), "Previous file" },
 		["<Esc>"] = { cmd("noh"), "Remove hl" },
-		b = { telescope.buffers, "Buffer list" },
+		b = { cmd("Neotree buffers"), "Buffer list" },
 		["BD"] = { clear_hidden_buffers, "Clear hidden buffer" },
 		c = { cmd("!zenity --color-selection --color='\\#<cword>'"), "preview color" },
 		e = { cmd("e"), "Reload file" },
@@ -135,7 +135,7 @@ wk.register({
 			vim.lsp.buf.rename,
 			"Rename var",
 		},
-		o = { cmd("NvimTreeToggle"), "Toggle tree" },
+		o = { cmd("Neotree toggle"), "Toggle tree" },
 		p = { format_slowly, "Format file" },
 		q = {
 			name = "Quickfix",
@@ -182,12 +182,12 @@ vim.keymap.set("i", "<c-l>", function()
 	vim.lsp.buf.signature_help()
 end)
 
-local focus_file = function()
-	require("nvim-tree.api").tree.find_file({
-		open = true,
-		focus = true,
-	})
-end
+-- local focus_file = function()
+-- 	require("nvim-tree.api").tree.find_file({
+-- 		open = true,
+-- 		focus = true,
+-- 	})
+-- end
 
 nmap("Q", cmd("q"), {})
 nmap("Y", "yy", {})
@@ -200,7 +200,7 @@ nmap("<c-p>", find_files, {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
-nmap("-", focus_file, {})
+nmap("-", cmd("Neotree filesystem reveal right"), {})
 nmap("<c-Space>", cmd("lua require'ntope.complete'.toggle()"), {})
 
 -- use gc maps instead !!

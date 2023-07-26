@@ -23,6 +23,8 @@ alias ncore="core && nvim"
 alias ndevops="devops && nvim"
 alias conf="cd ~/.config"
 alias nconf="conf && nvim"
+alias dots="cd ~/code/dotfiles"
+alias ndots="dots && nvim"
 alias x="startx"
 alias yayu="yay -Syu --devel --timeupdate"
 alias n="nvim"
@@ -42,6 +44,8 @@ alias yrs="web && yarn run start"
 alias fact="curl --no-progress-meter https://uselessfacts.jsph.pl/api/v2/facts/random\?language\=en | jq .text"
 alias pandoc='docker run --rm -v "`pwd`:/data" -v "/usr/share/fonts/TTF:/fonts" pandoc/latex'
 alias gotop=vtop
+alias ttq="curl http://api.quotable.io/random|jq '[.text=.content|.attribution=.author]'|tt -oneshot -quotes -"
+alias ttd="tt -n 10 -oneshot -showwpm -w 10 -csv >> ~/wpm.csv"
 
 # ░█▀▀░█▀█░█░█
 # ░█▀▀░█░█░▀▄▀

@@ -229,4 +229,4 @@ require("lspconfig").pylsp.setup({
 -- 		min = vim.diagnostic.severity.INFO,
 -- 	},
 -- }
--- vim.diagnostic.config(config)
+-- rim.diagnostic.config(config)

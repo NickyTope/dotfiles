@@ -2,6 +2,7 @@ vim.cmd([[filetype plugin on]])
 vim.opt.laststatus = 3
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.splitkeep = "screen"
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
