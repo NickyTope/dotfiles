@@ -82,7 +82,7 @@ wk.register({
 	["<leader>"] = {
 		["<leader>"] = { cmd("b#"), "Previous file" },
 		["<Esc>"] = { cmd("noh"), "Remove hl" },
-		b = { cmd("Neotree buffers"), "Buffer list" },
+		b = { cmd("Neotree source=buffers reveal=true position=left action=focus"), "Buffer list" },
 		["BD"] = { clear_hidden_buffers, "Clear hidden buffer" },
 		c = { cmd("!zenity --color-selection --color='\\#<cword>'"), "preview color" },
 		e = { cmd("e"), "Reload file" },
@@ -160,6 +160,7 @@ wk.register({
 			g = { '"gyiw:g/<c-r>g/norm ', "operate on lines containing word" },
 			G = { '"gyiW:g/<c-r>g/norm ', "operate on lines containing WORD" },
 		},
+		W = { "<c-w>=", "even window ratio" },
 		u = {
 			h = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
 		},
@@ -200,7 +201,7 @@ nmap("<c-p>", find_files, {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
-nmap("-", cmd("Neotree filesystem reveal right"), {})
+nmap("-", cmd("Neotree source=filesystem reveal=true position=left action=focus"), {})
 nmap("<c-Space>", cmd("lua require'ntope.complete'.toggle()"), {})
 
 -- use gc maps instead !!
