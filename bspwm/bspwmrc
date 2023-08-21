@@ -32,6 +32,7 @@ bspc rule -a '*:gitk' state=floating
 bspc rule -a '*:dialog' state=floating
 bspc rule -a '*:gcolor3' state=floating
 bspc rule -a '*:simplescreenrecorder' state=floating
+bspc rule -a '*:galculator' state=floating
 bspc rule -a "scratchterm" state=floating rectangle=1600x800+0+0 center=on
 
 ~/.config/polybar/launch.sh &

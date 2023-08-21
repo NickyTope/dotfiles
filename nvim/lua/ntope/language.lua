@@ -79,8 +79,8 @@ require("lualine").setup({
 
 local my_attach = function(client)
 	lsp_status.on_attach(client)
-	mapper("n", "gd", "<cmd>Lspsaga peek_definition<CR>")
-	mapper("n", "td", "<cmd>Lspsaga peek_type_definition<CR>")
+	mapper("n", "gd", vim.lsp.buf.definition)
+	mapper("n", "td", vim.lsp.buf.type_definition)
 end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
@@ -173,6 +173,7 @@ require("lspconfig").lua_ls.setup({
 require("lspconfig").dockerls.setup({ on_attach = my_attach })
 require("lspconfig").vimls.setup({ on_attach = my_attach })
 require("lspconfig").stylelint_lsp.setup({
+	filetypes = { "css", "scss" },
 	settings = {
 		stylelintplus = {
 			autoFixOnFormat = true,
@@ -180,14 +181,64 @@ require("lspconfig").stylelint_lsp.setup({
 	},
 })
 
-require("lspconfig").tailwindcss.setup({})
-
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-require("lspconfig").cssls.setup({
-	capabilities = capabilities,
-	cmd = { "css-languageserver", "--stdio" },
+require("lspconfig").tailwindcss.setup({
+	filetypes = {
+		-- "aspnetcorerazor",
+		-- "astro",
+		-- "astro-markdown",
+		-- "blade",
+		-- "clojure",
+		-- "django-html",
+		-- "htmldjango",
+		-- "edge",
+		-- "eelixir",
+		-- "elixir",
+		-- "ejs",
+		-- "erb",
+		-- "eruby",
+		-- "gohtml",
+		-- "haml",
+		-- "handlebars",
+		-- "hbs",
+		-- "html",
+		-- "html-eex",
+		-- "heex",
+		-- "jade",
+		-- "leaf",
+		-- "liquid",
+		-- "markdown",
+		-- "mdx",
+		-- "mustache",
+		-- "njk",
+		-- "nunjucks",
+		-- "php",
+		-- "razor",
+		-- "slim",
+		-- "twig",
+		-- "css",
+		-- "less",
+		-- "postcss",
+		-- "sass",
+		-- "scss",
+		-- "stylus",
+		-- "sugarss",
+		-- "javascript",
+		-- "javascriptreact",
+		-- "reason",
+		-- "rescript",
+		-- "typescript",
+		"typescriptreact",
+		-- "vue",
+		-- "svelte",
+	},
 })
+
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- require("lspconfig").cssls.setup({
+-- 	capabilities = capabilities,
+-- 	cmd = { "css-languageserver", "--stdio" },
+-- })
 
 require("lspconfig").jsonls.setup({
 	on_attach = my_attach,

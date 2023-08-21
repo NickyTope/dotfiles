@@ -59,16 +59,16 @@ local spectre_replace = function(select_word)
 	end
 end
 
--- local diagnostic = function(forward)
---   return function()
---     if forward then
---       vim.diagnostic.goto_next()
---     else
---       vim.diagnostic.goto_prev()
---     end
---     vim.lsp.buf.code_action()
---   end
--- end
+local diagnostic = function(forward)
+	return function()
+		if forward then
+			vim.diagnostic.goto_next()
+		else
+			vim.diagnostic.goto_prev()
+		end
+		vim.lsp.buf.code_action()
+	end
+end
 
 local clear_hidden_buffers = function()
 	require("close_buffers").delete({ type = "hidden", force = true })
@@ -78,7 +78,7 @@ local harpoon_mark = require("harpoon.mark")
 local harpoon_ui = require("harpoon.ui")
 
 wk.register({
-	-- ["gd"] = { vim.lsp.buf.definition, "Goto Definition" },
+	["gd"] = { vim.lsp.buf.definition, "Goto Definition" },
 	["<leader>"] = {
 		["<leader>"] = { cmd("b#"), "Previous file" },
 		["<Esc>"] = { cmd("noh"), "Remove hl" },
@@ -119,17 +119,18 @@ wk.register({
 				"Rename (in project)",
 			},
 			d = { diag, "Diagnostix" },
-			h = { cmd("Lspsaga hover_doc"), "Hover (doc)" },
+			-- h = { cmd("Lspsaga hover_doc"), "Hover (doc)" },
+			h = { vim.lsp.buf.hover, "Hover (doc)" },
 			l = { vim.diagnostic.open_float, "Diagnostic float" },
-			a = { cmd("Lspsaga code_action"), "Code Action" },
-			-- a = { vim.lsp.buf.code_action, "Code Action" },
+			-- a = { cmd("Lspsaga code_action"), "Code Action" },
+			a = { vim.lsp.buf.code_action, "Code Action" },
 			s = { vim.lsp.buf.signature_help, "Signature Help" },
 			t = { vim.lsp.buf.type_definition, "Type def" },
 		},
-		n = { cmd("Lspsaga diagnostic_jump_next"), "Next error" },
-		N = { cmd("Lspsaga diagnostic_jump_prev"), "Prev error" },
-		-- n = { diagnostic(true), "Next error" },
-		-- N = { diagnostic(false), "Prev error" },
+		-- n = { cmd("Lspsaga diagnostic_jump_next"), "Next error" },
+		-- N = { cmd("Lspsaga diagnostic_jump_prev"), "Prev error" },
+		n = { diagnostic(true), "Next error" },
+		N = { diagnostic(false), "Prev error" },
 		["mp"] = { cmd("silent !zathura /tmp/preview.pdf &"), "Open preview in Zathura" },
 		["rn"] = {
 			vim.lsp.buf.rename,
