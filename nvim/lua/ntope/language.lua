@@ -1,7 +1,3 @@
-local mapper = function(mode, key, result)
-	vim.keymap.set(mode, key, result, { noremap = true, silent = true })
-end
-
 local icons = require("ntope.icons")
 
 local lsp_status = require("lsp-status")
@@ -13,9 +9,6 @@ lsp_status.config({
 	indicator_ok = icons.ok,
 })
 lsp_status.register_progress()
-local function stat()
-	return lsp_status.status()
-end
 
 local actions = require("telescope.actions")
 require("telescope").setup({
@@ -37,89 +30,11 @@ require("telescope").setup({
 })
 require("telescope").load_extension("ui-select")
 
-local function recording()
-	local reg = vim.fn.reg_recording()
-	if reg == "" then
-		return ""
-	else
-		return "rec @" .. reg
-	end
-end
-
-local function search()
-	if vim.v.hlsearch == 1 then
-		local ok, count = pcall(vim.fn.searchcount)
-		if ok and count["total"] > 0 then
-			return "🔎 " .. count["current"] .. "/" .. count["total"]
-		end
-	end
-	return ""
-end
-
-require("lualine").setup({
-	sections = {
-		lualine_b = { "diff", "branch" },
-		lualine_c = { "filename" },
-		lualine_x = {
-			recording,
-			search,
-			"filetype",
-		},
-		lualine_y = { stat },
-		lualine_z = { "progress" },
-	},
-	winbar = {
-		lualine_c = { "filename" },
-	},
-	inactive_winbar = {
-		lualine_c = { "filename" },
-	},
-	inactive_sections = {
-		lualine_x = { "progress" },
-	},
-	options = {
-		theme = "nightfox",
-		-- globalstatus = true,
-	},
-})
-
 local my_attach = function(client)
 	lsp_status.on_attach(client)
-	mapper("n", "gd", vim.lsp.buf.definition)
-	mapper("n", "td", vim.lsp.buf.type_definition)
+	vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+	vim.keymap.set("n", "td", vim.lsp.buf.type_definition)
 end
-
--- https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md
--- local null_ls = require("null-ls")
--- null_ls.setup({
---   on_attach = function(client, bufnr)
---     vim.api.nvim_create_autocmd("BufWritePre", {
---       buffer = bufnr,
---       callback = function()
---         vim.lsp.buf.format({
---           async = false,
---           filter = function(c)
---             return c.name ~= "tsserver"
---           end,
---         })
---       end,
---     })
---   end,
---   sources = {
---     -- cargo install stylua
---     null_ls.builtins.formatting.stylua,
---     null_ls.builtins.formatting.gofmt,
---     null_ls.builtins.formatting.autopep8,
---     null_ls.builtins.formatting.prettier.with({
---       filetypes = {
---         "markdown",
---         "json",
---         "yaml",
---       },
---     }),
---     null_ls.builtins.formatting.stylelint,
---   },
--- })
 
 require("lspconfig").eslint.setup({
 	settings = {
@@ -238,13 +153,6 @@ require("lspconfig").tailwindcss.setup({
 		-- "svelte",
 	},
 })
-
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
--- require("lspconfig").cssls.setup({
--- 	capabilities = capabilities,
--- 	cmd = { "css-languageserver", "--stdio" },
--- })
 
 require("lspconfig").jsonls.setup({
 	on_attach = my_attach,
