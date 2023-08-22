@@ -1,5 +1,5 @@
 local mapper = function(mode, key, result)
-	vim.api.nvim_buf_set_keymap(0, mode, key, result, { noremap = true, silent = true })
+	vim.keymap.set(mode, key, result, { noremap = true, silent = true })
 end
 
 local icons = require("ntope.icons")
@@ -67,6 +67,12 @@ require("lualine").setup({
 		},
 		lualine_y = { stat },
 		lualine_z = { "progress" },
+	},
+	winbar = {
+		lualine_c = { "filename" },
+	},
+	inactive_winbar = {
+		lualine_c = { "filename" },
 	},
 	inactive_sections = {
 		lualine_x = { "progress" },

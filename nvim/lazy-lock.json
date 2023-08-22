@@ -9,8 +9,6 @@
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
   "csv.vim": { "branch": "master", "commit": "15ff93edf5b26c466affbb356e0696b7d6a3b499" },
-  "dressing.nvim": { "branch": "master", "commit": "ee571505f3566f84fd252e76c4ce6df6eaf2fb94" },
-  "flash.nvim": { "branch": "main", "commit": "967117690bd677cb7b6a87f0bc0077d2c0be3a27" },
   "git-blame.nvim": { "branch": "master", "commit": "41e22dc843c6821a410db57be0b7025154f9d8ec" },
   "gitsigns.nvim": { "branch": "main", "commit": "749267aaa863c30d721c9913699c5d94e0c07dd3" },
   "groovy.vim": { "branch": "master", "commit": "f121908b6f159d4692517587bf165c5f065fd75f" },
