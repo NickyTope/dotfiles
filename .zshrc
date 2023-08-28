@@ -74,19 +74,19 @@ export LANGUAGE=en_US.UTF-8
 # ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░▀▀░░▀▀▀
 [ -f ~/.npmrc ] && rm ~/.npmrc
 [ -s "/home/nicky/.bun/_bun" ] && source "/home/nicky/.bun/_bun"
-source <(npm completion)
+hash npm && source <(npm completion)
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-source /usr/share/nvm/init-nvm.sh
-export PATH="$(yarn global bin):$PATH"
+[ -f /user/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
+hash yarn && export PATH="$(yarn global bin):$PATH"
 
 # ░█▀▀░█░█░█▀▀░░░█░█░█░█░█░█▀▄░█▀▀
 # ░█░█░█▀▄░█▀▀░▄▀░░█▀▄░█░█░█▀▄░█▀▀
 # ░▀▀▀░▀░▀░▀▀▀░▀░░░▀░▀░▀▀▀░▀▀░░▀▀▀
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-source /opt/google-cloud-sdk/completion.zsh.inc
-source /opt/google-cloud-sdk/path.zsh.inc
-source <(kubectl completion zsh)
+[ -f /opt/google-cloud-sdk/completion.zsh.inc ] && source /opt/google-cloud-sdk/completion.zsh.inc
+[ -f /opt/google-cloud-sdk/path.zsh.inc ] && source /opt/google-cloud-sdk/path.zsh.inc
+hash kubectl && source <(kubectl completion zsh)
 
 # ░▀▀█░█▀▀░█░█
 # ░▄▀░░▀▀█░█▀█
