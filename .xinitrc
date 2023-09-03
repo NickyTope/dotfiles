@@ -37,6 +37,6 @@ fi
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
 xset r rate 399 40
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+# eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 
 exec bspwm
