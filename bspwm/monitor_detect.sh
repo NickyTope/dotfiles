@@ -52,8 +52,8 @@ if [ "$HOSTNAME" == "miniarch" ]; then
   count=${#monitors[@]}
 
   [ "$count" -eq "1" ] && return
-
   dp0=$(xrandr --listmonitors | grep "DisplayPort-0" | wc -l)
+
   dp1=$(xrandr --listmonitors | grep "DisplayPort-1" | wc -l)
   dp2=$(xrandr --listmonitors | grep "DisplayPort-2" | wc -l)
   dp3=$(xrandr --listmonitors | grep "DisplayPort-3" | wc -l)
@@ -68,3 +68,20 @@ if [ "$HOSTNAME" == "miniarch" ]; then
   fi
 
 fi
+
+if [ "$HOSTNAME" == "nt-oryx" ]; then
+  readarray -t monitors <<<$(xrandr --listmonitors | grep "+" | awk '{ print $4 }')
+  count=${#monitors[@]}
+
+  [ "$count" -eq "1" ] && return
+
+  dp1=$(xrandr --listmonitors | grep "DP-1" | wc -l)
+  hdmi=$(xrandr --listmonitors | grep "HDMI-0" | wc -l)
+
+  if [ "$dp1" -eq "1" ]; then
+    xrandr --output DP-1 --right-of eDP-1
+  elif [ "hdmi" -eq "1" ]; then
+    xrandr --output HDMI-0 --right-of eDP-1
+  fi
+fi
+

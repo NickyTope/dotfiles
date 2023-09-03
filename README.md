@@ -2,10 +2,21 @@
 
 requirements:
 
+arch basic install using python archinstall script
+after install got to chroot and install iwd, dhcpcd and vi
+systemctl enable iwd
+systemctl enable dhcpcd
+
+### Pipewire
+sudo pacman -S pipewire pipewire-alsa pipewire-media-session pipewire-pulse
+
+### volume
+
 ```
 sudo pacman -S alacritty bspwm dunst picom polybar rofi sxhkd git base-devel cmake zsh
 ```
 
+// This doesnt work
 setup.sh (run from this dir) creates symlinks in ~/.config
 
 ### xorg
@@ -40,16 +51,16 @@ sudo make install
 
 - clipster
 - firefox-developer-edition
-- nautilus
+- nemo
 - feh
-- ponymix
-- pulseaudio
 - alsa-utils
 - arandr
 - lxappearance
 - gnome-tweaks
 - openssh
+- pass
 - zip / unzip
+- jq
 - nvm
 - docker
 - python / pip
@@ -60,11 +71,14 @@ sudo make install
 - gnome-keyring
 - colorpicker
 - maim
+- fileroller
 - i3lock-fancy-multimonitor
 - meld
 - lazygit
 - mpv
 - remmina
+- eww
+- wezterm
 
 ### fonts
 

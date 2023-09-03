@@ -33,5 +33,17 @@ if [ "$HOSTNAME" == "miniarch" ]; then
   fi
 fi
 
+if [ "$HOSTNAME" == "nt-oryx" ]; then
+  echo "Oryx setup with $count monitors"
+  if [ $count == 1 ]
+  then
+    bspc monitor ^1 -d term api webfront config five web chat win nine ten
+  elif [ $count == 2 ]
+  then
+    bspc monitor ^1 -d term
+    bspc monitor ^2 -d api webfront config five web chat win nine ten
+  fi
+fi
+
 # echo ${#monitors[@]}
 
