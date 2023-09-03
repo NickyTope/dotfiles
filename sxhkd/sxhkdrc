@@ -64,8 +64,8 @@ super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+super + {_,shift +}v
+	bspc desktop -f {next,prev}.local
 
 # focus the last node/desktop
 super + {grave,Tab}
@@ -79,19 +79,39 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1,2,3,4,5,6,7,8,9,0}
-	bspc {desktop -f,node -d} '{term,code,code2,four,five,web,chat,win,nine,ten}'
+	bspc {desktop -f,node -d} '{term,api,webfront,config,five,web,chat,win,nine,ten}'
 
 # scratchterm
 super + u
   ~/.config/bspwm/scratchterm
+
+# even ratio
+super + apostrophe
+  bspc node @/ --balance
+
+# set the ratio
+super + alt + shift + 3
+	bspc config split_ratio 0.33 && notify-send "|  |     | third"
+super + alt + shift + 4
+	bspc config split_ratio 0.25 && notify-send "| |      | quarter"
+super + alt + shift + 5
+	bspc config split_ratio 0.5  && notify-send "|   |   | half"
+super + alt + shift + 6
+	bspc config split_ratio 0.66 && notify-send "|     |  | two thirds"
+super + alt + shift + 7
+	bspc config split_ratio 0.75 && notify-send "|      | | three quarters"
+
+# set the width
+super + alt + {2,3,4,5,6,7}
+  ~/.config/bspwm/width.sh {2,3,4,12 5,3 2,4 3}
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
-super + ctrl + {2,3,4}
-	bspc node -o {0.33,0.5,0.66}
+super + ctrl + {2,3,4,5,6,7}
+	bspc node -o 0.{25,33,25,5,66,75}
 
 # cancel the preselection for the focused node
 super + ctrl + space
@@ -129,6 +149,10 @@ super + ctrl + b
 super + ctrl + a
   ~/.config/polybar/scripts/pamenu.sh
 
+# Pass otp
+ctrl + alt + t
+  ~/.config/bspwm/otpmenu.sh
+
 # screenlayout
 super + shift + m
   ~/.config/bspwm/monitor_detect.sh
@@ -143,11 +167,15 @@ super + {alt,shift,ctrl} + p
 
 # Color Picker
 super + alt + c
-  colorpicker --short --one-shot --preview | xclip -selection clipboard
+  xcolor | xclip -selection clipboard
 
 # Share prices
 super + alt + s
   /home/nicky/apps/ticker.sh/notify-shares
+
+# on screen ruler
+super + r
+  eruler
 
 # Launcher
 super + o ; {f,s,z,t}
@@ -155,10 +183,10 @@ super + o ; {f,s,z,t}
 
 # Volume
 XF86AudioLowerVolume
-	~/.config/bspwm/volume.sh -5
+	/home/nicky/.config/bspwm/volume.sh -2
 
 XF86AudioRaiseVolume
-	~/.config/bspwm/volume.sh 5
+	/home/nicky/.config/bspwm/volume.sh +2
 
 XF86AudioMute
 	ponymix toggle
