@@ -37,6 +37,9 @@ fi
 xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
 xset r rate 399 40
-# eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+# eval $(dbus-update-activation-environment --all)
+# eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+
+source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
 exec bspwm

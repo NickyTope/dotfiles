@@ -37,9 +37,6 @@ local my_attach = function(client)
 end
 
 require("lspconfig").eslint.setup({
-	settings = {
-		packageManager = "yarn",
-	},
 	on_attach = function(client, bufnr)
 		my_attach(client)
 		vim.api.nvim_create_autocmd("BufWritePre", {

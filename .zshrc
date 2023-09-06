@@ -35,7 +35,8 @@ alias docker-rmq="docker ps -a -q -f status=exited | xargs docker rm"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
-alias lspinstall="bun add --global @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server"
+alias lspinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-eslint-language-server"
+alias lspbuninstall="bun add --global @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-eslint-language-server"
 alias ssh="TERM=linux ssh"
 alias shares="python ~/.config/bspwm/stocks.py"
 alias yrd="yarn run dev:srv"
@@ -59,7 +60,7 @@ export CARGO_PATH=/home/nicky/.cargo/bin
 export ANDROID_SDK_ROOT=/opt/android-sdk
 export ANDROID_PATH=$ANDROID_SDK_ROOT/emulator
 export _JAVA_AWT_WM_NONREPARENTING=1
-export PATH=$PATH:$GOPATH/bin:/home/nicky/bin:$ANDROID_PATH:$CARGO_PATH:/home/nicky/.local/bin
+export PATH=$PATH:$GOPATH/bin:/home/nicky/bin:$ANDROID_PATH:$CARGO_PATH:/home/nicky/.local/bin:~/.npm-global/bin
 export VISUAL=nvim
 export EDITOR=nvim
 export BAT_THEME=gruvbox-dark
@@ -74,11 +75,12 @@ export LANGUAGE=en_US.UTF-8
 # ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░▀▀░░▀▀▀
 [ -f ~/.npmrc ] && rm ~/.npmrc
 [ -s "/home/nicky/.bun/_bun" ] && source "/home/nicky/.bun/_bun"
-hash npm && source <(npm completion)
+hash npm 2>/dev/null && source <(npm completion)
+hash npm 2>/dev/null && npm config set prefix '~/.npm-global'
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 [ -f /user/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
-hash yarn && export PATH="$(yarn global bin):$PATH"
+hash yarn 2>/dev/null && export PATH="$(yarn global bin):$PATH"
 
 # ░█▀▀░█░█░█▀▀░░░█░█░█░█░█░█▀▄░█▀▀
 # ░█░█░█▀▄░█▀▀░▄▀░░█▀▄░█░█░█▀▄░█▀▀
@@ -86,7 +88,7 @@ hash yarn && export PATH="$(yarn global bin):$PATH"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 [ -f /opt/google-cloud-sdk/completion.zsh.inc ] && source /opt/google-cloud-sdk/completion.zsh.inc
 [ -f /opt/google-cloud-sdk/path.zsh.inc ] && source /opt/google-cloud-sdk/path.zsh.inc
-hash kubectl && source <(kubectl completion zsh)
+hash kubectl 2>/dev/null && source <(kubectl completion zsh)
 
 # ░▀▀█░█▀▀░█░█
 # ░▄▀░░▀▀█░█▀█

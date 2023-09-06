@@ -8,9 +8,8 @@ systemctl enable iwd
 systemctl enable dhcpcd
 
 ### Pipewire
-sudo pacman -S pipewire pipewire-alsa pipewire-media-session pipewire-pulse
 
-### volume
+sudo pacman -S pipewire pipewire-alsa pipewire-media-session pipewire-pulse pavucontrol
 
 ```
 sudo pacman -S alacritty bspwm dunst picom polybar rofi sxhkd git base-devel cmake zsh
@@ -47,6 +46,35 @@ make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
 ```
 
+### keyring setup
+
+```
+sudo pacman -S gnome-keyring seahorse
+```
+
+/etc/pam.d/login:
+
+```
+#%PAM-1.0
+
+auth       required     pam_securetty.so
+auth       requisite    pam_nologin.so
+auth       include      system-local-login
+auth	   optional     pam_gnome_keyring.so
+account    include      system-local-login
+session    include      system-local-login
+password   include      system-local-login
+session    optional     pam_gnome_keyring.so auto_start
+```
+
+### system specific config
+
+The following files have system specific config that may need customising
+bspwm/bspwmrc
+bspwm/desktops.sh
+bspwm/monitor_detect.sh
+bspwm/configbyhost.sh
+
 ### apps
 
 - clipster
@@ -59,6 +87,8 @@ sudo make install
 - gnome-tweaks
 - openssh
 - pass
+- pass-otp
+- passff-host
 - zip / unzip
 - jq
 - nvm
@@ -79,6 +109,8 @@ sudo make install
 - remmina
 - eww
 - wezterm
+- ripgrep
+- roficlip
 
 ### fonts
 
