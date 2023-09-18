@@ -111,6 +111,7 @@ bspwm/configbyhost.sh
 - wezterm
 - ripgrep
 - roficlip
+- rofi-emoji
 
 ### fonts
 

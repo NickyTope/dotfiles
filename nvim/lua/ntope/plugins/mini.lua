@@ -47,7 +47,6 @@ return {
 			})
 			require("mini.cursorword").setup({ delay = 500 })
 			require("mini.bufremove").setup()
-			require("mini.jump").setup()
 		end,
 	},
 }

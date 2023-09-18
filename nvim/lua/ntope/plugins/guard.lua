@@ -1,5 +1,8 @@
 return {
 	"nvimdev/guard.nvim",
+	dependencies = {
+		"nvimdev/guard-collection",
+	},
 	config = function()
 		local ft = require("guard.filetype")
 
@@ -9,8 +12,10 @@ return {
 		ft("yaml"):fmt("prettier")
 		ft("scss"):fmt("lsp")
 		ft("css"):fmt("lsp")
+
 		require("guard").setup({
 			fmt_on_save = true,
+			lsp_as_default_fomatter = false,
 		})
 	end,
 }

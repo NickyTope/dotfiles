@@ -38,9 +38,10 @@ bspc rule -a "scratchterm" state=floating rectangle=1600x800+0+0 center=on
 ~/.config/polybar/launch.sh &
 ~/.config/bspwm/setwall.sh &
 ~/.config/dunst/setup.sh &
-xinput set-prop "Logitech Gaming Mouse G502" "libinput Natural Scrolling Enabled" 1 &
-xinput set-prop "pointer:Logitech MX Anywhere 2S" "libinput Natural Scrolling Enabled" 1 &
+# xinput set-prop "Logitech Gaming Mouse G502" "libinput Natural Scrolling Enabled" 1 &
+# xinput set-prop "pointer:Logitech MX Anywhere 2S" "libinput Natural Scrolling Enabled" 1 &
 xinput set-prop "pointer:Glorious Model D" "libinput Natural Scrolling Enabled" 1 &
+xinput set-prop "pointer:Glorious Series One PRO Wireless" "libinput Natural Scrolling Enabled" 1 &
 picom &
 clipster -d &
 killall udiskie

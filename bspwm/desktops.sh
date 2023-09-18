@@ -40,7 +40,7 @@ if [ "$HOSTNAME" == "nt-oryx" ]; then
     bspc monitor ^1 -d term api webfront config five web chat win nine ten
   elif [ $count == 2 ]
   then
-    bspc monitor ^1 -d term
+    bspc monitor ^1 -d term 
     bspc monitor ^2 -d api webfront config five web chat win nine ten
   fi
 fi
