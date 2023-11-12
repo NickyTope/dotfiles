@@ -10,30 +10,11 @@ lsp_status.config({
 })
 lsp_status.register_progress()
 
-local actions = require("telescope.actions")
-require("telescope").setup({
-	defaults = {
-		file_sorter = require("telescope.sorters").get_fzy_sorter,
-		prompt_prefix = " >",
-		color_devicons = true,
-		file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-		grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-		qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-		mappings = {
-			i = {
-				["<C-x>"] = false,
-				["<esc>"] = actions.close,
-				["<C-q>"] = actions.send_to_qflist,
-			},
-		},
-	},
-})
-require("telescope").load_extension("ui-select")
-
 local my_attach = function(client)
 	lsp_status.on_attach(client)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition)
-	vim.keymap.set("n", "td", vim.lsp.buf.type_definition)
+	vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
+	-- vim.keymap.set("n", "td", require("telescope.builtin").lsp_type_definitions)
+	-- vim.keymap.set("n", "td", vim.lsp.buf.type_definition)
 end
 
 require("lspconfig").eslint.setup({
@@ -52,6 +33,34 @@ require("lspconfig").groovyls.setup({
 
 require("lspconfig").tsserver.setup({
 	on_attach = my_attach,
+})
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+require("lspconfig").emmet_ls.setup({
+	on_attach = my_attach,
+	filetypes = {
+		"css",
+		"eruby",
+		"html",
+		"javascript",
+		"javascriptreact",
+		"less",
+		"sass",
+		"scss",
+		"svelte",
+		"pug",
+		"typescriptreact",
+		"vue",
+	},
+	init_options = {
+		html = {
+			options = {
+				-- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+				["bem.enabled"] = true,
+			},
+		},
+	},
 })
 
 require("lspconfig").cssmodules_ls.setup({

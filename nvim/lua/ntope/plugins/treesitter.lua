@@ -1,5 +1,6 @@
 return {
 	"windwp/nvim-ts-autotag",
+	{ "m-demare/hlargs.nvim", config = true },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,

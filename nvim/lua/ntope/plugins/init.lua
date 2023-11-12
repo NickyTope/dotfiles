@@ -15,7 +15,6 @@ return {
 	-- git
 	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",
-	{ "f-person/git-blame.nvim", dependencies = { "f-person/lua-timeago" } },
 
 	-- Syntax
 	{ "mitsuhiko/vim-jinja", ft = "jinja" },
@@ -29,7 +28,6 @@ return {
 	-- tools
 	"nvim-lua/popup.nvim",
 	"tami5/sqlite.lua",
-	{ "m-demare/hlargs.nvim", config = true },
 	"mbbill/undotree",
 
 	-- new plugins go here until confirmed ful...

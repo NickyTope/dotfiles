@@ -59,28 +59,29 @@ local spectre_replace = function(select_word)
 	end
 end
 
-local diagnostic = function(forward)
-	return function()
-		if forward then
-			vim.diagnostic.goto_next()
-		else
-			vim.diagnostic.goto_prev()
-		end
-		vim.lsp.buf.code_action()
-	end
-end
+-- local diagnostic = function(forward)
+-- 	return function()
+-- 		if forward then
+-- 			vim.diagnostic.goto_next()
+-- 		else
+-- 			vim.diagnostic.goto_prev()
+-- 		end
+-- 		vim.lsp.buf.code_action()
+-- 	end
+-- end
 
 local clear_hidden_buffers = function()
 	require("close_buffers").delete({ type = "hidden", force = true })
 end
 
-local harpoon_mark = require("harpoon.mark")
-local harpoon_ui = require("harpoon.ui")
-
 wk.register({
-	["gd"] = { vim.lsp.buf.definition, "Goto Definition" },
+	g = {
+		d = { vim.lsp.buf.definition, "Goto Definition" },
+		["<Enter>"] = { cmd("vsp | lua vim.lsp.buf.definition()"), "Goto def in split" },
+	},
 	["<leader>"] = {
 		["<leader>"] = { cmd("b#"), "Previous file" },
+		["<Enter>"] = { cmd("vsp #"), "Split previous file" },
 		["<Esc>"] = { cmd("noh"), "Remove hl" },
 		b = { cmd("Neotree source=buffers reveal=true position=left action=focus"), "Buffer list" },
 		["BD"] = { clear_hidden_buffers, "Clear hidden buffer" },
@@ -102,13 +103,6 @@ wk.register({
 			-- d = goto definition (defined in language.lua when lsp client connects)
 			-- t = goto type definition (defined in language.lua when lsp client connects)
 		},
-		h = {
-			name = "Harpoon",
-			a = { harpoon_mark.add_file, "Add File" },
-			h = { harpoon_ui.toggle_quick_menu, "Quick Menu" },
-			n = { harpoon_ui.nav_next, "Next File" },
-			N = { harpoon_ui.nav_prec, "Prev File" },
-		},
 		i = { toggle_name, "Info (showfilename)" },
 		j = { "J", "join lines" },
 		l = {
@@ -119,18 +113,18 @@ wk.register({
 				"Rename (in project)",
 			},
 			d = { diag, "Diagnostix" },
-			-- h = { cmd("Lspsaga hover_doc"), "Hover (doc)" },
 			h = { vim.lsp.buf.hover, "Hover (doc)" },
 			l = { vim.diagnostic.open_float, "Diagnostic float" },
 			-- a = { cmd("Lspsaga code_action"), "Code Action" },
-			a = { vim.lsp.buf.code_action, "Code Action" },
+			-- a = { vim.lsp.buf.code_action, "Code Action" },
+			a = { cmd("CodeActionMenu"), "Code Action" },
 			s = { vim.lsp.buf.signature_help, "Signature Help" },
-			t = { vim.lsp.buf.type_definition, "Type def" },
+			t = { telescope.lsp_type_definitions, "Type def" },
 		},
 		-- n = { cmd("Lspsaga diagnostic_jump_next"), "Next error" },
 		-- N = { cmd("Lspsaga diagnostic_jump_prev"), "Prev error" },
-		n = { diagnostic(true), "Next error" },
-		N = { diagnostic(false), "Prev error" },
+		n = { vim.diagnostic.goto_next, "Next error" },
+		N = { vim.diagnostic.goto_prev, "Prev error" },
 		["mp"] = { cmd("silent !zathura /tmp/preview.pdf &"), "Open preview in Zathura" },
 		["rn"] = {
 			vim.lsp.buf.rename,
@@ -153,6 +147,7 @@ wk.register({
 			R = { spectre_replace(true), "Current word replace" },
 		},
 		t = { telescope.builtin, "Telescope builtin" },
+		T = { telescope.resume, "Telescope resume" },
 		w = {
 			name = "word operations",
 			y = { symbols, "Symbols" },

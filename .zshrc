@@ -35,8 +35,8 @@ alias docker-rmq="docker ps -a -q -f status=exited | xargs docker rm"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
-alias lspinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-eslint-language-server"
-alias lspbuninstall="bun add --global @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-eslint-language-server"
+alias lspinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-langservers-extracted"
+alias lspbuninstall="bun add --global @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-langservers-extracted"
 alias ssh="TERM=linux ssh"
 alias shares="python ~/.config/bspwm/stocks.py"
 alias yrd="yarn run dev:srv"
@@ -73,13 +73,13 @@ export LANGUAGE=en_US.UTF-8
 # ░█▀█░█▀█░█▀▄░█▀▀░░░░▀▀█░█▀▀
 # ░█░█░█░█░█░█░█▀▀░░░░░░█░▀▀█
 # ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░▀▀░░▀▀▀
-[ -f ~/.npmrc ] && rm ~/.npmrc
+[ -f "$HOME/.npmrc" ] && rm ~/.npmrc
 [ -s "/home/nicky/.bun/_bun" ] && source "/home/nicky/.bun/_bun"
 hash npm 2>/dev/null && source <(npm completion)
-hash npm 2>/dev/null && npm config set prefix '~/.npm-global'
+# hash npm 2>/dev/null && npm config set prefix '~/.npm-global'
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-[ -f /user/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
+[ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 hash yarn 2>/dev/null && export PATH="$(yarn global bin):$PATH"
 
 # ░█▀▀░█░█░█▀▀░░░█░█░█░█░█░█▀▄░█▀▀
