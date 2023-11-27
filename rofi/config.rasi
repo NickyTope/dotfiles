@@ -149,7 +149,7 @@ configuration {
   display-drun: "🏁 ";
   display-window: "  ";
   drun-display-format: "{name}";
-  font: "JetBrainsMono Nerd Font Medium 10";
+  font: "JetBrainsMono Medium 10";
   modi: "window,run,drun";
   show-icons: true;
   icon-theme: "Papirus";

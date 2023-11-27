@@ -3,9 +3,6 @@ return {
 	-- Pretties
 	"ryanoasis/vim-devicons",
 
-	-- Editor convenience
-	{ "folke/which-key.nvim", config = true },
-
 	-- Text manilpulation
 	-- "kana/vim-textobj-user",
 	-- "etdev/vim-textobject-pack",

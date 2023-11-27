@@ -99,7 +99,7 @@ newfox: &newfox
 
 font:
   normal:
-    family: JetBrainsMono Nerd Font
+    family: JetBrainsMono
     style: Medium
   bold:
     family: Free Mono

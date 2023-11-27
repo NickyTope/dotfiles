@@ -55,7 +55,7 @@ config.colors = {
 }
 
 config.font = wezterm.font({
-	family = "JetBrainsMono Nerd Font",
+	family = "JetBrainsMono",
 	italic = false,
 })
 config.font_rules = {
