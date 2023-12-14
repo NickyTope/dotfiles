@@ -43,16 +43,13 @@ return {
 				end
 			end
 
-			-- local diagnostic = function(forward)
-			-- 	return function()
-			-- 		if forward then
-			-- 			vim.diagnostic.goto_next()
-			-- 		else
-			-- 			vim.diagnostic.goto_prev()
-			-- 		end
-			-- 		vim.lsp.buf.code_action()
-			-- 	end
-			-- end
+			local buffers = function()
+				telescope.buffers(require("telescope.themes").get_dropdown({
+					sort_lastused = 1,
+					ignore_current_buffer = 1,
+					previewer = false,
+				}))
+			end
 
 			local clear_hidden_buffers = function()
 				require("close_buffers").delete({ type = "hidden", force = true })
@@ -67,7 +64,9 @@ return {
 					["<leader>"] = { cmd("b#"), "Previous file" },
 					["<Enter>"] = { cmd("vsp #"), "Split previous file" },
 					["<Esc>"] = { cmd("noh"), "Remove hl" },
-					b = { cmd("Neotree source=buffers reveal=true position=left action=focus"), "Buffer list" },
+					["<"] = { cmd("set foldmethod=syntax"), "fold by syntax" },
+					[">"] = { "za", "toggle fold" },
+					b = { buffers, "Buffer list" },
 					["BD"] = { clear_hidden_buffers, "Clear hidden buffer" },
 					c = { cmd("!zenity --color-selection --color='\\#<cword>'"), "preview color" },
 					e = { cmd("e"), "Reload file" },
