@@ -1,0 +1,81 @@
+[[colors.indexed_colors]]
+color = "0xf4a261"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0xd67ad2"
+index = 17
+
+[colors.bright]
+black = "0x575860"
+blue = "0x86abdc"
+cyan = "0x7ad5d6"
+green = "0x8ebaa4"
+magenta = "0xbaa1e2"
+red = "0xd16983"
+white = "0xe4e4e5"
+yellow = "0xe0c989"
+
+[colors.normal]
+black = "0x393b44"
+blue = "0x719cd6"
+cyan = "0x63cdcf"
+green = "0x81b29a"
+magenta = "0x9d79d6"
+red = "0xc94f6d"
+white = "0xdfdfe0"
+yellow = "0xdbc074"
+
+[colors.primary]
+background = "0x192330"
+foreground = "0xcdcecf"
+
+[cursor.style]
+shape = "Beam"
+
+[cursor.vi_mode_style]
+shape = "Block"
+
+[font]
+size = 7
+
+[font.bold]
+family = "Free Mono"
+
+[font.italic]
+family = "Fisa Code"
+
+[font.normal]
+family = "JetBrainsMono"
+style = "Medium"
+
+[font.offset]
+x = 0
+y = -1
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "K"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "J"
+mods = "Control|Shift"
+
+[window]
+dynamic_padding = true
+opacity = 0.9
+
+[window.padding]
+x = 1
