@@ -9,12 +9,12 @@ timedatectl timesync-status &
 ~/.config/bspwm/desktops.sh
 
 bspc config border_width         1
-bspc config window_gap          10
+bspc config window_gap          12
 
 bspc config split_ratio          0.5
 bspc config borderless_monocle   true
 bspc config gapless_monocle      false
-bspc config pointer_follows_monitor       true
+bspc config pointer_follows_focus       true
 bspc config focus_follows_pointer         true
 bspc config focused_border_color "#c94f6d"
 

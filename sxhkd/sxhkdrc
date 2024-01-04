@@ -56,8 +56,8 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# super + {p,b,comma,period}
+	# bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }c
@@ -70,6 +70,14 @@ super + {_,shift +}v
 # focus the last node/desktop
 super + {grave,Tab}
 	bspc {node,desktop} -f last
+
+# pin a node
+super + p
+  bspc node -g sticky=on --state floating
+
+# unpin a node
+super + shift + p
+  bspc node -g sticky=off --state tiled
 
 # focus the older or newer node in the focus history
 super + {o,i}
