@@ -11,6 +11,10 @@ return {
 				end
 			end
 
+			local function codeiumStatus()
+				return vim.fn["codeium#GetStatusString"]()
+			end
+
 			local function search()
 				if vim.v.hlsearch == 1 then
 					local ok, count = pcall(vim.fn.searchcount)
@@ -20,6 +24,7 @@ return {
 				end
 				return ""
 			end
+
 			local function stat()
 				return require("lsp-status").status()
 			end
@@ -31,6 +36,7 @@ return {
 					lualine_c = { "filename" },
 					lualine_x = {
 						recording,
+						codeiumStatus,
 						search,
 						"filetype",
 					},
