@@ -112,6 +112,9 @@ bspwm/configbyhost.sh
 - ripgrep
 - roficlip
 - rofi-emoji
+- gnome-themes-extra
+- adwaita-qt5-git
+- adwaita-qt6-git
 
 ### fonts
 

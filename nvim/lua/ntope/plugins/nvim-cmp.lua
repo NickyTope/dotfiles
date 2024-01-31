@@ -19,6 +19,7 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "path", max_item_count = 3 },
 				{ name = "luasnip" },
+				{ name = "codeium" },
 				{
 					name = "buffer",
 					keyword_length = 4,

@@ -21,4 +21,27 @@
       <test qual="any" name="family"><string>Helvetica Neue Medium</string></test>
       <edit name="family" mode="assign" binding="same"><string>Liberation Sans</string></edit>
     </match>
+    <match target="font">
+        <edit name="antialias" mode="assign">
+            <bool>true</bool>
+        </edit>
+        <edit name="hinting" mode="assign">
+            <bool>true</bool>
+        </edit>
+        <edit name="hintstyle" mode="assign">
+            <const>hintmedium</const>
+        </edit>
+        <edit name="rgba" mode="assign">
+            <const>none</const>
+        </edit>
+        <edit name="autohint" mode="assign">
+            <bool>true</bool>
+        </edit>
+        <edit name="lcdfilter" mode="assign">
+            <const>lcdnone</const>
+        </edit>
+        <edit name="dpi" mode="assign">
+            <double>102</double>
+        </edit>
+    </match>
 </fontconfig>

@@ -30,6 +30,15 @@ return {
 			end
 			local palette = require("nightfox.palette").load("nightfox")
 
+			local function pwd()
+				local current_dir = vim.fn.getcwd()
+				local path_parts = {}
+				for part in current_dir:gmatch("[^/]+") do
+					path_parts[#path_parts + 1] = part
+				end
+				return path_parts[#path_parts]
+			end
+
 			require("lualine").setup({
 				sections = {
 					lualine_b = { "diff", "branch" },
@@ -56,7 +65,7 @@ return {
 							color = { fg = palette.blue.bright, gui = "italic" },
 						},
 					},
-					lualine_z = { "fileformat" },
+					lualine_z = { pwd },
 				},
 				inactive_winbar = {
 					lualine_c = {

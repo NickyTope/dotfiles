@@ -44,6 +44,8 @@ xset r rate 399 40
 export XDG_CURRENT_DESKTOP=Gnome
 export XDG_SESSION_DESKTOP=Gnome
 export XDG_CONFIG_HOME=/home/nicky/.config
+export GTK_THEME=Dracula
+export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
 systemctl --user import-environment XDG_CURRENT_DESKTOP
 source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
