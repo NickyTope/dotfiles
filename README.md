@@ -21,7 +21,7 @@ setup.sh (run from this dir) creates symlinks in ~/.config
 ### xorg
 
 ```
-sudo pacman -S xorg-server xorg-xsetroot xorg-xinit xorg-xbacklight xorg-setxkbmap xorg-xrdb xorg-xinput xorg-xprop xorg-xrandr xorg-utils xorg-server-utils xdotool xclip
+sudo pacman -S xorg-server xorg-xsetroot xorg-xinit xorg-setxkbmap xorg-xrdb xorg-xinput xorg-xprop xorg-xrandr xdotool xclip
 ```
 
 ### yay (pacman aur helper)
@@ -142,3 +142,7 @@ bspwm/configbyhost.sh
 - ttf-roboto
 - ttf-roboto-mono
 - ttf-twemoji
+
+## Post installation
+
+https://wiki.archlinux.org/title/General_recommendations

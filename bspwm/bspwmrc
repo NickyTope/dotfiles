@@ -53,9 +53,10 @@ if [ "$HOSTNAME" = "miniarch" ]; then
 elif [ "$HOSTNAME" = "nt-oryx" ]; then
   eww daemon &
   eww open sidebar &
-  # manual throttle to 50%
   sudo system76-power profile battery
   sudo xbacklight -set 25
+  sudo sys76-kb set -c purple -b 90
+  sudo dex -a &
   # disable monitor blanking and screensaver
   xset -dpms
   xset s off

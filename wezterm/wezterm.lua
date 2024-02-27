@@ -58,22 +58,6 @@ config.font = wezterm.font({
 	family = "JetBrainsMono",
 	italic = false,
 })
-config.font_rules = {
-	{
-		italic = true,
-		font = wezterm.font({
-			family = "Fisa Code",
-			style = "Italic",
-		}),
-	},
-	{
-		intensity = "Bold",
-		font = wezterm.font({
-			family = "Free Mono",
-			weight = "ExtraBold",
-		}),
-	},
-}
 config.font_size = 10
 
 -- and finally, return the configuration to wezterm

@@ -35,8 +35,8 @@ alias docker-rmq="docker ps -a -q -f status=exited | xargs docker rm"
 alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
-alias lspinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-langservers-extracted"
-alias lspbuninstall="bun add --global @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-langservers-extracted"
+alias lspinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-langservers-extracted emmet-ls"
+alias lspbuninstall="bun add --global @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-langservers-extracted emmet-ls"
 alias ssh="TERM=linux ssh"
 alias shares="python ~/.config/bspwm/stocks.py"
 alias yrd="yarn run dev:srv"
@@ -94,6 +94,8 @@ hash kubectl 2>/dev/null && source <(kubectl completion zsh)
 # ░▄▀░░▀▀█░█▀█
 # ░▀▀▀░▀▀▀░▀░▀
 source $ZSH/oh-my-zsh.sh
+
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 autoload -Uz compinit
 compinit

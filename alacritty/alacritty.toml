@@ -39,14 +39,11 @@ shape = "Block"
 [font]
 size = 7
 
-[font.bold]
-family = "Free Mono"
-
 [font.italic]
-family = "Fisa Code"
+family = "FiraCode Nerd Font"
 
 [font.normal]
-family = "JetBrainsMono"
+family = "JetBrainsMono Nerd Font"
 style = "Medium"
 
 [font.offset]
