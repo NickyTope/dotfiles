@@ -100,7 +100,7 @@ return {
 						l = { vim.diagnostic.open_float, "Diagnostic float" },
 						-- a = { cmd("Lspsaga code_action"), "Code Action" },
 						-- a = { vim.lsp.buf.code_action, "Code Action" },
-						a = { cmd("CodeActionMenu"), "Code Action" },
+						-- a = { cmd("CodeActionMenu"), "Code Action" },
 						s = { vim.lsp.buf.signature_help, "Signature Help" },
 						t = { telescope.lsp_type_definitions, "Type def" },
 					},
