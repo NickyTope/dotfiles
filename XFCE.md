@@ -22,3 +22,5 @@ application defaults
 dbus startup
 keyring is hard!
 gives more consistent settings
+monitor hotplug
+firefox session recovery across desktops
