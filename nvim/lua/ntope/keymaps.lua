@@ -67,9 +67,6 @@ map("v", "<c-c>", '"+y', {})
 map("v", "<leader>g", '"gy:g/<c-r>g/norm ', {})
 map("v", "<leader>s", '"sy:%s!\\(<c-r>s\\)!<c-r>s', {})
 
--- no idea how to port these, let's just cmd them
-vim.cmd([[ nmap gx :silent execute "!xdg-open " . shellescape("<cWORD>")<CR> ]])
-
 vim.cmd([[
   tnoremap <Esc> <C-\><C-n>
   tnoremap <A-h> <C-\><C-N><C-w>h
