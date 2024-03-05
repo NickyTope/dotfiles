@@ -86,8 +86,8 @@ hash yarn 2>/dev/null && export PATH="$(yarn global bin):$PATH"
 # ░█░█░█▀▄░█▀▀░▄▀░░█▀▄░█░█░█▀▄░█▀▀
 # ░▀▀▀░▀░▀░▀▀▀░▀░░░▀░▀░▀▀▀░▀▀░░▀▀▀
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-[ -f /opt/google-cloud-sdk/completion.zsh.inc ] && source /opt/google-cloud-sdk/completion.zsh.inc
-[ -f /opt/google-cloud-sdk/path.zsh.inc ] && source /opt/google-cloud-sdk/path.zsh.inc
+if [ -f '/home/nicky/apps/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nicky/apps/gcloud/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/nicky/apps/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nicky/apps/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 hash kubectl 2>/dev/null && source <(kubectl completion zsh)
 
 # ░▀▀█░█▀▀░█░█
@@ -117,3 +117,4 @@ function fzfz() {
 }
 zle -N fzfz
 bindkey '^g' fzfz
+
