@@ -18,7 +18,9 @@ return {
 					"css",
 					"dockerfile",
 					"go",
+					"graphql",
 					"html",
+					"http",
 					"javascript",
 					"jsdoc",
 					"json",
@@ -34,6 +36,7 @@ return {
 					"typescript",
 					"vim",
 					"yaml",
+					"xml",
 				},
 				highlight = {
 					enable = true,

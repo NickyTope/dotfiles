@@ -48,7 +48,7 @@ nmap("<c-p>", find_files, {})
 nmap("{", cmd("keepjumps normal! {"), {})
 nmap("}", cmd("keepjumps normal! }"), {})
 nmap("<c-s>", cmd("w"), { silent = true })
-nmap("-", cmd("Neotree source=filesystem reveal=true position=left action=focus"), {})
+-- nmap("-", cmd("Neotree source=filesystem reveal=true position=left action=focus"), {})
 nmap("<c-Space>", cmd("lua require'ntope.complete'.toggle()"), {})
 
 -- window movement

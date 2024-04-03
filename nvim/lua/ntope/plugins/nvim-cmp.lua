@@ -48,6 +48,11 @@ return {
 			formatting = {
 				format = lspkind.cmp_format(),
 			},
+			view = {
+				entries = {
+					follow_cursor = true,
+				},
+			},
 		})
 
 		cmp.setup.cmdline("/", {

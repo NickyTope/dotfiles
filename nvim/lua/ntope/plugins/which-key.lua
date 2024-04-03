@@ -113,7 +113,6 @@ return {
 						vim.lsp.buf.rename,
 						"Rename var",
 					},
-					o = { cmd("Neotree toggle"), "Toggle tree" },
 					p = { format_slowly, "Format file" },
 					q = {
 						name = "Quickfix",

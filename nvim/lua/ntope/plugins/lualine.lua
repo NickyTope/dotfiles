@@ -88,6 +88,11 @@ return {
 				options = {
 					theme = "nightfox",
 					globalstatus = true,
+					disabled_filetypes = {
+						winbar = {
+							"no-neck-pain",
+						},
+					},
 				},
 			})
 		end,

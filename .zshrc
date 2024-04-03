@@ -111,10 +111,15 @@ function subdir_do() {
   for d in ./*/ ; do (echo "=== $d ===" && cd "$d" && "$@") ; done
 }
 
+function zz() {
+  cd $(z | awk '{print $2}' | fzf --scheme=path --tac)
+}
+
 function fzfz() {
   cd $(z | awk '{print $2}' | fzf --scheme=path --tac)
   zle reset-prompt
 }
+
 zle -N fzfz
 bindkey '^g' fzfz
 
