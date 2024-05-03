@@ -1,4 +1,3 @@
--- This needs to still be setup last for some reason.
 return {
 	"hrsh7th/nvim-cmp",
 	dependencies = {
@@ -19,7 +18,6 @@ return {
 				{ name = "nvim_lsp" },
 				{ name = "path", max_item_count = 3 },
 				{ name = "luasnip" },
-				{ name = "codeium" },
 				{
 					name = "buffer",
 					keyword_length = 4,
@@ -46,7 +44,21 @@ return {
 				}),
 			}),
 			formatting = {
-				format = lspkind.cmp_format(),
+				fields = { "kind", "abbr", "menu" },
+				format = function(entry, vim_item)
+					local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+					local strings = vim.split(kind.kind, "%s", { trimempty = true })
+					kind.kind = " " .. (strings[1] or "") .. " "
+					kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+					return kind
+				end,
+			},
+			window = {
+				completion = {
+					col_offset = -3,
+					side_padding = 0,
+				},
 			},
 			view = {
 				entries = {

@@ -37,12 +37,6 @@ return {
 				require("ntope.showfilename").toggle()
 			end
 
-			local spectre_replace = function(select_word)
-				return function()
-					require("spectre").open_visual({ select_word = select_word })
-				end
-			end
-
 			local buffers = function()
 				telescope.buffers(require("telescope.themes").get_dropdown({
 					sort_lastused = 1,
@@ -125,8 +119,6 @@ return {
 					r = {
 						name = "Replace",
 						n = { vim.lsp.buf.rename, "Rename var" },
-						r = { spectre_replace(false), "Find and Replace" },
-						R = { spectre_replace(true), "Current word replace" },
 					},
 					t = { telescope.builtin, "Telescope builtin" },
 					T = { telescope.resume, "Telescope resume" },

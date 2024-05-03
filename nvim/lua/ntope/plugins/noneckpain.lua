@@ -35,14 +35,14 @@ return {
 			reloadOnColorSchemeChange = false,
 			-- When `true`, entering one of no-neck-pain side buffer will automatically skip it and go to the next available buffer.
 			--- @type boolean
-			skipEnteringNoNeckPainBuffer = false,
+			skipEnteringNoNeckPainBuffer = true,
 		},
 		-- Creates mappings for you to easily interact with the exposed commands.
 		--- @type table
 		mappings = {
 			-- When `true`, creates all the mappings that are not set to `false`.
 			--- @type boolean
-			enabled = true,
+			enabled = false,
 			-- Sets a global mapping to Neovim, which allows you to toggle the plugin.
 			-- When `false`, the mapping is not created.
 			--- @type string

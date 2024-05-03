@@ -42,6 +42,11 @@ return {
 
 		lsp.tsserver.setup({
 			on_attach = my_attach,
+			settings = {
+				completions = {
+					completeFunctionCalls = true,
+				},
+			},
 		})
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -197,6 +202,10 @@ return {
 			on_attach = function(client)
 				my_attach(client)
 			end,
+		})
+
+		lsp.lemminx.setup({
+			cmd = { "/home/nicky/apps/lemminx/lemminx-linux" },
 		})
 
 		-- local config = vim.diagnostic.config()

@@ -14,18 +14,21 @@
     follow = keyboard
     indicate_hidden = yes
     shrink = yes
-    transparency = 20
-    notification_height = 0
+    transparency = 10
     separator_height = 1
     separator_color = "#585858"
+    background = "#192330"
+    foreground = "#cdcecf"
+    frame_color = "#9d79d6"
     width = (0, 500)
     origin = bottom-center
     frame_width = 1
     corner_radius = 4
     sort = yes
 
+    timeout = 5
     idle_threshold = 120
-    font = IBM Plex
+    font = IBM Plex Sans
     line_height = 0
     markup = full
 
@@ -39,44 +42,24 @@
     hide_duplicate_count = no
     show_indicators = yes
     icon_position = right
-    max_icon_size = 24
+    max_icon_size = 64
     icon_path = /usr/share/icons/breeze-extra-gnome/status/22/:/usr/share/icons/Adwaita/24x24/status/:/usr/share/icons/Adwaita/16x16/status/
     sticky_history = yes
     history_length = 20
     dmenu = /usr/bin/rofi -p dunst:
     browser = /usr/bin/firefox-developer-edition
     always_run_script = true
-
     title = Dunst
     class = Dunst
-    startup_notification = true
     force_xinerama = false
+
 [experimental]
     per_monitor_dpi = false
 
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    history = ctrl+grave
-    context = ctrl+shift+period
-
-[urgency_low]
-    background = "#192330"
-    foreground = "#719cd6"
-    font = FiraCode Nerd Font
-    timeout = 5
 # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
-[urgency_normal]
-    background = "#282828"
-    foreground = "#719cd6"
-    frame_color = "#719cd6"
-    timeout = 5
-
 [urgency_critical]
-    background = "#192330"
-    foreground = "#c94f6d"
     frame_color = "#c94f6d"
     timeout = 0
 

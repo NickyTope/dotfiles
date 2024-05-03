@@ -20,7 +20,7 @@ config.window_background_opacity = 0.9
 config.window_padding = {
 	left = 2,
 	right = 2,
-	top = 0,
+	top = 2,
 	bottom = 0,
 }
 
@@ -56,9 +56,20 @@ config.colors = {
 
 config.font = wezterm.font({
 	family = "JetBrainsMono",
-	italic = false,
 })
-config.font_size = 10
+config.font_rules = {
+	{
+		italic = false,
+		intensity = "Bold",
+		font = wezterm.font({ family = "JetBrainsMono", weight = "Bold" }),
+	},
+	{
+		italic = true,
+		intensity = "Normal",
+		font = wezterm.font({ family = "FiraCode Nerd Font", italic = true }),
+	},
+}
+config.font_size = 10.5
 
 -- and finally, return the configuration to wezterm
 return config

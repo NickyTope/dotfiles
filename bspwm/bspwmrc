@@ -14,16 +14,14 @@ bspc config window_gap          12
 bspc config split_ratio          0.5
 bspc config borderless_monocle   true
 bspc config gapless_monocle      false
-bspc config pointer_follows_focus       true
+# bspc config pointer_follows_focus       true
 bspc config pointer_follows_monitor       true
 bspc config focus_follows_pointer         true
 bspc config focused_border_color "#c94f6d"
 
-bspc config external_rules_command ~/.config/bspwm/external_rules.sh
-
-bspc rule -a Chrome desktop=web
 bspc rule -a Slack desktop=chat
 bspc rule -a '*:zoom' desktop=chat
+bspc rule -a '*:zoom:zoom_linux_float_video_window' state=floating sticky=on center=on rectangle=500x300+0+0
 
 bspc rule -a '*:dev.warp.Warp' border=off
 
@@ -39,6 +37,8 @@ bspc rule -a '*:galculator' state=floating
 
 bspc rule -a "*:bitwarden" state=floating rectangle=680x500 center=on
 bspc rule -a "scratchterm" state=floating rectangle=1600x800+0+0 center=on
+
+bspc config external_rules_command ~/.config/bspwm/external_rules.sh
 
 ~/.config/polybar/launch.sh &
 ~/.config/bspwm/setwall.sh &

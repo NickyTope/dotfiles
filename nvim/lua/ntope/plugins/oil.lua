@@ -4,12 +4,6 @@ return {
 		keymaps = {
 			["g?"] = "actions.show_help",
 			["<CR>"] = "actions.select",
-			["<C-s>"] = false,
-			["<C-h>"] = false,
-			["<C-t>"] = false,
-			["<C-p>"] = false,
-			["<C-c>"] = false,
-			["<C-l>"] = false,
 			["v"] = "actions.select_vsplit",
 			["p"] = "actions.preview",
 			["R"] = "actions.refresh",
@@ -23,28 +17,31 @@ return {
 			["g."] = "actions.toggle_hidden",
 			["g\\"] = "actions.toggle_trash",
 		},
+		use_default_keymaps = false,
+		skip_confirm_for_simple_edits = true,
+		float = {
+			max_width = 150,
+			max_height = 40,
+			win_options = {
+				winblend = 20,
+			},
+		},
 	},
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	keys = {
 		{
 			"-",
-			"<cmd>Oil<cr>",
+			function()
+				require("oil").open_float()
+			end,
 			mode = "n",
 			desc = "Browse",
 		},
 		{
-			"<Leader>-",
+			"<Leader>o",
 			"<cmd>vsplit | Oil<cr>",
 			mode = "n",
 			desc = "Browse Split",
-		},
-		{
-			"<Leader>o",
-			function()
-				require("oil").open_float()
-			end,
-			desc = "Browse Float",
-			mode = { "n", "v" },
 		},
 	},
 }

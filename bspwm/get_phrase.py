@@ -1,12 +1,15 @@
 #!/bin/python
 import urllib.request, json, random, pyautogui, os, string
+import time
 
-quotes = "/home/nt/.config/bspwm/quotes/"
+
+quotes = "/home/nicky/.config/bspwm/quotes/"
 f = open(quotes + random.choice(os.listdir(quotes)), "r")
-tmp = open("/tmp/quote", "w")
-tmp.write(f.read())
-tmp.close()
-#  pyautogui.typewrite(f.read())
+qbytes = f.read()
+time.sleep(1)  # Pause for 1 second
+pyautogui.keyUp('alt')
+pyautogui.keyUp('ctrl')
+pyautogui.write(qbytes)
 f.close()
 
 def getjson(url):
@@ -39,16 +42,17 @@ def cats():
 
 def number():
     url = "http://numbersapi.com/random"
-    return getraw(url)
+    return getraw(url).decode('utf-8')
 
-active = ["quotable", "storm", "cats", "number"]
+active = ["quotable", "opinionated", "cats", "number"]
 
 def getRandomQuote():
     api = random.choice(active)
+    print(api)
     return globals()[api]()
 
 letters = string.ascii_lowercase
 new = ''.join(random.choice(letters) for i in range(8))
-f = open(quotes + new, "w");
+f = open(quotes + new, "w")
 f.write(getRandomQuote())
 f.close()

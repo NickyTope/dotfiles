@@ -63,6 +63,9 @@ return {
 						{
 							"filename",
 							color = { fg = palette.blue.bright, gui = "italic" },
+							cond = function()
+								return vim.bo.filetype ~= "oil"
+							end,
 						},
 					},
 					lualine_z = { pwd },
