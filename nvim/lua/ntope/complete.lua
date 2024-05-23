@@ -15,9 +15,14 @@ M.toggle = function()
 	end
 	local comp = string.match(line, M.complete_task)
 	if comp then
-		local n = string.gsub(line, M.complete_task, "[]")
+		local n = string.gsub(line, M.complete_task .. "%s?", "")
 		vim.api.nvim_set_current_line(n)
 		return
+	end
+	local firstWord = string.match(line, "%w+")
+	if firstWord then
+		local n = string.gsub(line, firstWord, "[] " .. firstWord)
+		vim.api.nvim_set_current_line(n)
 	end
 end
 
