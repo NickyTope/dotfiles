@@ -1,13 +1,17 @@
-export ZSH="/usr/share/oh-my-zsh"
-ZSH_THEME="eastwood"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
-plugins=(
-  vi-mode
-)
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
-# ░█▀█░█░░░▀█▀░█▀█░█▀▀
-# ░█▀█░█░░░░█░░█▀█░▀▀█
-# ░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
+
+  # ▜ ▘    
+# ▀▌▐ ▌▀▌▛▘
+# █▌▐▖▌█▌▄▌
+         # 
 alias gs="git status"
 alias gaa="git add . --all"
 alias gc="git commit"
@@ -17,27 +21,24 @@ alias gpp="git pull --rebase && git push"
 alias gpl="git pull --rebase --autostash"
 alias gps="git push"
 alias gd="git log origin/dev ^origin/master"
-alias core="cd ~/code/boards-core"
 alias devops="cd ~/code/devops"
-alias ncore="core && nvim"
 alias ndevops="devops && nvim"
 alias conf="cd ~/.config"
 alias nconf="conf && nvim"
 alias dots="cd ~/code/dotfiles"
 alias ndots="dots && nvim"
 alias x="startx"
-alias yayu="yay -Syu --devel --timeupdate"
 alias n="nvim"
 alias :q="exit"
 alias wk="cd ~/Documents/Notes/ && nvim"
 alias dsa="docker start proxy redis mongo minio"
 alias docker-rmq="docker ps -a -q -f status=exited | xargs docker rm"
-alias fprox="cd ~/code/devops/local-utils/proxy && bash fprox.sh && cd -"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
 alias lspinstall="npm i -g @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-langservers-extracted emmet-ls"
 alias lspbuninstall="bun add --global @babel/cli @babel/core @babel/node concurrently dockerfile-language-server-nodejs eslint eslint_d neovim nodemon prettier stylelint stylelint-lsp tslib typescript typescript-language-server vim-language-server vscode-css-languageserver-bin vscode-json-languageserver cssmodules-language-server @tailwindcss/language-server vscode-langservers-extracted emmet-ls"
 alias ssh="TERM=linux ssh"
+alias ls='ls --color'
 alias shares="python ~/.config/bspwm/stocks.py"
 alias yrd="yarn run dev:srv"
 alias web="cd ~/code/boards-core/boards-webfront/"
@@ -48,9 +49,8 @@ alias top=bpytop
 alias ttq="curl http://api.quotable.io/random|jq '[.text=.content|.attribution=.author]'|tt -oneshot -quotes -"
 alias ttd="tt -n 10 -oneshot -showwpm -w 10 -csv >> ~/wpm.csv"
 
-# ░█▀▀░█▀█░█░█
-# ░█▀▀░█░█░▀▄▀
-# ░▀▀▀░▀░▀░░▀░
+# █▌▛▌▌▌
+# ▙▖▌▌▚▘
 export APP_URI=https://dev-client.isw.net.au
 export API_GATEWAY=https://dev-server.isw.net.au
 export KUBECONFIG=/home/nicky/.config/kube/config
@@ -70,53 +70,108 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 [[ -f ~/.env.sh ]] && source ~/.env.sh
 
-# ░█▀█░█▀█░█▀▄░█▀▀░░░░▀▀█░█▀▀
-# ░█░█░█░█░█░█░█▀▀░░░░░░█░▀▀█
-# ░▀░▀░▀▀▀░▀▀░░▀▀▀░▀░░▀▀░░▀▀▀
+
+     # ▌     ▘  
+# ▛▌▛▌▛▌█▌   ▌▛▘
+# ▌▌▙▌▙▌▙▖▗  ▌▄▌
+          # ▙▌  
 [ -f "$HOME/.npmrc" ] && rm ~/.npmrc
 [ -s "/home/nicky/.bun/_bun" ] && source "/home/nicky/.bun/_bun"
-hash npm 2>/dev/null && source <(npm completion)
-# hash npm 2>/dev/null && npm config set prefix '~/.npm-global'
+# hash npm 2>/dev/null && source <(npm completion)
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 hash yarn 2>/dev/null && export PATH="$(yarn global bin):$PATH"
 
-# ░█▀▀░█░█░█▀▀░░░█░█░█░█░█░█▀▄░█▀▀
-# ░█░█░█▀▄░█▀▀░▄▀░░█▀▄░█░█░█▀▄░█▀▀
-# ░▀▀▀░▀░▀░▀▀▀░▀░░░▀░▀░▀▀▀░▀▀░░▀▀▀
+
+  # ▌      ▌  ▌   ▌   
+# ▛▌▙▘█▌  ▐   ▙▘▌▌▛▌█▌
+# ▙▌▛▖▙▖  ▞   ▛▖▙▌▙▌▙▖
+# ▄▌      ▘           
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 if [ -f '/home/nicky/apps/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/home/nicky/apps/gcloud/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/home/nicky/apps/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/nicky/apps/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 hash kubectl 2>/dev/null && source <(kubectl completion zsh)
 
-# ░▀▀█░█▀▀░█░█
-# ░▄▀░░▀▀█░█▀█
-# ░▀▀▀░▀▀▀░▀░▀
-source $ZSH/oh-my-zsh.sh
+  # ▘  ▘▗ 
+# ▀▌▌▛▌▌▜▘
+# ▙▖▌▌▌▌▐▖
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME" ]; then
+   mkdir -p "$(dirname $ZINIT_HOME)"
+   git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "${ZINIT_HOME}/zinit.zsh"
 
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+# Add in zsh plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
-autoload -Uz compinit
-compinit
-autoload zmv
+# Add in snippets
+zinit snippet OMZP::archlinux
+zinit snippet OMZP::kubectl
+zinit snippet OMZP::command-not-found
 
+# Load completions
+autoload -Uz compinit && compinit
+zinit cdreplay -q
+
+# ▄▖  ▗ ▄▖▌ 
+# ▙▌  ▜ ▛▌▙▘
+# ▌   ▟▖█▌▛▖
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# ▌ ▘  ▗       
+# ▛▌▌▛▘▜▘▛▌▛▘▌▌
+# ▌▌▌▄▌▐▖▙▌▌ ▙▌
+           # ▄▌
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+         # ▜   ▗ ▘    
+# ▛▘▛▌▛▛▌▛▌▐ █▌▜▘▌▛▌▛▌
+# ▙▖▙▌▌▌▌▙▌▐▖▙▖▐▖▌▙▌▌▌
+       # ▌            
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+
+
+      # ▗      
+# ▛▘▌▌▛▘▜▘▛▌▛▛▌
+# ▙▖▙▌▄▌▐▖▙▌▌▌▌
+
+# alt+.
 bindkey '\e.' insert-last-word
-
-[[ -e ~/.config/antidote ]] || git clone https://github.com/mattmc3/antidote.git ~/.config/antidote
-. ~/.config/antidote/antidote.zsh
-antidote load
 
 function subdir_do() {
   for d in ./*/ ; do (echo "=== $d ===" && cd "$d" && "$@") ; done
 }
 
-function zz() {
-  cd $(z | awk '{print $2}' | fzf --scheme=path --tac)
-}
+[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 function fzfz() {
   cd $(z | awk '{print $2}' | fzf --scheme=path --tac)
+  local precmd
+  for precmd in $precmd_functions; do
+    $precmd
+  done
   zle reset-prompt
 }
 
