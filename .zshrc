@@ -20,18 +20,12 @@ alias gg="lazygit"
 alias gpp="git pull --rebase && git push"
 alias gpl="git pull --rebase --autostash"
 alias gps="git push"
-alias gd="git log origin/dev ^origin/master"
-alias devops="cd ~/code/devops"
-alias ndevops="devops && nvim"
 alias conf="cd ~/.config"
 alias nconf="conf && nvim"
-alias dots="cd ~/code/dotfiles"
-alias ndots="dots && nvim"
 alias x="startx"
 alias n="nvim"
 alias :q="exit"
 alias wk="cd ~/Documents/Notes/ && nvim"
-alias dsa="docker start proxy redis mongo minio"
 alias docker-rmq="docker ps -a -q -f status=exited | xargs docker rm"
 alias keys="~/.config/sxhkd/keys.sh"
 alias nkeys="n ~/.config/sxhkd/sxhkdrc"
@@ -40,9 +34,6 @@ alias lspbuninstall="bun add --global @babel/cli @babel/core @babel/node concurr
 alias ssh="TERM=linux ssh"
 alias ls='ls --color'
 alias shares="python ~/.config/bspwm/stocks.py"
-alias yrd="yarn run dev:srv"
-alias web="cd ~/code/boards-core/boards-webfront/"
-alias yrs="web && yarn run start"
 alias fact="curl --no-progress-meter https://uselessfacts.jsph.pl/api/v2/facts/random\?language\=en | jq .text"
 alias pandoc='docker run --rm -v "`pwd`:/data" -v "/usr/share/fonts/TTF:/fonts" pandoc/latex'
 alias top=bpytop
@@ -156,6 +147,9 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
       # ▗      
 # ▛▘▌▌▛▘▜▘▛▌▛▛▌
 # ▙▖▙▌▄▌▐▖▙▌▌▌▌
+
+setopt auto_cd
+cdpath=($HOME/code $HOME/.config)
 
 # alt+.
 bindkey '\e.' insert-last-word
