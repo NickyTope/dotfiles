@@ -1,12 +1,16 @@
+# ▄   ▗ ▐▘▘▜     
+# ▌▌▛▌▜▘▜▘▌▐ █▌▛▘
+# ▙▘▙▌▐▖▐ ▌▐▖▙▖▄▌
+               
+# read !figlet -f ~/code/dotfiles/figlet/miniwi.flf Dotfiles
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-
 
   # ▜ ▘    
 # ▀▌▐ ▌▀▌▛▘
@@ -61,7 +65,6 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 [[ -f ~/.env.sh ]] && source ~/.env.sh
 
-
      # ▌     ▘  
 # ▛▌▛▌▛▌█▌   ▌▛▘
 # ▌▌▙▌▙▌▙▖▗  ▌▄▌
@@ -73,7 +76,6 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 [ -f /usr/share/nvm/init-nvm.sh ] && source /usr/share/nvm/init-nvm.sh
 hash yarn 2>/dev/null && export PATH="$(yarn global bin):$PATH"
-
 
   # ▌      ▌  ▌   ▌   
 # ▛▌▙▘█▌  ▐   ▙▘▌▌▛▌█▌
@@ -142,7 +144,6 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
-
 
       # ▗      
 # ▛▘▌▌▛▘▜▘▛▌▛▛▌
