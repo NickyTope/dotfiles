@@ -13,7 +13,7 @@ return {
 					return
 				end
 			end
-			require("notify")(msg, ...)
+			return require("notify")(msg, ...)
 		end
 	end,
 }
