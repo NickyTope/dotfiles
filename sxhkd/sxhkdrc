@@ -2,7 +2,7 @@
 
 # terminal emulator
 super + Return
-	alacritty
+	wezterm
 
 super + shift + Return
   WINIT_X11_SCALE_FACTOR=1.5 alacritty -vv

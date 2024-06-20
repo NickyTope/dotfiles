@@ -14,9 +14,9 @@ config.color_scheme = "nightfox"
 
 config.enable_tab_bar = true
 config.tab_bar_at_bottom = true
-config.use_fancy_tab_bar = true
+config.use_fancy_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.85
 config.window_padding = {
 	left = 2,
 	right = 2,
@@ -26,24 +26,39 @@ config.window_padding = {
 
 config.keys = {
 	{
-		key = "u",
-		mods = "ALT",
-		action = wezterm.action.PaneSelect,
-	},
-	{
-		key = "t",
-		mods = "ALT",
-		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
-	},
-	{
 		key = "v",
 		mods = "ALT",
 		action = wezterm.action.PasteFrom("Clipboard"),
 	},
 	{
+		key = "t",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{
 		key = "v",
-		mods = "CTRL|ALT",
+		mods = "CTRL|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "h",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
+		key = "l",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+	{
+		key = "k",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{
+		key = "j",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ActivatePaneDirection("Down"),
 	},
 }
 
@@ -55,21 +70,9 @@ config.colors = {
 }
 
 config.font = wezterm.font({
-	family = "JetBrainsMono",
+	family = "Hurmit Nerd Font",
 })
-config.font_rules = {
-	{
-		italic = false,
-		intensity = "Bold",
-		font = wezterm.font({ family = "JetBrainsMono", weight = "Bold" }),
-	},
-	{
-		italic = true,
-		intensity = "Normal",
-		font = wezterm.font({ family = "FiraCode Nerd Font", italic = true }),
-	},
-}
-config.font_size = 10.5
+config.font_size = 10
+config.cell_width = 0.9
 
--- and finally, return the configuration to wezterm
 return config
