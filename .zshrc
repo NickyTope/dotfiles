@@ -49,16 +49,16 @@ alias ttd="tt -n 10 -oneshot -showwpm -w 10 -csv >> ~/wpm.csv"
 export APP_URI=https://dev-client.isw.net.au
 export API_GATEWAY=https://dev-server.isw.net.au
 export KUBECONFIG=/home/nicky/.config/kube/config
-export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
+# export CHROME_DEVEL_SANDBOX=/usr/local/sbin/chrome-devel-sandbox
 export GOPATH=/home/nicky/go
 export CARGO_PATH=/home/nicky/.cargo/bin
-export ANDROID_SDK_ROOT=/opt/android-sdk
-export ANDROID_PATH=$ANDROID_SDK_ROOT/emulator
-export _JAVA_AWT_WM_NONREPARENTING=1
+# export ANDROID_SDK_ROOT=/opt/android-sdk
+# export ANDROID_PATH=$ANDROID_SDK_ROOT/emulator
+# export _JAVA_AWT_WM_NONREPARENTING=1
 export PATH=$PATH:$GOPATH/bin:/home/nicky/bin:$ANDROID_PATH:$CARGO_PATH:/home/nicky/.local/bin:~/.npm-global/bin
 export VISUAL=nvim
 export EDITOR=nvim
-export BAT_THEME=gruvbox-dark
+export BAT_THEME=base16
 export TERM_ITALICS=true
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -96,16 +96,20 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in zsh plugins
+zinit ice wait lucid
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
 
-# Add in snippets
-zinit snippet OMZP::archlinux
-zinit snippet OMZP::kubectl
-zinit snippet OMZP::command-not-found
+export ZSH_AI_COMMANDS_HOTKEY="^h"
+export ZSH_AI_COMMANDS_OPENAI_API_KEY="$OPENAI_API_KEY"
+zinit ice wait"1" lucid
+zinit light muePatrick/zsh-ai-commands
+
+zinit ice wait lucid
+zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/directories.zsh
 
 # Load completions
 autoload -Uz compinit && compinit
@@ -133,8 +137,8 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-bindkey '^[[A' up-line-or-search # up arrow
-bindkey '^[[B' down-line-or-search # down arrow
+bindkey '^[[A' history-substring-search-up # up arrow
+bindkey '^[[B' history-substring-search-down # down arrow
 
          # ▜   ▗ ▘    
 # ▛▘▛▌▛▛▌▛▌▐ █▌▜▘▌▛▌▛▌
