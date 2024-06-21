@@ -19,15 +19,8 @@ bspc config pointer_follows_monitor       true
 bspc config focus_follows_pointer         true
 bspc config focused_border_color "#c94f6d"
 
-bspc rule -a Slack desktop=chat
-bspc rule -a '*:zoom' desktop=chat
-bspc rule -a '*:zoom:zoom_linux_float_video_window' state=floating sticky=on center=on rectangle=500x300+0+0
-
-bspc rule -a '*:dev.warp.Warp' border=off
-
 bspc rule -a Thunar state=floating
 bspc rule -a Nemo state=floating
-bspc rule -a '*:org.gnome.Nautilus' state=floating
 
 bspc rule -a '*:gitk' state=floating
 bspc rule -a '*:dialog' state=floating
