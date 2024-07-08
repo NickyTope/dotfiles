@@ -27,6 +27,7 @@ bspc rule -a '*:dialog' state=floating
 bspc rule -a '*:gcolor3' state=floating
 bspc rule -a '*:simplescreenrecorder' state=floating
 bspc rule -a '*:galculator' state=floating
+bspc rule -a '*:xfce4-appfinder' state=floating
 
 bspc rule -a "*:bitwarden" state=floating rectangle=680x500 center=on
 bspc rule -a "scratchterm" state=floating rectangle=1600x800+0+0 center=on

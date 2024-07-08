@@ -1,7 +1,7 @@
 return {
 	{
 		"echasnovski/mini.nvim",
-		version = "*",
+		version = false,
 		config = function()
 			require("mini.move").setup({
 				mappings = {
@@ -47,6 +47,8 @@ return {
 			})
 			require("mini.cursorword").setup({ delay = 500 })
 			require("mini.bufremove").setup()
+			require("mini.icons").setup()
+			require("mini.icons").mock_nvim_web_devicons()
 		end,
 	},
 }

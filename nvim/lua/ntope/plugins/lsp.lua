@@ -2,6 +2,7 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"nvim-lua/lsp-status.nvim",
+		"yioneko/nvim-vtsls",
 	},
 
 	config = function()
@@ -19,9 +20,6 @@ return {
 
 		local my_attach = function(client)
 			lsp_status.on_attach(client)
-			vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions)
-			-- vim.keymap.set("n", "td", require("telescope.builtin").lsp_type_definitions)
-			-- vim.keymap.set("n", "td", vim.lsp.buf.type_definition)
 		end
 
 		local lsp = require("lspconfig")
@@ -40,14 +38,17 @@ return {
 			cmd = { "docker", "run", "--rm", "-ia", "stdin", "-ia", "stderr", "-ia", "stdout", "glsp" },
 		})
 
-		lsp.tsserver.setup({
-			on_attach = my_attach,
-			settings = {
-				completions = {
-					completeFunctionCalls = true,
-				},
-			},
-		})
+		require("lspconfig.configs").vtsls = require("vtsls").lspconfig
+		lsp.vtsls.setup({})
+
+		-- lsp.tsserver.setup({
+		-- 	on_attach = my_attach,
+		-- 	settings = {
+		-- 		completions = {
+		-- 			completeFunctionCalls = true,
+		-- 		},
+		-- 	},
+		-- })
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -89,25 +90,34 @@ return {
 		-- local sumneko_install = "/home/nicky/apps/lua-language-server/"
 		lsp.lua_ls.setup({
 			on_attach = my_attach,
-			settings = {
-				Lua = {
+			on_init = function(client)
+				local path = client.workspace_folders[1].name
+				if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
+					return
+				end
+
+				client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
 					runtime = {
-						-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+						-- Tell the language server which version of Lua you're using
+						-- (most likely LuaJIT in the case of Neovim)
 						version = "LuaJIT",
 					},
-					diagnostics = {
-						-- Get the language server to recognize the `vim` global
-						globals = { "vim" },
-					},
+					-- Make the server aware of Neovim runtime files
 					workspace = {
-						-- Make the server aware of Neovim runtime files
-						library = vim.api.nvim_get_runtime_file("", true),
+						checkThirdParty = false,
+						library = {
+							vim.env.VIMRUNTIME,
+							-- Depending on the usage, you might want to add additional paths here.
+							-- "${3rd}/luv/library"
+							-- "${3rd}/busted/library",
+						},
+						-- or pull in all of 'runtimepath'. NOTE: this is a lot slower
+						-- library = vim.api.nvim_get_runtime_file("", true)
 					},
-					-- Do not send telemetry data containing a randomized but unique identifier
-					telemetry = {
-						enable = false,
-					},
-				},
+				})
+			end,
+			settings = {
+				Lua = {},
 			},
 		})
 

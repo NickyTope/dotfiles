@@ -10,15 +10,15 @@ return {
 				return "<cmd>" .. txt .. "<CR>"
 			end
 
-			local telescope = require("telescope.builtin")
-			local telescope_extensions = require("telescope").extensions
+			local builtin = require("telescope.builtin")
+			local extensions = require("telescope").extensions
 
 			local symbols = function()
-				telescope.symbols({ sources = { "kaomoji", "gitmoji" } })
+				builtin.symbols({ sources = { "kaomoji", "gitmoji" } })
 			end
 
 			local diag = function()
-				telescope.diagnostics(require("telescope.themes").get_ivy({
+				builtin.diagnostics(require("telescope.themes").get_ivy({
 					previewer = false,
 				}))
 			end
@@ -38,7 +38,7 @@ return {
 			end
 
 			local buffers = function()
-				telescope.buffers(require("telescope.themes").get_dropdown({
+				extensions.recent_files.pick(require("telescope.themes").get_dropdown({
 					sort_lastused = 1,
 					ignore_current_buffer = 1,
 					previewer = false,
@@ -49,9 +49,16 @@ return {
 				require("close_buffers").delete({ type = "hidden", force = true })
 			end
 
+			local jump = function(count)
+				return function()
+					vim.diagnostic.jump({ count = count })
+				end
+			end
+
 			wk.register({
 				g = {
-					d = { vim.lsp.buf.definition, "Goto Definition" },
+					d = { builtin.lsp_definitions, "Goto Definition" },
+					t = { builtin.lsp_type_definitions, "Goto Type Definition" },
 					["<Enter>"] = { cmd("vsp | lua vim.lsp.buf.definition()"), "Goto def in split" },
 				},
 				["<leader>"] = {
@@ -64,8 +71,8 @@ return {
 					["BD"] = { clear_hidden_buffers, "Clear hidden buffer" },
 					c = { cmd("!zenity --color-selection --color='\\#<cword>'"), "preview color" },
 					e = { cmd("e"), "Reload file" },
-					f = { telescope.live_grep, "Find in files" },
-					F = { telescope.grep_string, "Find word" },
+					f = { builtin.live_grep, "Find in files" },
+					F = { builtin.grep_string, "Find word" },
 					g = {
 						name = "Git",
 						s = { cmd("G|18wincmd_"), "Git status" },
@@ -76,15 +83,13 @@ return {
 						b = { cmd("GitBlameToggle"), "Toggle inline blame" },
 						B = { cmd("Git blame"), "Git blame" },
 						h = { cmd("GBrowse"), "Git browse" },
-						g = { telescope.git_commits, "git commits" },
-						-- d = goto definition (defined in language.lua when lsp client connects)
-						-- t = goto type definition (defined in language.lua when lsp client connects)
+						g = { builtin.git_commits, "git commits" },
 					},
 					i = { toggle_name, "Info (showfilename)" },
 					j = { "J", "join lines" },
 					l = {
 						name = "LSP",
-						r = { telescope.lsp_references, "References" },
+						r = { builtin.lsp_references, "References" },
 						n = {
 							cmd("Lspsaga rename ++project"),
 							"Rename (in project)",
@@ -92,16 +97,12 @@ return {
 						d = { diag, "Diagnostix" },
 						h = { vim.lsp.buf.hover, "Hover (doc)" },
 						l = { vim.diagnostic.open_float, "Diagnostic float" },
-						-- a = { cmd("Lspsaga code_action"), "Code Action" },
-						-- a = { vim.lsp.buf.code_action, "Code Action" },
-						-- a = { cmd("CodeActionMenu"), "Code Action" },
 						s = { vim.lsp.buf.signature_help, "Signature Help" },
-						t = { telescope.lsp_type_definitions, "Type def" },
+						-- t = { telescope.lsp_type_definitions, "Type def" },
+						t = { cmd("TSC"), "TypeScript Check" },
 					},
-					-- n = { cmd("Lspsaga diagnostic_jump_next"), "Next error" },
-					-- N = { cmd("Lspsaga diagnostic_jump_prev"), "Prev error" },
-					n = { vim.diagnostic.goto_next, "Next error" },
-					N = { vim.diagnostic.goto_prev, "Prev error" },
+					n = { jump(1), "Next error" },
+					N = { jump(-1), "Prev error" },
 					["mp"] = { cmd("silent !zathura /tmp/preview.pdf &"), "Open preview in Zathura" },
 					["rn"] = {
 						vim.lsp.buf.rename,
@@ -110,7 +111,7 @@ return {
 					p = { format_slowly, "Format file" },
 					q = {
 						name = "Quickfix",
-						q = { telescope.quickfix, "Telescope QF" },
+						q = { builtin.quickfix, "Telescope QF" },
 						n = { cmd("cn"), "Next QF item" },
 						b = { cmd("cb"), "Prev QF item" },
 						c = { cmd("cclo"), "Close QF" },
@@ -120,8 +121,8 @@ return {
 						name = "Replace",
 						n = { vim.lsp.buf.rename, "Rename var" },
 					},
-					t = { telescope.builtin, "Telescope builtin" },
-					T = { telescope.resume, "Telescope resume" },
+					t = { builtin.builtin, "Telescope builtin" },
+					T = { builtin.resume, "Telescope resume" },
 					w = {
 						name = "word operations",
 						y = { symbols, "Symbols" },
@@ -135,7 +136,7 @@ return {
 						h = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
 					},
 					v = { '"+p', "Paste system clip" },
-					y = { telescope_extensions.neoclip.default, "Yank list" },
+					y = { extensions.neoclip.default, "Yank list" },
 				},
 			})
 		end,
