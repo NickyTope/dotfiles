@@ -1,6 +1,7 @@
 return {
 	{
 		"L3MON4D3/LuaSnip",
+		lazy = true,
 		config = function()
 			local ls = require("luasnip")
 			local fmt = require("luasnip.extras.fmt").fmt

@@ -132,9 +132,6 @@ return {
 						G = { '"gyiW:g/<c-r>g/norm ', "operate on lines containing WORD" },
 					},
 					W = { "<c-w>=", "even window ratio" },
-					u = {
-						h = { cmd("UndotreeShow") .. cmd("UndotreeFocus"), "Undo tree" },
-					},
 					v = { '"+p', "Paste system clip" },
 					y = { extensions.neoclip.default, "Yank list" },
 				},

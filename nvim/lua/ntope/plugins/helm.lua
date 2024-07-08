@@ -1,10 +1,11 @@
 return {
 	{
 		"towolf/vim-helm",
+		ft = "helm",
 	},
 	{
 		"mrjosh/helm-ls",
-		event = "VeryLazy",
+		ft = "helm",
 		config = function()
 			local lspconfig = require("lspconfig")
 			lspconfig.helm_ls.setup({

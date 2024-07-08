@@ -1,6 +1,8 @@
 return {
 	{
 		"dpayne/CodeGPT.nvim",
+		lazy = true,
+		cmd = { "Chat" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
