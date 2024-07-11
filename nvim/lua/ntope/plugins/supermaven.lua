@@ -1,6 +1,6 @@
 return {
 	"supermaven-inc/supermaven-nvim",
-	event = "VeryLazy",
+	event = "InsertEnter",
 	config = function()
 		require("supermaven-nvim").setup({})
 	end,

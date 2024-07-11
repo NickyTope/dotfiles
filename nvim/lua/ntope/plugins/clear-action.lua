@@ -7,7 +7,6 @@ return {
 		},
 		mappings = {
 			code_action = "<leader>la",
-			apply_first = "<leader>ll",
 		},
 	},
 }

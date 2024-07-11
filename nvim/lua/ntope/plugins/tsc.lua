@@ -1,5 +1,8 @@
 return {
 	"dmmulroy/tsc.nvim",
+	dependencies = {
+		{ "dmmulroy/ts-error-translator.nvim", config = true },
+	},
 	config = true,
 	opts = {
 		auto_open_qflist = true,
