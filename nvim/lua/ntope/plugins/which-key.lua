@@ -45,10 +45,6 @@ return {
 				}))
 			end
 
-			local clear_hidden_buffers = function()
-				require("close_buffers").delete({ type = "hidden", force = true })
-			end
-
 			local jump = function(count)
 				return function()
 					vim.diagnostic.jump({ count = count })
@@ -65,7 +61,6 @@ return {
 				{ "<leader><", cmd("set foldmethod=syntax"), desc = "fold by syntax" },
 				{ "<leader>>", "za", desc = "toggle fold" },
 				{ "<leader>b", buffers, desc = "Buffer list" },
-				{ "<leader>BD", clear_hidden_buffers, desc = "Clear hidden buffer" },
 				{ "<leader>c", cmd("!zenity --color-selection --color='\\#<cword>'"), desc = "preview color" },
 				{ "<leader>e", cmd("e"), desc = "Reload file" },
 				{ "<leader>f", builtin.live_grep, desc = "Find in files" },
@@ -95,6 +90,7 @@ return {
 				{ "<leader>n", jump(1), desc = "Next error" },
 				{ "<leader>N", jump(-1), desc = "Prev error" },
 				{ "<leader>mp", cmd("silent !zathura /tmp/preview.pdf &"), desc = "Open preview in Zathura" },
+				{ "<leader>r", group = "Replace" },
 				{ "<leader>rn", vim.lsp.buf.rename, desc = "Rename var" },
 				{ "<leader>p", format_slowly, desc = "Format file" },
 				{ "<leader>q", group = "Quickfix" },
@@ -103,7 +99,6 @@ return {
 				{ "<leader>qb", cmd("cb"), desc = "Prev QF item" },
 				{ "<leader>qc", cmd("cclo"), desc = "Close QF" },
 				{ "<leader>qo", cmd("copen"), desc = "Open QF" },
-				{ "<leader>rn", vim.lsp.buf.rename, desc = "Rename var" },
 				{ "<leader>t", builtin.builtin, desc = "Telescope builtin" },
 				{ "<leader>T", builtin.resume, desc = "Telescope resume" },
 				{ "<leader>w", group = "word operations" },
