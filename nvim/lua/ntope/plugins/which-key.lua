@@ -47,7 +47,7 @@ return {
 
 			local jump = function(count)
 				return function()
-					vim.diagnostic.jump({ count = count })
+					vim.diagnostic.jump({ count = count, float = true })
 				end
 			end
 
@@ -61,7 +61,6 @@ return {
 				{ "<leader><", cmd("set foldmethod=syntax"), desc = "fold by syntax" },
 				{ "<leader>>", "za", desc = "toggle fold" },
 				{ "<leader>b", buffers, desc = "Buffer list" },
-				{ "<leader>c", cmd("!zenity --color-selection --color='\\#<cword>'"), desc = "preview color" },
 				{ "<leader>e", cmd("e"), desc = "Reload file" },
 				{ "<leader>f", builtin.live_grep, desc = "Find in files" },
 				{ "<leader>F", builtin.grep_string, desc = "Find word" },
@@ -71,22 +70,25 @@ return {
 				{ "<leader>gr", cmd("Git rebase"), desc = "Git rebase" },
 				{ "<leader>gp", cmd("Git push"), desc = "Git push" },
 				{ "<leader>gb", cmd("GitBlameToggle"), desc = "Toggle inline blame" },
-				{ "<leader>gB", cmd("Git blame"), desc = "Git blame" },
+				{ "<leader>gB", cmd("Git blame"), desc = "Git fugitive blame" },
 				{ "<leader>gg", builtin.git_commits, desc = "git commits" },
+				{ "<leader>h", builtin.help_tags, desc = "Help tags" },
 				{ "<leader>i", toggle_name, desc = "Info (showfilename)" },
 				{ "<leader>j", "J", desc = "join lines" },
 				{ "<leader>l", group = "LSP" },
 				{ "<leader>lr", builtin.lsp_references, desc = "References" },
-				{
-					"<leader>ln",
-					cmd("Lspsaga rename ++project"),
-					desc = "Rename (in project)",
-				},
 				{ "<leader>ld", diag, desc = "Diagnostix" },
 				{ "<leader>lh", vim.lsp.buf.hover, desc = "Hover (doc)" },
 				{ "<leader>ll", vim.diagnostic.open_float, desc = "Diagnostic float" },
 				{ "<leader>ls", vim.lsp.buf.signature_help, desc = "Signature Help" },
-				{ "<leader>lt", cmd("TSC"), desc = "TypeScript Check" },
+				{ "<leader>lt", group = "TypeScript Tools" },
+				{ "<leader>ltc", cmd("TSC"), desc = "TypeScript Check" },
+				{ "<leader>lti", cmd("TSToolsOrganizeImports"), desc = "Organize imports" },
+				{ "<leader>ltu", cmd("TSToolsRemoveUnused"), desc = "Remove unused" },
+				{ "<leader>ltm", cmd("TSToolsAddMissingImports"), desc = "Add missing imports" },
+				{ "<leader>ltg", cmd("TSToolsGoToSourceDefinition"), desc = "Go to source definition" },
+				{ "<leader>ltr", cmd("TSToolsRenameFile"), desc = "Rename file" },
+				{ "<leader>ltf", cmd("TSToolsFileReferences"), desc = "File references" },
 				{ "<leader>n", jump(1), desc = "Next error" },
 				{ "<leader>N", jump(-1), desc = "Prev error" },
 				{ "<leader>mp", cmd("silent !zathura /tmp/preview.pdf &"), desc = "Open preview in Zathura" },

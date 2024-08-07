@@ -2,7 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	dependencies = {
 		"nvim-lua/lsp-status.nvim",
-		"yioneko/nvim-vtsls",
 	},
 
 	config = function()
@@ -37,18 +36,6 @@ return {
 		lsp.groovyls.setup({
 			cmd = { "docker", "run", "--rm", "-ia", "stdin", "-ia", "stderr", "-ia", "stdout", "glsp" },
 		})
-
-		require("lspconfig.configs").vtsls = require("vtsls").lspconfig
-		lsp.vtsls.setup({})
-
-		-- lsp.tsserver.setup({
-		-- 	on_attach = my_attach,
-		-- 	settings = {
-		-- 		completions = {
-		-- 			completeFunctionCalls = true,
-		-- 		},
-		-- 	},
-		-- })
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -218,16 +205,13 @@ return {
 			cmd = { "/home/nicky/apps/lemminx/lemminx-linux" },
 		})
 
-		-- local config = vim.diagnostic.config()
-		-- config.underline = true
-		-- -- config.virtual_text = false
-		-- config.virtual_text = {
-		-- 	-- spacing = 2,
-		-- 	-- prefix = "<",
-		-- 	severity = {
-		-- 		min = vim.diagnostic.severity.INFO,
-		-- 	},
-		-- }
-		-- rim.diagnostic.config(config)
+		local config = vim.diagnostic.config()
+		config.underline = true
+		config.virtual_text = {
+			severity = {
+				min = vim.diagnostic.severity.ERROR,
+			},
+		}
+		vim.diagnostic.config(config)
 	end,
 }
