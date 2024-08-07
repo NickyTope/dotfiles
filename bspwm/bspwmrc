@@ -58,6 +58,7 @@ elif [ "$HOSTNAME" = "nt-oryx" ]; then
   # disable monitor blanking and screensaver
   xset -dpms
   xset s off
+  systemctl --user start rslsync &
 fi
 ~/.config/bspwm/welcome.sh &
 echo "rc complete"
