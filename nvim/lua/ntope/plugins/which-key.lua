@@ -89,6 +89,7 @@ return {
 				{ "<leader>ltg", cmd("TSToolsGoToSourceDefinition"), desc = "Go to source definition" },
 				{ "<leader>ltr", cmd("TSToolsRenameFile"), desc = "Rename file" },
 				{ "<leader>ltf", cmd("TSToolsFileReferences"), desc = "File references" },
+				{ "<leader>ltx", cmd("TSToolsFixAll"), desc = "Fix all" },
 				{ "<leader>n", jump(1), desc = "Next error" },
 				{ "<leader>N", jump(-1), desc = "Prev error" },
 				{ "<leader>mp", cmd("silent !zathura /tmp/preview.pdf &"), desc = "Open preview in Zathura" },
