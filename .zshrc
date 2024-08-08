@@ -38,7 +38,7 @@ alias ssh="TERM=linux ssh"
 alias ls='ls --color'
 alias shares="python ~/.config/bspwm/stocks.py"
 alias fact="curl --no-progress-meter https://uselessfacts.jsph.pl/api/v2/facts/random\?language\=en | jq .text"
-alias pandoc='docker run --rm -v "`pwd`:/data" -v "/usr/share/fonts/TTF:/fonts" pandoc/latex'
+alias pandoc='docker run --rm -v "`pwd`:/data" -v "/usr/share/fonts/TTF:/fonts" pandoc/extra'
 alias top=bpytop
 alias ttq="curl http://api.quotable.io/random|jq '[.text=.content|.attribution=.author]'|tt -oneshot -quotes -"
 alias ttd="tt -n 10 -oneshot -showwpm -w 10 -csv >> ~/wpm.csv"
