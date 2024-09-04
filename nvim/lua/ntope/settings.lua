@@ -37,8 +37,6 @@ vim.o.sessionoptions = "curdir,buffers,winsize"
 vim.opt.cmdheight = 0
 vim.opt.shortmess:append("S")
 
-vim.cmd([[set shada='10,<10,/50,:50,s10,h]])
-
 -- " vim-markdown
 vim.g.vim_markdown_folding_disabled = 1
 
