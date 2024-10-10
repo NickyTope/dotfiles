@@ -30,6 +30,7 @@ bspc rule -a '*:galculator' state=floating
 bspc rule -a '*:xfce4-appfinder' state=floating
 
 bspc rule -a "*:bitwarden" state=floating rectangle=680x500 center=on
+bspc rule -a "*:proton pass" state=floating rectangle=680x500 center=on
 bspc rule -a "scratchterm" state=floating rectangle=1600x800+0+0 center=on
 
 bspc config external_rules_command ~/.config/bspwm/external_rules.sh
@@ -41,7 +42,7 @@ bspc config external_rules_command ~/.config/bspwm/external_rules.sh
 # xinput set-prop "pointer:Logitech MX Anywhere 2S" "libinput Natural Scrolling Enabled" 1 &
 xinput set-prop "pointer:Glorious Model D" "libinput Natural Scrolling Enabled" 1 &
 xinput set-prop "pointer:Glorious Series One PRO Wireless" "libinput Natural Scrolling Enabled" 1 &
-picom &
+# picom &
 clipster -d &
 killall udiskie
 udiskie &

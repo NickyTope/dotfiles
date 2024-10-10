@@ -10,6 +10,7 @@ return {
 		config = function()
 			vim.g["codegpt_global_commands_defaults"] = {
 				model = "gpt-4o",
+				max_tokens = 128000,
 			}
 			require("codegpt.config")
 		end,
